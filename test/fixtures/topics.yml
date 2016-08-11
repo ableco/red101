@@ -1,0 +1,11 @@
+creativity:
+  name: Creativity
+  info: Measures creativity
+
+leadership:
+  name: Leadership
+  info: Measures Leadership
+
+culture:
+  name: Culture
+  info: Measures Culture
