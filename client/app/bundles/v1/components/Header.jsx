@@ -2,6 +2,7 @@
 // all your dump component names with Widget.
 
 import React, { PropTypes } from 'react';
+import SearchComponent from '../components/SearchComponent';
 import _ from 'lodash';
 
 // Simple example of a React "dumb" component
@@ -9,8 +10,7 @@ export default class Header extends React.Component {
   static propTypes = {
     // If you have lots of data or action properties, you should consider grouping them by
     // passing two properties: "data" and "actions".
-    updateName: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
+    showSearch: PropTypes.any,
   };
 
   constructor(props, context) {
@@ -19,34 +19,30 @@ export default class Header extends React.Component {
     // Uses lodash to bind all methods to the context of the object instance, otherwise
     // the methods defined here would not refer to the component's class, not the component
     // instance itself.
-    _.bindAll(this, 'handleChange');
   }
 
   // React will automatically provide us with the event `e`
   handleChange(e) {
-    const name = e.target.value;
-    this.props.updateName(name);
   }
 
   render() {
-    const { name } = this.props;
+    const { showSearch } = this.props;
+    const search = <SearchComponent />
+    const headerContent = <div className="pull-right">
+                            <button className="button">Ingresar</button>
+                            <button className="button button-green">Registrarse</button>
+                          </div>;
+
     return (
-      <div className="container">
-        <h3>
-          Hello, {name}!
-        </h3>
-        <hr />
-        <form className="form-horizontal">
-          <label>
-            Say hello to:
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={this.handleChange}
-          />
-        </form>
-      </div>
+      <header>
+        <h1>
+          <span className="color-blue">Red</span>
+          <span className="color-green">1</span>
+          <span className="color-yellow">0</span>
+          <span className="color-red">1</span>
+        </h1>
+        { (showSearch) ? search : headerContent }
+      </header>
     );
   }
 }

@@ -2,6 +2,8 @@
 // all your dump component names with Widget.
 
 import React, { PropTypes } from 'react';
+import Header from '../components/Header';
+import UserViewDetailsComponent from '../components/UserViewDetailsComponent';
 
 // Simple example of a React "dumb" component
 export default class UserViewComponent extends React.Component {
@@ -18,14 +20,27 @@ export default class UserViewComponent extends React.Component {
 
   render() {
     const { user } = this.props;
+    const userJson = [
+      {
+        name: 'User name',
+        status: 'Licenciado',
+        email: 'username@mail.com',
+        about: '',
+        country: 'Peru',
+        city: 'Lima',
+        centro_educativo: 'User Centro Educativo Name',
+        rol: '',
+        nivel: '',
+        telefono: '',
+      },
+      {}
+    ];
     return (
       <div className="row">
-        <div className="col-sx-4">
-          Datos del Usuario
-        </div>
-        <div className="col-sx-8">
-          Info del usuario
-        </div>
+        <Header showSearch={true} />
+        <UserViewDetailsComponent
+          user={userJson}
+        />
       </div>
     );
   }

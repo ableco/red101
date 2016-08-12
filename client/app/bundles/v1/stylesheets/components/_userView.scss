@@ -1,0 +1,53 @@
+.perfil {
+  background-color: map-get($colors, _grey);
+  height: 100%;
+  padding: map-get($sizes, gutter) * 3.25 map-get($sizes, gutter) * 1.5;
+
+  header {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .searchbox {
+    display: inline-block;
+    margin-left: map-get($sizes, gutter) * 1.5;
+    width: map-get($sizes, gutter) * 30;
+  }
+
+  .perfil-details {
+    font-size: 13px;
+    padding-right: map-get($sizes, gutter) * 1.5;
+    padding-top: map-get($sizes, gutter);
+    width: 30%;
+
+    h1 {
+      border-bottom: 1px solid map-get($colors, grey-border-1);
+      font-size: map-get($sizes, gutter);
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: map-get($sizes, gutter) * 1.5;
+      padding-bottom: map-get($sizes, gutter);
+      padding-left: 0;
+      padding-top: 0;
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 13px;
+      font-weight: normal;
+    }
+
+    ul li {
+      line-height: 18px;
+      margin-bottom: map-get($sizes, gutter) * .75;
+
+      label {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+  }
+}

@@ -18,7 +18,7 @@ export default class UserContainer extends React.Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="perfil container-fluid">
         <UserViewComponent user={this.props.user} />
       </div>
     );
