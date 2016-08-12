@@ -11,6 +11,11 @@ body {
   padding: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 ul,
 ol {
   list-style: none;
@@ -107,4 +112,9 @@ input {
 
 .pull-right {
   float: right;
+}
+
+// To fix problem of DIV that it can't be edited
+.js-react-on-rails-component + div {
+  height: 100%;
 }
