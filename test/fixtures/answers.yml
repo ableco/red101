@@ -1,5 +1,3 @@
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  diagnostic: first
+  question: creativity_why

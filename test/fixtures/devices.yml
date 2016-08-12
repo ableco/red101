@@ -1,7 +1,9 @@
 member_device:
   user: member
-  token: <%= TOKEN %>
+  token: <%= MEMBER_TOKEN %>
+  description: browser
 
 admin_device:
   user: admin
-  token: <%= TOKEN %>
+  token: <%= ADMIN_TOKEN %>
+  description: browser
