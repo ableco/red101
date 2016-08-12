@@ -6,11 +6,11 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_show
-    get api_v1_profile_url
-
-    response_json = JSON.parse(response.body)
+    get api_v1_profile_url, headers: v1_authorization_header(@member.devices.first.token)
 
     assert_response :success
+
+    response_json = JSON.parse(response.body)
 
     assert_equal response_json['first_name'], @member.first_name
     assert_equal response_json['last_name'],  @member.last_name

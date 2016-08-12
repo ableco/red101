@@ -1,14 +1,9 @@
 class Authorization
   attr_reader :current_user
 
-  def initialize(user)
-    @current_user = user
-  end
-
-  def allow(group, *permissions, &block)
-    permissions.flatten.each do |permission|
-      rules[group] ||= {}
-      rules[group][permission] = (block || true)
+  def initialize(user, version = 1)
+    if @current_user = user
+      setup_rules(version)
     end
   end
 
@@ -21,6 +16,20 @@ class Authorization
   end
 
   private
+
+    def setup_rules(version)
+      case version
+      when 1
+        allow :profiles, :show
+      end
+    end
+
+    def allow(group, *permissions, &block)
+      permissions.flatten.each do |permission|
+        rules[group] ||= {}
+        rules[group][permission] = (block || true)
+      end
+    end
 
     def rules
       @rules ||= {}

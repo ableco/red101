@@ -17,7 +17,7 @@ class ApiController < ActionController::API
     end
 
     def authorize
-      head :unauthorized unless authorization.allow?(controller_name, action_name, resource)
+      head :unauthorized unless authorization.allow?(controller_name.to_sym, action_name.to_sym, resource)
     end
 
     def authorization
