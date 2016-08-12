@@ -4,6 +4,7 @@
 import React, { PropTypes } from 'react';
 import Header from '../components/Header';
 import UserViewDetailsComponent from '../components/UserViewDetailsComponent';
+import UserViewTabsComponent from '../components/UserViewTabsComponent';
 
 // Simple example of a React "dumb" component
 export default class UserViewComponent extends React.Component {
@@ -22,7 +23,7 @@ export default class UserViewComponent extends React.Component {
     const { user } = this.props;
     const userJson = [
       {
-        name: 'User name',
+        name: 'Juan Jose Rivadeneyra',
         status: 'Licenciado',
         email: 'username@mail.com',
         about: '',
@@ -36,11 +37,12 @@ export default class UserViewComponent extends React.Component {
       {}
     ];
     return (
-      <div className="row">
+      <div className="clearfix">
         <Header showSearch={true} />
         <UserViewDetailsComponent
           user={userJson}
         />
+        <UserViewTabsComponent />
       </div>
     );
   }
