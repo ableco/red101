@@ -7,6 +7,6 @@
   },
   "scripts": {
     "postinstall": "cd client && npm install",
-    "rails-server": "heroku local:start -f Procfile.dev",
+    "rails-server": "heroku local:start -f Procfile.dev"
   }
 }
