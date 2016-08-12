@@ -1,6 +1,4 @@
-class Api::V1::TopicsController < ApiController
-  skip_before_action :authorize
-
+class Api::V1::TopicsController < Api::V1Controller
   def create
     if @topic.save
       render :show, status: :created

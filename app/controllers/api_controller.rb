@@ -17,7 +17,7 @@ class ApiController < ActionController::API
     end
 
     def authorize
-      head :unauthorized unless authorization.allow?(controller_name, action_name, resource)
+      head :unauthorized unless authorization.allow?(controller_name.to_sym, action_name.to_sym, resource)
     end
 
     def authorization
@@ -30,7 +30,7 @@ class ApiController < ActionController::API
     end
 
     def ivar_name
-      controller_name.singularize
+      resource_class.model_name.singular
     end
 
     def param_key

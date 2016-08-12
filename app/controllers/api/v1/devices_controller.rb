@@ -1,4 +1,4 @@
-class Api::V1::DevicesController < ApiController
+class Api::V1::DevicesController < Api::V1Controller
   skip_before_action :authorize, only: :create
 
   def create

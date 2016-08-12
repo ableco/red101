@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resource  :profile,   only: %i( show )
       resources :devices,   only: %i( create delete )
       resources :materials, only: %i( index )
       resources :topics,    only: %i( create destroy )

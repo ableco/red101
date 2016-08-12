@@ -1,4 +1,4 @@
-class Api::V1::MaterialsController < ApiController
+class Api::V1::MaterialsController < Api::V1Controller
   skip_before_action :authorize, only: :index
 
   def index
