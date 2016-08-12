@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :materials, only: %i( index )
       resources :topics,    only: %i( create destroy )
       resources :questions, only: %i( create )
+      resources :templates, only: %i( create )
     end
   end
 
