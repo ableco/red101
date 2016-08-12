@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get "perfil", to: "user#index"
   get 'landing', to: 'landing#index'
 
+  root 'landing#index'
 end
