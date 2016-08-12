@@ -10,7 +10,10 @@
     "build:production": "NODE_ENV=production webpack --config webpack.config.js",
     "build:development": "webpack -w --config webpack.config.js"
   },
-  "cacheDirectories": ["node_modules", "client/node_modules"],
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
   "dependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.6.5",
@@ -32,11 +35,11 @@
     "react": "^0.14.8 || ^15.0.0",
     "react-dom": "^0.14.8 || ^15.0.0",
     "react-on-rails": "6.0.5",
+    "react-router": "^2.6.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

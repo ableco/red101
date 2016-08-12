@@ -4,6 +4,15 @@ header {
   max-height: 55px;
   padding: (map-get($sizes, gutter) * .5);
 
+  .go-back {
+    display: inline-block;
+    padding: 6px 0;
+
+    i {
+        margin-right: 5px;
+    }
+  }
+
   .pull-right {
     .button {
       margin-left: 10px;

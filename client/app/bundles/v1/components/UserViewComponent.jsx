@@ -37,7 +37,7 @@ export default class UserViewComponent extends React.Component {
     ];
     return (
       <div className="row">
-        <Header showSearch={true} />
+        <Header showSearch={true} showButtons={false} />
         <UserViewDetailsComponent
           user={userJson}
         />
