@@ -17,7 +17,10 @@ class Api::V1::DevicesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_authentication_failure
-    post api_v1_devices_url, params: { device: bad_device_params }
+    assert_difference 'Device.count', 0 do
+      post api_v1_devices_url, params: { device: bad_device_params }
+    end
+
     assert_response :not_found
   end
 

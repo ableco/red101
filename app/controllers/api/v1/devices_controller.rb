@@ -1,11 +1,19 @@
 class Api::V1::DevicesController < ApiController
-  def create
-    @device = Device.new(device_params)
+  skip_before_action :authorize, only: :create
 
-    if @device.save
+  def create
+    if resource.save
       render :show, status: 201
     else
       head :not_found
+    end
+  end
+
+  def destroy
+    if resource.destroy
+      head :ok
+    else
+      render json: { errors: @device.errors.full_messages }
     end
   end
 
@@ -13,5 +21,9 @@ class Api::V1::DevicesController < ApiController
 
   def device_params
     params.require(:device).permit(:email, :password)
+  end
+
+  def resource
+    @device ||= params[:id].present? ? Device.find(params[:id]) : Device.new(device_params)
   end
 end
