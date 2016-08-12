@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(version: 20160811204722) do
     t.integer  "kind",        default: 0, null: false
     t.string   "description",             null: false
     t.string   "token",                   null: false
+    t.datetime "expires_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["description"], name: "index_devices_on_description", using: :btree
+    t.index ["expires_at"], name: "index_devices_on_expires_at", using: :btree
     t.index ["kind"], name: "index_devices_on_kind", using: :btree
     t.index ["token"], name: "index_devices_on_token", unique: true, using: :btree
     t.index ["user_id"], name: "index_devices_on_user_id", using: :btree
