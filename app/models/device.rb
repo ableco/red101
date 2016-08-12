@@ -11,6 +11,7 @@ class Device < ApplicationRecord
 
   before_validation :authenticate,
                     :set_description
+  validates :user, presence: true
 
   private
 
