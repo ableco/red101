@@ -9,7 +9,7 @@ config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    './app/bundles/v1/startup/HelloWorldApp',
+    './app/bundles/v1/startup/clientRegistration',
   ],
 
   output: {
@@ -40,6 +40,17 @@ config = {
       {
         test: /\.jsx?$/, loader: 'babel-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!' + 'css?sourceMap' + '!sass?sourceMap'
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        ]
       },
     ],
   },

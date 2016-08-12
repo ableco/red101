@@ -1,0 +1,125 @@
+@mixin font-size($font-value : map-get($font-styles, base-font-size), $base-font-value : map-get($font-styles, base-font-size), $base-line-value : map-get($font-styles, base-line-height)) {
+  font-size: #{$font-value}px;
+  font-size: #{($font-value / $base-font-value)}rem;
+  line-height: #{($font-value / $base-font-value) * $base-line-value}px;
+  line-height: #{($base-line-value / $base-font-value) * ($font-value / $base-font-value)}rem;
+}
+
+@mixin font-open-sans() {
+  font-family: map-get($font-families, open-sans), sans-serif;
+}
+
+@mixin font-montserrat() {
+  font-family: map-get($font-families, montserrat), sans-serif;
+}
+
+@mixin css3-prefix($property, $value...) {
+  -webkit-#{$property}: #{$value};
+  -khtml-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin transition($properties...) {
+  @if length($properties) >= 1 {
+    @include css3-prefix("transition", $properties);
+  } @else {
+    @include css3-prefix("transition", "all 0.3s ease-in-out 0s");
+  }
+}
+
+@mixin opacity($opacity: .5) {
+  @include css3-prefix("opacity", $opacity);
+  $opacity-multiplied: ($opacity * 100);
+  filter: alpha(opacity = $opacity-multiplied);
+  //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacity-multiplied + ")";
+}
+
+@mixin clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin border-radius($radius: 2px) {
+  @include css3-prefix("border-radius", $radius);
+}
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: map-get($colors, dark-text-2), $inset: "") {
+  @if ($inset != "") {
+    @include css3-prefix("box-shadow", $inset $x $y $blur $color);
+  } @else {
+    @include css3-prefix("box-shadow", $x $y $blur $color);
+  }
+}
+
+@mixin transform($params) {
+  @include css3-prefix("transform", $params);
+}
+
+@mixin transform-origin($params) {
+  @include css3-prefix("transform-origin", $params);
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+  @if is-direction($direction) == false {
+    $color-stops: $direction, $color-stops;
+    $direction: 180deg;
+  }
+  background: nth(nth($color-stops, 1), 1);
+  background: linear-gradient($direction, $color-stops);
+}
+
+@mixin background-image-retina($file, $type, $width, $height) {
+  background-image: asset-url($file + "." + $type);
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (-moz-min-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx){
+    @include css3-prefix(background-size, $width $height);
+    background-image: asset-url($file + "@2x." + $type);
+  }
+}
+
+@mixin rotate-forever {
+  0% {
+    @include transform(rotate(0deg));
+  }
+
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($animation-name, $duration, $transition, $iteration) {
+  @include css3-prefix("animation-name", $animation-name);
+  @include css3-prefix("animation-duration", $duration);
+  @include css3-prefix("animation-timing-function", $transition);
+  @include css3-prefix("animation-iteration-count", $iteration);
+}
