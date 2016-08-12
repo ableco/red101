@@ -23,7 +23,8 @@ class Authorization
         allow :profiles, :show
 
         if current_user.admin?
-          allow :topics, :create, :destroy
+          allow :topics,    :create, :destroy
+          allow :questions, :create
         end
       end
     end

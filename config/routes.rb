@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :devices,   only: %i( create delete )
       resources :materials, only: %i( index )
       resources :topics,    only: %i( create destroy )
+      resources :questions, only: %i( create )
     end
   end
 
