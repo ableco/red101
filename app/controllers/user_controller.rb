@@ -21,7 +21,7 @@ class UserController < ApplicationController
     #   format.html
     # end
 
-    redux_store("HelloWorld", props: {})
+    redux_store("UserContainer", props: {})
     render_html
   end
 
