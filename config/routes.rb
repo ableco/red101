@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :devices,   only: %i( create delete )
       resources :materials, only: %i( index )
+      resources :topics,    only: %i( create destroy )
     end
   end
 
