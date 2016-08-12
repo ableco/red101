@@ -37,27 +37,27 @@ export default class UserViewDetailsComponent extends React.Component {
 
         <ul>
           <li>
-            <strong>Correo Electrónico </strong>
+            <label className="title">Correo Electrónico </label>
             <label> { email }</label>
           </li>
           <li>
-            <strong>Centro Educativo </strong>
+            <label className="title">Centro Educativo </label>
             <label> { centro_educativo }</label>
           </li>
           <li>
-            <strong>Localizacion </strong>
+            <label className="title">Localizacion </label>
             <label> { country }, { city }</label>
           </li>
           <li>
-            <strong>Rol </strong>
+            <label className="title">Rol </label>
             <label> { rol }</label>
           </li>
           <li>
-            <strong>Número Telefónico </strong>
+            <label className="title">Número Telefónico </label>
             <label> { telefono }</label>
           </li>
           <li>
-            <strong>Acerca de mi </strong>
+            <label className="title">Acerca de mi </label>
             <label> { about }</label>
           </li>
         </ul>

@@ -2,6 +2,7 @@
 // all your dump component names with Widget.
 
 import React, { PropTypes } from 'react';
+import { Tabs, Tab } from 'react-bootstrap';
 
 // Simple example of a React "dumb" component
 export default class UserViewTabsComponent extends React.Component {
@@ -22,12 +23,14 @@ export default class UserViewTabsComponent extends React.Component {
 
     return (
       <div className="perfil-tabs">
-        <div className="perfil-tabs--header">
-
-        </div>
-        <div className="perfil-tabs--content">
-
-        </div>
+        <Tabs defaultActiveKey={1} className="clearfix" id="uncontrolled-tab-example">
+          <Tab eventKey={1} title="Mis Diagnosticos">
+            Mis diagnosticos
+          </Tab>
+          <Tab eventKey={2} title="Mis Recursos">
+            Mis recursos
+          </Tab>
+        </Tabs>
       </div>
     );
   }

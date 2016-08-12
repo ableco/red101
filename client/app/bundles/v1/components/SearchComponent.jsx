@@ -21,9 +21,9 @@ export default class SearchComponent extends React.Component {
     return (
       <div className="searchbox">
         <div className="searchbox-input">
-          <input type="text" placeholder="Qué recurso deseas buscar?" />
+          <input type="text" placeholder="¿Qué recurso deseas buscar?" />
         </div>
-        <button className="button button-blue button-big disabled pull-right">Buscar</button>
+        <button className="button-search button button-blue button-big disabled pull-right">Buscar</button>
       </div>
     );
   }
