@@ -1,0 +1,59 @@
+creativity_why_yes:
+  question: creativity_why
+  content: Yes
+  correct: true
+
+creativity_why_no:
+  question: creativity_why
+  content: No
+  correct: false
+
+creativity_what_yes:
+  question: creativity_what
+  content: Yes
+  correct: true
+
+creativity_what_no:
+  question: creativity_what
+  content: No
+  correct: false
+
+leadership_why_yes:
+  question: leadership_why
+  content: Yes
+  correct: true
+
+leadership_why_no:
+  question: leadership_why
+  content: No
+  correct: false
+
+leadership_what_yes:
+  question: leadership_what
+  content: Yes
+  correct: true
+
+leadership_what_no:
+  question: leadership_what
+  content: No
+  correct: false
+
+culture_why_yes:
+  question: culture_why
+  content: Yes
+  correct: true
+
+culture_why_no:
+  question: culture_why
+  content: No
+  correct: false
+
+culture_what_yes:
+  question: culture_what
+  content: Yes
+  correct: true
+
+culture_what_no:
+  question: culture_what
+  content: No
+  correct: false

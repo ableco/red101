@@ -1,0 +1,13 @@
+first:
+  user: member
+  template: creativity_and_leadership
+  finished_at: <%= Time.current %>
+
+second:
+  user: member
+  template: creativity_and_leadership
+
+third:
+  user: member
+  template: creativity_and_culture
+  finished_at: <%= Time.current %>

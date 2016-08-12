@@ -1,0 +1,15 @@
+one:
+  template: creativity_and_leadership
+  topic: creativity
+
+two:
+  template: creativity_and_leadership
+  topic: leadership
+
+three:
+  template: creativity_and_culture
+  topic: creativity
+
+three:
+  template: creativity_and_culture
+  topic: culture
