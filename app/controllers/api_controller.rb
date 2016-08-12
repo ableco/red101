@@ -5,7 +5,7 @@ class ApiController < ActionController::API
                 :authorize
 
   def current_user
-    current_device.user
+    current_device&.user
   end
 
   private
