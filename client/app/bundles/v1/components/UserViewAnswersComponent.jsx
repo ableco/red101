@@ -2,9 +2,10 @@
 // all your dump component names with Widget.
 
 import React, { PropTypes } from 'react';
+import { Tabs, Tab } from 'react-bootstrap';
 
 // Simple example of a React "dumb" component
-export default class SearchComponent extends React.Component {
+export default class UserViewAnswersComponent extends React.Component {
   static propTypes = {
     // If you have lots of data or action properties, you should consider grouping them by
     // passing two properties: "data" and "actions".
@@ -18,12 +19,11 @@ export default class SearchComponent extends React.Component {
 
   render() {
     const { user } = this.props;
+    // This only for a static example
+
     return (
-      <div className="searchbox">
-        <div className="searchbox-input">
-          <input type="text" placeholder="¿Qué recurso deseas buscar?" />
-        </div>
-        <button className="button-search button button-blue button-big disabled pull-right">Buscar</button>
+      <div className="perfil-test">
+        Mis diagnosticos
       </div>
     );
   }

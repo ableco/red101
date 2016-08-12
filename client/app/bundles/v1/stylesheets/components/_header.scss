@@ -4,6 +4,20 @@ header {
   max-height: 55px;
   padding: (map-get($sizes, gutter) * .5);
 
+  .searchbox .searchbox-input {
+    width: 100%;
+
+    input {
+      @include border-radius();
+      @include font-size(13);
+      height: 35px;
+    }
+  }
+
+  .searchbox .button-search {
+    display: none;
+  }
+
   .pull-right {
     .button {
       margin-left: 10px;
