@@ -9,7 +9,11 @@ ADMIN_TOKEN  = 'abcdefghijklmnopqrstuvwxyz1234567890'
 class ActiveSupport::TestCase
   fixtures :all
 
-  def v1_authorization_header(token)
-    { 'Authorization' => ActionController::HttpAuthentication::Token.encode_credentials(token) }
+  def v1_authorization_header(user)
+    token = user.devices.active.first.token
+
+    {
+      'Authorization' => ActionController::HttpAuthentication::Token.encode_credentials(token)
+    }
   end
 end

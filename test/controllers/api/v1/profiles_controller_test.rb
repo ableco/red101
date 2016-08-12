@@ -6,7 +6,7 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_show
-    get api_v1_profile_url, headers: v1_authorization_header(@member.devices.first.token)
+    get api_v1_profile_url, headers: v1_authorization_header(@member)
 
     assert_response :success
 

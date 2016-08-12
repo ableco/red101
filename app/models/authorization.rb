@@ -21,6 +21,10 @@ class Authorization
       case version
       when 1
         allow :profiles, :show
+
+        if current_user.admin?
+          allow :topics, :create, :destroy
+        end
       end
     end
 
