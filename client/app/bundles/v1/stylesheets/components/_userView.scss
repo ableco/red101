@@ -1,11 +1,12 @@
 .perfil {
+  @include font-open-sans();
   background-color: map-get($colors, _grey);
   height: 100%;
-  padding: map-get($sizes, gutter) * 3.25 map-get($sizes, gutter) * 1.5;
+  padding: map-get($sizes, gutter) * 3.75 map-get($sizes, gutter) * 1.5 0;
 
   header {
     left: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
   }
@@ -17,17 +18,19 @@
   }
 
   .perfil-details {
+    float: left;
     font-size: 13px;
     padding-right: map-get($sizes, gutter) * 1.5;
     padding-top: map-get($sizes, gutter);
-    width: 30%;
+    width: 25%;
 
     h1 {
+      @include font-size(20);
+      @include font-open-sans();
       border-bottom: 1px solid map-get($colors, grey-border-1);
-      font-size: map-get($sizes, gutter);
-      font-weight: normal;
+      font-weight: 400;
       margin: 0;
-      margin-bottom: map-get($sizes, gutter) * 1.5;
+      margin-bottom: map-get($sizes, gutter);
       padding-bottom: map-get($sizes, gutter);
       padding-left: 0;
       padding-top: 0;
@@ -35,19 +38,35 @@
     }
 
     h3 {
-      font-size: 13px;
-      font-weight: normal;
+      @include font-size(13);
+      color: map-get($colors, grey-text-2);
+      margin-bottom: map-get($sizes, gutter) * .35;
     }
 
     ul li {
-      line-height: 18px;
+      color: map-get($colors, grey-text-2);
+      line-height: map-get($sizes, gutter);
       margin-bottom: map-get($sizes, gutter) * .75;
 
       label {
         display: inline-block;
         width: 100%;
+
+        &.title {
+          color: map-get($colors, grey-text-1);
+        }
+
       }
     }
+  }
 
+  .perfil-tabs {
+    background-color: map-get($colors, _white);
+    display: inline-block;
+    width: 75%;
+
+    .perfil-tabs--content {
+
+    }
   }
 }

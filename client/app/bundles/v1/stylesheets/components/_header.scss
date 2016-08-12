@@ -5,12 +5,28 @@ header {
   padding: (map-get($sizes, gutter) * .5);
 
   .go-back {
+    @include font-size(14);
     display: inline-block;
     padding: 6px 0;
 
     i {
-        margin-right: 5px;
+      @include font-size(16);
+      margin: 0 10px 0 20px;
     }
+  }
+
+  .searchbox .searchbox-input {
+    width: 100%;
+
+    input {
+      @include border-radius();
+      @include font-size(13);
+      height: 35px;
+    }
+  }
+
+  .searchbox .button-search {
+    display: none;
   }
 
   .pull-right {

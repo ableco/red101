@@ -1,0 +1,6 @@
+es:
+  hello: "Hola Mundo"
+
+  user_mailer:
+    welcome:
+      subject: 'Bienvenido a Red101'

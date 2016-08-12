@@ -11,10 +11,8 @@ body {
   padding: 0;
 }
 
-html,
-body {
-  height: 100%;
-}
+*, *:before, *:after { -moz-box-sizing: border-box;-webkit-box-sizing: border-box; box-sizing: border-box;	}
+
 
 ul,
 ol {
@@ -69,11 +67,13 @@ a {
 
   &:hover,
   &:focus {
+    outline: 0;
     text-decoration: none;
   }
 }
 
 input {
+  @include border-radius();
   @include font-open-sans();
   @include font-size(16);
   border: 1px solid map-get($colors, grey-text-2);

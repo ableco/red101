@@ -1,0 +1,57 @@
+.register {
+  .register-content {
+    margin: 0 auto;
+    width: 720px;
+  }
+
+  .register-header {
+    margin: 60px auto 75px;
+    text-align: center;
+    width: 560px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      @include font-size(16);
+    }
+  }
+
+  form {
+    .form-body {
+      border-top: 1px solid map-get($colors, grey-border-1);
+      border-bottom: 1px solid map-get($colors, grey-border-1);
+      padding: (map-get($sizes, gutter) * 1.7) (map-get($sizes, gutter) * 3);
+    }
+
+    .form-footer {
+      padding: 45px 0;
+      text-align: center;
+
+      .button {
+        margin: 0 5px;
+      }
+    }
+
+    .input-container {
+      margin-bottom: 25px;
+
+      &:last-child {
+        margin-bottom: 15px;
+      }
+    }
+
+    label {
+      @include font-size(16);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      height: map-get($sizes, button-height-2) - 2;
+      width: 100%;
+    }
+  }
+
+}
