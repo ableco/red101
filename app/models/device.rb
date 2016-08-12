@@ -1,5 +1,5 @@
 class Device < ApplicationRecord
-  attr_accessor :email, :password
+  attr_accessor :email, :password, :skip_authentication
 
   has_secure_token
 
@@ -9,19 +9,28 @@ class Device < ApplicationRecord
     browser: 0
   }
 
-  before_validation :authenticate,
-                    :set_description
   validates :user, presence: true
+
+  before_validation :authenticate, on: :create, unless: :skip_authentication
+  before_validation :set_description
+
+  scope :active, -> { where('expires_at IS NULL OR expires_at > :now', now: Time.current) }
+
+  def expired?
+    expires_at && expires_at < Time.current
+  end
+
+  def expire!
+    update(expires_at: Time.current)
+  end
 
   private
 
   def authenticate
-    candidate = User.find_by(email: email)
+    candidate = User.find_by(email: email) if email.present? && password.present?
 
     if candidate&.authenticate(password)
       self.user = candidate
-    else
-      errors.add(:base, :invalid)
     end
   end
 
