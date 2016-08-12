@@ -1,0 +1,24 @@
+header {
+  background-color: map-get($colors, _grey);
+  border-bottom: 1px solid map-get($colors, grey-border-1);
+  max-height: 55px;
+  padding: (map-get($sizes, gutter) * .5);
+
+  .pull-right {
+    .button {
+      margin-left: 10px;
+    }
+  }
+}
+
+h1 {
+  display: inline-block;
+  padding: (map-get($sizes, gutter) * .15) 0 (map-get($sizes, gutter) * .25) map-get($sizes, gutter);
+
+  span {
+    &:first-child {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+}

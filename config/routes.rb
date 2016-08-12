@@ -5,9 +5,12 @@ Rails.application.routes.draw do
       resource  :profile,   only: %i( show )
       resources :devices,   only: %i( create delete )
       resources :materials, only: %i( index )
+      resources :topics,    only: %i( create destroy )
     end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "perfil", to: "user#index"
+  get 'landing', to: 'landing#index'
+
 end

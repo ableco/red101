@@ -1,0 +1,19 @@
+.searchbox {
+  text-align: left;
+  padding: 0 (map-get($sizes, gutter) * .5);
+
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .searchbox-input {
+    position: relative;
+    width: calc(100% - 140px);
+
+    input {
+      height: map-get($sizes, button-height-2) - 2;
+      width: 100%;
+    }
+  }
+}
