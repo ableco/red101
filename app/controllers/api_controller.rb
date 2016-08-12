@@ -5,7 +5,7 @@ class ApiController < ActionController::API
                 :authorize
 
   def current_user
-    current_device.user
+    current_device&.user
   end
 
   private
@@ -30,7 +30,7 @@ class ApiController < ActionController::API
     end
 
     def ivar_name
-      controller_name.singularize
+      resource_class.model_name.singular
     end
 
     def param_key
