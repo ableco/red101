@@ -9,7 +9,7 @@ config = {
     'es5-shim/es5-shim',
     'es5-shim/es5-sham',
     'babel-polyfill',
-    './app/bundles/RedDocente/startup/HelloWorldApp',
+    './app/bundles/v1/startup/HelloWorldApp',
   ],
 
   output: {
