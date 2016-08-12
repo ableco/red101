@@ -1,0 +1,16 @@
+.link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link-green {
+  color: map-get($colors, _green);
+}
+
+.link-blue {
+  color: map-get($colors, _blue);
+}

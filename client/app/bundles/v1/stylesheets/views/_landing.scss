@@ -1,0 +1,29 @@
+.landing {
+  .landing-content {
+    margin: (map-get($sizes, gutter) * 3.1) auto;
+    text-align: center;
+    width: 50%;
+
+    img {
+      margin-bottom: map-get($sizes, gutter) * 1.6;
+    }
+
+    > p {
+      @include font-size(16);
+      margin-bottom: map-get($sizes, gutter) * 3;
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: (map-get($sizes, gutter) * 1.5) 0;
+
+    p {
+      @include font-size(13);
+    }
+  }
+}
