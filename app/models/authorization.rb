@@ -7,9 +7,9 @@ class Authorization
     end
   end
 
-  def allow?(group, permission, object = nil)
-    if rule = rules[group] && rules[group][permission]
-      rule == true || object && rule.call(object)
+  def allow?(controller, action, resource = nil)
+    if rule = rules.dig(controller.to_sym, action.to_sym)
+      rule == true || object && rule.call(resource)
     else
       false
     end
@@ -17,23 +17,26 @@ class Authorization
 
   private
 
-    def setup_rules(version)
-      case version
-      when 1
-        allow :profiles, :show
+    def v1_rules
+      allow :profiles, :show
 
-        if current_user.admin?
-          allow :topics,    :create, :destroy
-          allow :questions, :create
-          allow :templates, :create
-        end
+      if current_user.admin?
+        allow :topics,    :create, :destroy
+        allow :questions, :create
+        allow :templates, :create
       end
     end
 
-    def allow(group, *permissions, &block)
-      permissions.flatten.each do |permission|
-        rules[group] ||= {}
-        rules[group][permission] = (block || true)
+    def setup_rules(version)
+      case version
+      when 1 then v1_rules
+      end
+    end
+
+    def allow(controller, *actions, &block)
+      actions.flatten.each do |action|
+        rules[controller] ||= {}
+        rules[controller][action] = (block || true)
       end
     end
 
