@@ -3,7 +3,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
 import Layout from '../layout/Layout';
 import Landing from '../containers/Landing';
-import Register from '../containers/register';
+import Register from '../containers/Register';
 import UserContainer from '../containers/UserContainer';
 
 export default (
