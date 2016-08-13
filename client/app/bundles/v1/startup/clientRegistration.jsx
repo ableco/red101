@@ -1,6 +1,6 @@
 import '../stylesheets/application.scss';
 
 import ReactOnRails from 'react-on-rails';
-import App from './App';
+import ClientRouterApp from './ClientRouterApp';
 
-ReactOnRails.register({ App });
+ReactOnRails.register({ ClientRouterApp });

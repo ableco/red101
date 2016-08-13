@@ -37,8 +37,8 @@ export default class UserViewComponent extends React.Component {
       {}
     ];
     return (
-      <div className="clearfix">
-        <Header showSearch={true} />
+      <div>
+        <Header showSearch={true} showButtons={false} />
         <UserViewDetailsComponent
           user={userJson}
         />

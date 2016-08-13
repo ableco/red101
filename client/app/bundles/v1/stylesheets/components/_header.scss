@@ -4,6 +4,17 @@ header {
   max-height: 55px;
   padding: (map-get($sizes, gutter) * .5);
 
+  .go-back {
+    @include font-size(14);
+    display: inline-block;
+    padding: 6px 0;
+
+    i {
+      @include font-size(16);
+      margin: 0 10px 0 20px;
+    }
+  }
+
   .searchbox .searchbox-input {
     width: 100%;
 

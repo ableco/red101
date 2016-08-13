@@ -5,31 +5,15 @@ import _ from 'lodash';
 
 // Simple example of a React "smart" component
 export default class Landing extends React.Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired, // this is passed from the Rails view
-  };
 
   constructor(props, context) {
     super(props, context);
-
-    // How to set initial state in ES6 class syntax
-    // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = { name: this.props.name };
-
-    // Uses lodash to bind all methods to the context of the object instance, otherwise
-    // the methods defined here would not refer to the component's class, not the component
-    // instance itself.
-    _.bindAll(this, 'updateName');
-  }
-
-  updateName(name) {
-    this.setState({ name });
   }
 
   render() {
     return (
       <div className="landing">
-        <Header showSearch={false} />
+        <Header showSearch={false} showButtons={true} backButton={false} />
         <section>
           <div className="landing-content">
             <img src="http://imgur.com/jVGqtFz.png" />

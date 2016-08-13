@@ -73,6 +73,7 @@ a {
 }
 
 input {
+  @include border-radius();
   @include font-open-sans();
   @include font-size(16);
   border: 1px solid map-get($colors, grey-text-2);
