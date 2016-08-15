@@ -1,5 +1,7 @@
 creativity_and_leadership:
   name: Creativity and Leadership
+  question_limit: 2
 
 creativity_and_culture:
   name: Creativity and Culture
+  question_limit: 1
