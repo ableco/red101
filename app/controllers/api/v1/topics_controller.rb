@@ -3,7 +3,7 @@ class Api::V1::TopicsController < Api::V1Controller
     if @topic.save
       render :show, status: :created
     else
-      head :not_found
+      render json: { errors: @topic.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -17,12 +17,7 @@ class Api::V1::TopicsController < Api::V1Controller
 
   private
 
-  def new_resource_params
-    topic_params
-  end
-
-  def topic_params
+  def resource_params
     params.require(:topic).permit(:name)
   end
-
 end

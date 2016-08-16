@@ -19,11 +19,7 @@ class Api::V1::DevicesController < Api::V1Controller
 
   private
 
-  def new_resource_params
-    device_params
-  end
-
-  def device_params
+  def resource_params
     params.require(:device).permit(:email, :password)
   end
 end

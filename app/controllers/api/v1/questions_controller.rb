@@ -3,18 +3,13 @@ class Api::V1::QuestionsController < Api::V1Controller
     if @question.save
       render :show, status: :created
     else
-      head :not_found
+      render json: { errors: @question.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
 
-  def new_resource_params
-    question_params
-  end
-
-  def question_params
+  def resource_params
     params.require(:question).permit(:content, :topic_id, options_attributes: [:content, :correct])
   end
-
 end
