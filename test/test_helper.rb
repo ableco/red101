@@ -1,6 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'mocha/mini_test'
 
 PASSWORD     = '1234abcd'
 MEMBER_TOKEN = '1234567890abcdefghijklmnopqrstuvwxyz'
@@ -10,10 +11,14 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def v1_authorization_header(user)
-    token = user.devices.active.first.token
-
     {
-      'Authorization' => ActionController::HttpAuthentication::Token.encode_credentials(token)
+      'Authorization' => encode_token(user.devices.active.first.token)
     }
   end
+
+  private
+
+    def encode_token(token)
+      ActionController::HttpAuthentication::Token.encode_credentials(token)
+    end
 end
