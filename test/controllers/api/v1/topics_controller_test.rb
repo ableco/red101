@@ -7,7 +7,11 @@ class Api::V1::TopicsControllerTest < ActionDispatch::IntegrationTest
 
   def test_creation_success
     assert_difference 'Topic.count', 1 do
-      post api_v1_topics_url, params: { topic: good_topic_params }, headers: v1_authorization_header(@admin)
+      post api_v1_topics_url, headers: v1_authorization_header(@admin),
+                              params: {
+                                topic: good_topic_params
+                              }
+
     end
 
     response_json = JSON.parse(response.body)

@@ -3,6 +3,10 @@ class Api::V1Controller < ApiController
 
   private
 
+    def resource_class
+      controller_name.classify.constantize
+    end
+
     def resource
       instance_variable_get("@#{ ivar_name }") ||
       instance_variable_set("@#{ ivar_name }", (find_resource || build_resource))
@@ -12,23 +16,15 @@ class Api::V1Controller < ApiController
       resource_class.model_name.singular
     end
 
-    def param_key
-      resource_class.model_name.param_key
-    end
-
     def find_resource
       resource_class.find(params[:id]) if params[:id].present?
     end
 
-    def resource_class
-      controller_name.classify.constantize
-    end
-
     def build_resource
-      resource_class.new(new_resource_params)
+      resource_class.new(resource_params)
     end
 
-    def new_resource_params
+    def resource_params
       {}
     end
 end

@@ -18,7 +18,8 @@ class Authorization
   private
 
     def v1_rules
-      allow :profiles, :show
+      allow :profiles,    :show
+      allow :diagnostics, :create
 
       if current_user.admin?
         allow :topics,    :create, :destroy

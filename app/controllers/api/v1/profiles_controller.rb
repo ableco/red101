@@ -24,11 +24,7 @@ class Api::V1::ProfilesController < Api::V1Controller
       User
     end
 
-    def new_resource_params
-      user_params
-    end
-
-    def user_params
+    def resource_params
       params.require(:user).permit(:first_name, :last_name, :email, :password)
     end
 end
