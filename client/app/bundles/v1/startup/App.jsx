@@ -21,9 +21,11 @@ export default (props) => {
   return (
     <Provider store={store}>
       <Router history={history} {...props}>
-        <Route path="/" component={Landing} />
-        <Route path="/perfil" component={UserContainer} />
-        <Route path="/register" component={NewProfileContainer} />
+        <Route path="/" component={Layout}>
+          <IndexRoute component={Landing} />
+          <Route path="/perfil" component={UserContainer} />
+          <Route path="/register" component={NewProfileContainer} />
+        </Route>
       </Router>
     </Provider>
   )

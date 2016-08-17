@@ -1,5 +1,5 @@
 import React from 'react';
-import Modals from "../components/Modals";
+import Modals from "../containers/Modals";
 import { Link } from 'react-router';
 
 const Layout = ({ children }) => (
