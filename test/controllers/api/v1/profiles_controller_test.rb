@@ -8,7 +8,7 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   def test_create_with_good_data
     assert_difference 'ActionMailer::Base.deliveries.length', 1 do
       assert_difference 'User.count', 1 do
-        post api_v1_profile_url, params: { user: good_user_params }
+        post api_v1_profile_url, params: { profile: good_user_params }
       end
     end
 
@@ -22,7 +22,7 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   def test_create_with_bad_data
     assert_difference 'ActionMailer::Base.deliveries.length', 0 do
       assert_difference 'User.count', 0 do
-        post api_v1_profile_url, params: { user: bad_user_params }
+        post api_v1_profile_url, params: { profile: bad_user_params }
       end
     end
 
@@ -32,7 +32,7 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   def test_create_with_malformed_email
     assert_difference 'ActionMailer::Base.deliveries.length', 0 do
       assert_difference 'User.count', 0 do
-        post api_v1_profile_url, params: { user: bad_email_user_params }
+        post api_v1_profile_url, params: { profile: bad_email_user_params }
       end
     end
 
@@ -42,7 +42,7 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   def test_create_with_missing_password
     assert_difference 'ActionMailer::Base.deliveries.length', 0 do
       assert_difference 'User.count', 0 do
-        post api_v1_profile_url, params: { user: missing_password_user_params }
+        post api_v1_profile_url, params: { profile: missing_password_user_params }
       end
     end
 

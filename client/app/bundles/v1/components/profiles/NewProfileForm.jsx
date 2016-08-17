@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
 import _ from 'lodash';
-import Header from '../components/Header';
+import Header from '../Header';
 
-// Simple example of a React "smart" component
-export default class Register extends React.Component {
-
-  constructor(props, context) {
-    super(props, context);
+class NewProfileForm extends React.Component {
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.createProfile();
   }
 
   render() {
+    const { errors, submitting } = this.props;
+    const formClass = classNames({ 'submitting-form': submitting });
+
     return (
       <div className="register">
         <Header showSearch={false} showButtons={false} backButton={true}/>
@@ -18,7 +21,7 @@ export default class Register extends React.Component {
             <h2>Registro de usuarios</h2>
             <p>Si aún no tienes una cuenta, necesitamos unos datos para crear tu cuenta.<br/>Si ya te creaste una cuenta, <a className="link link-blue" href="javascript:;">ingresa aquí</a></p>
           </div>
-          <form>
+          <form onSubmit={ (e) => this.handleSubmit(e) } className={formClass}>
             <div className="form-body">
               <div className="input-container">
                 <label>Nombre</label>
@@ -47,3 +50,12 @@ export default class Register extends React.Component {
     );
   }
 }
+
+NewProfileForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  submitting: PropTypes.bool,
+  createProfile: PropTypes.func,
+};
+
+export default NewProfileForm;
