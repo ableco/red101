@@ -1,8 +1,9 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import _ from 'lodash';
 import {DISPLAY_LOGIN_MODAL} from "../lib/modalsConstants.js";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-export default class ModalsWrapper extends React.Component {
+export default class ModalsWrapper extends Component {
   static propTypes = {
     visible: PropTypes.bool.isRequired,
     modalName: PropTypes.string.isRequired,
@@ -17,7 +18,6 @@ export default class ModalsWrapper extends React.Component {
     let component = null;
     let closeBtn;
     const {visible, showCloseButton, modalName, closeModal} = this.props;
-    console.log(visible);
 
     if (showCloseButton) {
       closeBtn = (
@@ -64,7 +64,13 @@ export default class ModalsWrapper extends React.Component {
     }
 
     return (
-      component
+      <ReactCSSTransitionGroup
+        transitionName="modals"
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={200}
+      >
+        {component}
+      </ReactCSSTransitionGroup>
     );
   }
 }

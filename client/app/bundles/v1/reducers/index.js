@@ -19,5 +19,3 @@ export const initialStates = {
   modalsState,
   railsContextState,
 };
-
-console.log(initialStates);
