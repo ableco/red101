@@ -16,6 +16,10 @@ class Device < ApplicationRecord
 
   scope :active, -> { where('expires_at IS NULL OR expires_at > :now', now: Time.current) }
 
+  def current_user
+    user unless new_record? || expired?
+  end
+
   def expired?
     expires_at && expires_at < Time.current
   end
