@@ -1,5 +1,5 @@
 class Api::V1::ProfilesController < Api::V1Controller
-  skip_before_action :authorize
+  skip_before_action :authorize, only: :create
 
   def show
   end
