@@ -13,7 +13,7 @@ module Auth
   private
 
     def current_device
-      @current_device ||= Device.active.find_by(token: token) || Device.new
+      @current_device ||= Device.current(token)
     end
 
     def token
