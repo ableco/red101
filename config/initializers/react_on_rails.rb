@@ -1,3 +1,11 @@
+module RenderingExtension
+  # Return a Hash that contains custom values from the view context that will get passed to
+  # all calls to react_component and redux_store for rendering
+  def self.custom_context(view_context)
+    ENV.to_h.slice('API_URL').merge!(token: view_context.token)
+  end
+end
+
 # Shown below are the defaults for configuration
 ReactOnRails.configure do |config|
   # Client bundles are configured in application.js
@@ -65,6 +73,8 @@ ReactOnRails.configure do |config|
 
   # Default is false, enable if your content security policy doesn't include `style-src: 'unsafe-inline'`
   config.skip_display_none = false
+
+  config.rendering_extension = RenderingExtension
 
   # The server render method - either ExecJS or NodeJS
   config.server_render_method = "ExecJS"

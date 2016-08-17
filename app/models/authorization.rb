@@ -1,13 +1,11 @@
 class Authorization
-  attr_reader :current_user
-
   def initialize(user, version = 1)
     if @current_user = user
       setup_rules(version)
     end
   end
 
-  def allow?(controller, action, resource = nil)
+  def authorized?(controller, action, resource = nil)
     if rule = rules.dig(controller.to_sym, action.to_sym)
       rule == true || object && rule.call(resource)
     else
@@ -18,13 +16,13 @@ class Authorization
   private
 
     def v1_rules
-      allow :profiles,    :show
-      allow :diagnostics, :create
+      authorize :profiles,    :show
+      authorize :diagnostics, :create
 
-      if current_user.admin?
-        allow :topics,    :create, :destroy
-        allow :questions, :create
-        allow :templates, :create
+      if @current_user.admin?
+        authorize :topics,    :create, :destroy
+        authorize :questions, :create
+        authorize :templates, :create
       end
     end
 
@@ -34,7 +32,7 @@ class Authorization
       end
     end
 
-    def allow(controller, *actions, &block)
+    def authorize(controller, *actions, &block)
       actions.flatten.each do |action|
         rules[controller] ||= {}
         rules[controller][action] = (block || true)

@@ -10,7 +10,6 @@ config = {
     'es5-shim/es5-sham',
     'babel-polyfill',
     './app/bundles/v1/startup/clientRegistration',
-    './app/bundles/v1/startup/UserApp',
   ],
 
   output: {
