@@ -39,6 +39,7 @@ class Header extends Component {
         <div className="pull-right">
           <button className="button" onClick={() => displayModal(DISPLAY_LOGIN_MODAL)}>Ingresar</button>
           <Link to="register" className="button button-green">Registrarse</Link>
+          <Link to="perfil" className="button button-green">Mi Perfil</Link>
         </div>
       ) : null;
 

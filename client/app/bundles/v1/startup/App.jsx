@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux'
+import Cookies from 'js-cookie';
 
 import Layout from '../layout/Layout';
 import Landing from '../containers/Landing';
@@ -14,8 +15,13 @@ import UserContainer from '../containers/UserContainer';
  *  React will see that the state is the same and not do anything.
  */
 
+function requireAuthentication(nextState, replace, store) {
+  const token = Cookies.get('token');
+  if (!token) replace({ pathname: '/' });
+}
+
 export default (props) => {
-  const store = ReactOnRails.getStore('Store');
+  const store   = ReactOnRails.getStore('Store');
   const history = syncHistoryWithStore(browserHistory, store);
 
   return (
@@ -23,7 +29,11 @@ export default (props) => {
       <Router history={history} {...props}>
         <Route path="/" component={Layout}>
           <IndexRoute component={Landing} />
-          <Route path="/perfil" component={UserContainer} />
+          <Route
+            path="/perfil"
+            component={UserContainer}
+            onEnter={(nextState, replace) => requireAuthentication(nextState, replace, store)}
+          />
           <Route path="/register" component={NewProfileContainer} />
         </Route>
       </Router>
