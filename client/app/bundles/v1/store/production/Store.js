@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import middleware from 'redux-thunk';
-import reducers from '../reducers';
+import reducers from '../../reducers';
 
 /*
  *  Export a function that takes the props and returns a Redux store
