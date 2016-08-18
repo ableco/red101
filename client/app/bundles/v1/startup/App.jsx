@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux'
 import Cookies from 'js-cookie';
@@ -15,9 +15,14 @@ import UserContainer from '../containers/UserContainer';
  *  React will see that the state is the same and not do anything.
  */
 
-function requireAuthentication(nextState, replace, store) {
+function requireMember(nextState, replace, store) {
   const token = Cookies.get('token');
-  if (!token) replace({ pathname: '/' });
+  if (!token) replace({ pathname: '/bienvenido' });
+}
+
+function requireGuest(nextState, replace, store) {
+  const token = Cookies.get('token');
+  if (token) replace({ pathname: '/perfil' });
 }
 
 export default (props) => {
@@ -27,12 +32,21 @@ export default (props) => {
   return (
     <Provider store={store}>
       <Router history={history} {...props}>
-        <Route path="/" component={Layout}>
-          <IndexRoute component={Landing} />
+        <Route
+          path="/"
+          component={Layout}
+
+        >
+          <IndexRedirect to="/bienvenido" />
+          <Route
+            path="/bienvenido"
+            component={Landing}
+            onEnter={(nextState, replace) => requireGuest(nextState, replace, store)}
+          />
           <Route
             path="/perfil"
             component={UserContainer}
-            onEnter={(nextState, replace) => requireAuthentication(nextState, replace, store)}
+            onEnter={(nextState, replace) => requireMember(nextState, replace, store)}
           />
           <Route path="/register" component={NewProfileContainer} />
         </Route>
