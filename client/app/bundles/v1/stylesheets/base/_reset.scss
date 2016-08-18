@@ -115,6 +115,13 @@ input {
   float: right;
 }
 
+.ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 // To fix problem of DIV that it can't be edited
 .js-react-on-rails-component + div {
   height: 100%;

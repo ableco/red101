@@ -1,8 +1,8 @@
 import React, { PropTypes } from "react";
 import SearchInput, {createFilter} from "react-search-input";
-import emails from "./dummy/emails";
+import resources from "./dummy/resources";
 
-const KEYS_TO_FILTERS = ['user.name'];
+const KEYS_TO_FILTERS = ["title", "url", "details"];
 
 export default class SearchComponent extends React.Component {
   constructor() {
@@ -14,17 +14,16 @@ export default class SearchComponent extends React.Component {
     }
   }
 
-
   render() {
-    const filteredEmails = emails.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+    const filteredResources = resources.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
     const {searchTerm, isFocused} = this.state;
     const searchboxList = (searchTerm.length) ? (
       <div className="searchbox-list">
-        {filteredEmails.slice(0, 2).map(email => {
+        {filteredResources.slice(0, 3).map(resource => {
           return (
-            <a href="javascript:;" className="searchbox-item" key={email.id}>
-              <b>{email.user.name}</b>
-              <span>{email.subject}</span>
+            <a href={resource.url} className="searchbox-item" key={resource.id}>
+              <h4>{resource.title}</h4>
+              <span className="ellipsis">{resource.details}</span>
             </a>
           )
         })}

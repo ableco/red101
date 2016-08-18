@@ -9,8 +9,15 @@ class NewProfileForm extends React.Component {
     this.props.createProfile();
   }
 
+  handleChange(e) {
+    const value = e.target.value;
+    const name  = e.target.name;
+
+    this.props.updateForm(name, value);
+  }
+
   render() {
-    const { errors, submitting } = this.props;
+    const { formData, updateForm, errors, submitting } = this.props;
     const formClass = classNames({ 'submitting-form': submitting });
 
     return (
@@ -19,25 +26,48 @@ class NewProfileForm extends React.Component {
         <div className="register-content">
           <div className="register-header">
             <h2>Registro de usuarios</h2>
-            <p>Si aún no tienes una cuenta, necesitamos unos datos para crear tu cuenta.<br/>Si ya te creaste una cuenta, <a  className="link link-blue" href="javascript:;">ingresa aquí</a></p>
+            <p>
+              Si aún no tienes una cuenta, necesitamos unos datos para crear tu cuenta.
+              <br/>
+              Si ya te creaste una cuenta,
+              <a className="link link-blue" href="javascript:;">ingresa aquí</a>
+            </p>
           </div>
           <form onSubmit={ (e) => this.handleSubmit(e) } className={formClass}>
             <div className="form-body">
               <div className="input-container">
                 <label>Nombre</label>
-                <input placeholder="Primer y segundo nombre" />
+                <input
+                  placeholder="Nombre"
+                  name="first_name"
+                  onChange={(e) => this.handleChange(e)}
+                />
               </div>
               <div className="input-container">
                 <label>Apellidos</label>
-                <input placeholder="" />
+                <input
+                  placeholder="Apellido"
+                  name="last_name"
+                  onChange={(e) => this.handleChange(e)}
+                />
               </div>
               <div className="input-container">
                 <label>Correo Electronico</label>
-                <input placeholder="ejm. usuario@gmail.com" />
+                <input
+                  type="email"
+                  placeholder="ejm. usuario@gmail.com"
+                  name="email"
+                  onChange={(e) => this.handleChange(e)}
+                />
               </div>
               <div className="input-container">
                 <label>Password</label>
-                <input placeholder="Mínimo 6 caractéres" />
+                <input
+                  type="password"
+                  placeholder="Mínimo 6 caractéres"
+                  name="password"
+                  onChange={(e) => this.handleChange(e)}
+                />
               </div>
             </div>
             <div className="form-footer">
@@ -56,6 +86,7 @@ NewProfileForm.propTypes = {
   errors: PropTypes.object.isRequired,
   submitting: PropTypes.bool,
   createProfile: PropTypes.func,
+  updateForm: PropTypes.func,
 };
 
 export default NewProfileForm;

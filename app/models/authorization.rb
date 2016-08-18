@@ -7,7 +7,7 @@ class Authorization
 
   def authorized?(controller, action, resource = nil)
     if rule = rules.dig(controller.to_sym, action.to_sym)
-      rule == true || object && rule.call(resource)
+      rule == true || resource && rule.call(resource)
     else
       false
     end
