@@ -12,5 +12,9 @@
   "scripts": {
     "postinstall": "cd client && npm install",
     "rails-server": "heroku local:start -f Procfile.dev"
+  },
+  "dependencies": {
+    "react": "^15.3.0",
+    "react-addons-css-transition-group": "^15.0.0"
   }
 }
