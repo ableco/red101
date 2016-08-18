@@ -1,30 +1,61 @@
-// HelloWorldWidget is an arbitrary name for any "dumb" component. We do not recommend suffixing
-// all your dump component names with Widget.
+import React, { PropTypes } from "react";
+import SearchInput, {createFilter} from "react-search-input";
+import emails from "./dummy/emails";
 
-import React, { PropTypes } from 'react';
+const KEYS_TO_FILTERS = ['user.name'];
 
-// Simple example of a React "dumb" component
 export default class SearchComponent extends React.Component {
-  static propTypes = {
-    // If you have lots of data or action properties, you should consider grouping them by
-    // passing two properties: "data" and "actions".
-    user: PropTypes.any,
-  };
+  constructor() {
+    super();
 
-  // React will automatically provide us with the event `e`
-  handleChange(e) {
-
+    this.state = {
+      searchTerm: "",
+      isFocused: false,
+    }
   }
 
+
   render() {
-    const { user } = this.props;
+    const filteredEmails = emails.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
+    const {searchTerm, isFocused} = this.state;
+    const searchboxList = (searchTerm.length) ? (
+      <div className="searchbox-list">
+        {filteredEmails.slice(0, 2).map(email => {
+          return (
+            <a href="javascript:;" className="searchbox-item" key={email.id}>
+              <b>{email.user.name}</b>
+              <span>{email.subject}</span>
+            </a>
+          )
+        })}
+      </div>
+    ) : null;
+    const isActive = (searchTerm.length) ? "" : "disabled";
+    const isFocus = (isFocused) ? "active" : null;
+
     return (
       <div className="searchbox">
-        <div className="searchbox-input">
-          <input type="text" placeholder="¿Qué recurso deseas buscar?" />
+        <div className={`searchbox-input ${isFocus}`}>
+          <i className="fa fa-search" />
+          <SearchInput fuzzy={true} placeholder="¿Qué recurso deseas buscar?" onChange={this.searchUpdated.bind(this)} onFocus={this._onFocus.bind(this)} onBlur={this._onBlur.bind(this)} />
+          {searchboxList}
         </div>
-        <button className="button-search button button-blue button-big disabled pull-right">Buscar</button>
+        <button className={`searchbox-button button button-blue button-big ${isActive} pull-right`}>Buscar</button>
       </div>
     );
+  }
+
+  _onFocus() {
+    this.setState({isFocused: true});
+  }
+
+  _onBlur() {
+    if (!this.state.searchTerm.length) {
+      this.setState({isFocused: false});
+    }
+  }
+
+  searchUpdated(term) {
+    this.setState({searchTerm: term})
   }
 }

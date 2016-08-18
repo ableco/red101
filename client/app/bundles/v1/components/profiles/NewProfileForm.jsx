@@ -19,7 +19,7 @@ class NewProfileForm extends React.Component {
         <div className="register-content">
           <div className="register-header">
             <h2>Registro de usuarios</h2>
-            <p>Si aún no tienes una cuenta, necesitamos unos datos para crear tu cuenta.<br/>Si ya te creaste una cuenta, <a className="link link-blue" href="javascript:;">ingresa aquí</a></p>
+            <p>Si aún no tienes una cuenta, necesitamos unos datos para crear tu cuenta.<br/>Si ya te creaste una cuenta, <a  className="link link-blue" href="javascript:;">ingresa aquí</a></p>
           </div>
           <form onSubmit={ (e) => this.handleSubmit(e) } className={formClass}>
             <div className="form-body">

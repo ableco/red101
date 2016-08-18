@@ -1,4 +1,5 @@
 .searchbox {
+
   text-align: left;
   padding: 0 (map-get($sizes, gutter) * .5);
 
@@ -9,11 +10,62 @@
 
   .searchbox-input {
     position: relative;
-    width: calc(100% - 140px);
+    width: calc(100% - 102px);
+
+    i {
+      @include font-size(18);
+      color: map-get($colors, grey-text-2);
+      position: absolute;
+      top: 10px;
+      left: 18px;
+    }
 
     input {
-      height: map-get($sizes, button-height-2) - 2;
+      height: map-get($sizes, button-height-2);
+      color: map-get($colors, grey-text-1);
+      line-height: 40px;
       width: 100%;
+      padding-left: 45px;
+    }
+
+    &.active {
+      i {
+        display: none;
+      }
+
+      input {
+        padding-left: 15px;
+      }
+    }
+  }
+
+  .searchbox-list {
+    position: absolute;
+    top: 100%;
+    background-color: map-get($colors, _white);
+    width: 100%;
+    z-index: 2;
+  }
+
+  .searchbox-button {
+    @include font-size(16);
+  }
+
+  .searchbox-item {
+    @include font-size(12);
+    display: block;
+    color: map-get($colors, _blue);
+    border: 1px solid map-get($colors, grey-border-2);
+    border-top: 0;
+    padding: (map-get($sizes, gutter) * .5) map-get($sizes, gutter);
+    text-decoration: none;
+
+    &:last-child {
+      @include border-radius(0 0 4px 4px);
+    }
+
+    &:hover {
+      background-color: rgba(map-get($colors, _blue), .05);
     }
   }
 }
