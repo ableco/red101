@@ -19,7 +19,7 @@ export default function createProfile() {
 
         Cookies.set('token', createdProfile.token);
 
-        store.dispatch(push('/profile'));
+        dispatch(push('/profile'));
       },
       (error) => {
         const { status, response } = error;
