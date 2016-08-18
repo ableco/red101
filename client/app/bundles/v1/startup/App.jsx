@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import Layout from '../layout/Layout';
 import Landing from '../containers/Landing';
 import NewProfileContainer from '../containers/NewProfileContainer';
-import UserContainer from '../containers/UserContainer';
+import ProfileContainer from '../containers/ProfileContainer';
 
 /*
  *  Export a function that returns a ReactComponent, depending on a store named SharedReduxStore.
@@ -23,7 +23,7 @@ export default (props) => {
       <Router history={history} {...props}>
         <Route path="/" component={Layout}>
           <IndexRoute component={Landing} />
-          <Route path="/perfil" component={UserContainer} />
+          <Route path="/profile" component={ProfileContainer} />
           <Route path="/register" component={NewProfileContainer} />
         </Route>
       </Router>
