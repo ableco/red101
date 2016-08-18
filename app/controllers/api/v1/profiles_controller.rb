@@ -1,10 +1,12 @@
 class Api::V1::ProfilesController < Api::V1Controller
-  skip_before_action :authorize
+  skip_before_action :authorize, only: :create
 
   def show
   end
 
   def create
+    @user = User.new(resource_params)
+
     if @user.save
       UserMailer.welcome(@user).deliver_now
       @device = @user.create_device

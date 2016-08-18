@@ -13,6 +13,7 @@ function mapStateToProps({ newProfileForm }) {
 function mapDispatchToProps(dispatch) {
   return {
     createProfile: () => dispatch(actions.createProfile()),
+    updateForm: (key, value) => dispatch(actions.updateProfileForm(key, value)),
   };
 }
 

@@ -1,13 +1,12 @@
 import xr from 'xr';
 import sync from '../../synchronous';
-import requestHeaders from '../../../lib/requestHeaders';
+import headers from '../../../lib/headers';
 import { browserHistory } from 'react-router';
 
 export default function createDevice() {
   return (dispatch, getState) => {
     const { apiUrl } = getState().config;
     const url = `${apiUrl}/devices`;
-    const headers = requestHeaders(getState);
     const { formData: device } = getState().newDeviceForm;
 
     dispatch(sync.createDeviceStart());

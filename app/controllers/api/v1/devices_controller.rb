@@ -10,11 +10,8 @@ class Api::V1::DevicesController < Api::V1Controller
   end
 
   def destroy
-    if @device.destroy
-      head :ok
-    else
-      render json: { errors: @device.errors.full_messages }
-    end
+    current_device.sign_out!
+    head :ok
   end
 
   private
