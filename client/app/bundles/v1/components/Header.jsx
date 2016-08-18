@@ -1,21 +1,20 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import {connect} from "react-redux";
 import { browserHistory, Link } from 'react-router';
 import SearchComponent from '../components/SearchComponent';
+import actions from "../actions/index.js";
+import {DISPLAY_LOGIN_MODAL} from "../lib/modalsConstants.js";
 import _ from 'lodash';
 
-export default class Header extends React.Component {
+class Header extends Component {
   static propTypes = {
     showSearch: React.PropTypes.bool,
     showButtons: React.PropTypes.bool,
     backButton: React.PropTypes.bool,
   };
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
-    const { backButton, showSearch, showButtons } = this.props;
+    const { backButton, showSearch, showButtons, displayModal } = this.props;
     const logo = (
       <h1>
         <span className="color-blue">Red</span>
@@ -38,7 +37,7 @@ export default class Header extends React.Component {
     const buttons = (showButtons) ?
       (
         <div className="pull-right">
-          <button className="button">Ingresar</button>
+          <button className="button" onClick={() => displayModal(DISPLAY_LOGIN_MODAL)}>Ingresar</button>
           <Link to="register" className="button button-green">Registrarse</Link>
         </div>
       ) : null;
@@ -56,3 +55,17 @@ export default class Header extends React.Component {
     browserHistory.goBack();
   }
 }
+
+function mapStateToProps({props}) {
+  return {props};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    displayModal: (modalName) => dispatch(
+      actions.displayModal(modalName)
+    )
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
