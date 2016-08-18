@@ -5,6 +5,8 @@ class Api::V1::ProfilesController < Api::V1Controller
   end
 
   def create
+    @user = User.new(resource_params)
+
     if @user.save
       UserMailer.welcome(@user).deliver_now
       @device = @user.create_device
