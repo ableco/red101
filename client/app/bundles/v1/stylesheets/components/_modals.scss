@@ -9,6 +9,7 @@
 
 .modal-content {
   @include border-radius(4px);
+  @include box-shadow(0, 0, 10px, map-get($colors, grey-text-1));
   background-color: map-get($colors, _white);
   left: 50%;
   position: absolute;
@@ -22,7 +23,7 @@
   position: absolute;
   top: 10px;
   right: 15px;
-  color: map-get($colors, grey-text-3);
+  color: map-get($colors, grey-text-1);
 }
 
 .modal-login {
