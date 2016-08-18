@@ -6,7 +6,7 @@ body {
   @include font-open-sans();
   @include font-size(16);
   color: map-get($colors, grey-text-1);
-  font-weight: normal;
+  font-weight: 300;
   margin: 0;
   padding: 0;
 }
@@ -76,6 +76,7 @@ input {
   @include border-radius();
   @include font-open-sans();
   @include font-size(16);
+  font-weight: 300;
   border: 1px solid map-get($colors, grey-text-2);
   color: map-get($colors, grey-text-2);
   padding: 0 map-get($sizes, gutter) * 1;
@@ -112,6 +113,13 @@ input {
 
 .pull-right {
   float: right;
+}
+
+.ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 // To fix problem of DIV that it can't be edited
