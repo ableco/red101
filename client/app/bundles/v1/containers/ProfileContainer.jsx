@@ -13,7 +13,7 @@ export default class ProfileContainer extends React.Component {
 
   render() {
     return (
-      <div className="perfil container-fluid">
+      <div className="profile container-fluid">
         <UserViewComponent user={this.props.user} />
       </div>
     );
