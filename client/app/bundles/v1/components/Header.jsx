@@ -4,6 +4,7 @@ import { browserHistory, Link } from 'react-router';
 import SearchComponent from '../components/SearchComponent';
 import actions from "../actions/index.js";
 import {DISPLAY_LOGIN_MODAL} from "../lib/modalsConstants.js";
+import {DISPLAY_NEW_PROFILE} from "../lib/formsConstants.js";
 import _ from 'lodash';
 
 class Header extends Component {
@@ -14,7 +15,7 @@ class Header extends Component {
   };
 
   render() {
-    const { backButton, showSearch, showButtons, displayModal } = this.props;
+    const { backButton, showSearch, showButtons, displayModal, displayForm } = this.props;
     const logo = (
       <h1>
         <span className="color-blue">Red</span>
@@ -38,7 +39,7 @@ class Header extends Component {
       (
         <div className="pull-right">
           <button className="button" onClick={() => displayModal(DISPLAY_LOGIN_MODAL)}>Ingresar</button>
-          <Link to="register" className="button button-green">Registrarse</Link>
+          <Link to="register" onClick={() => displayForm(DISPLAY_NEW_PROFILE)} className="button button-green">Registrarse</Link>
         </div>
       ) : null;
 
@@ -64,6 +65,9 @@ function mapDispatchToProps(dispatch) {
   return {
     displayModal: (modalName) => dispatch(
       actions.displayModal(modalName)
+    ),
+    displayForm: (formName) => dispatch(
+      actions.displayForm(formName)
     )
   };
 }

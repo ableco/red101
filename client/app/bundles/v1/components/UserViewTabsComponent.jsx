@@ -23,7 +23,7 @@ export default class UserViewTabsComponent extends React.Component {
     // This only for a static example
 
     return (
-      <div className="perfil-tabs">
+      <div className="profile-tabs">
         <Tabs defaultActiveKey={1} className="clearfix" id="uncontrolled-tab-example">
           <Tab eventKey={1} title="Mis Diagnosticos">
             <UserViewAnswersComponent />
