@@ -19,20 +19,19 @@ export default class UserViewDetailsComponent extends React.Component {
   render() {
     const { user } = this.props;
     // This only for a static example
-    const name = (user[0].name !== '') ? user[0].name : 'No especifica';
-    const status = (user[0].status !== '') ? user[0].status : 'No especifica';
-    const centro_educativo = (user[0].centro_educativo !== '') ? user[0].centro_educativo : 'No especifica';
-    const about = (user[0].about !== '') ? user[0].about : 'No especifica';
-    const email = (user[0].email !== '') ? user[0].email : 'No especifica';
-    const country = (user[0].country !== '') ? user[0].country : 'No especifica';
-    const city = (user[0].city !== '') ? user[0].city : 'No especifica';
-    const rol = (user[0].rol !== '') ? user[0].rol : 'No especifica';
-    const nivel = (user[0].nivel !== '') ? user[0].nivel : 'No especifica';
-    const telefono = (user[0].telefono !== '') ? user[0].telefono : 'No especifica';
+
+    const name     = (user.name     !== '') ? user.name     : 'No especifica';
+    const school   = (user.school   !== '') ? user.school   : 'No especifica';
+    const about    = (user.about    !== '') ? user.about    : 'No especifica';
+    const email    = (user.email    !== '') ? user.email    : 'No especifica';
+    const location = (user.location !== '') ? user.location : 'No especifica';
+    const role     = (user.role     !== '') ? user.role     : 'No especifica';
+    const level    = (user.level    !== '') ? user.level    : 'No especifica';
+    const phone    = (user.phone    !== '') ? user.phone    : 'No especifica';
 
     return (
       <div className="perfil-details">
-        <h3>{ status }</h3>
+        <h3>{ level }</h3>
         <h1>{ name }</h1>
 
         <ul>
@@ -42,22 +41,22 @@ export default class UserViewDetailsComponent extends React.Component {
           </li>
           <li>
             <label className="title">Centro Educativo </label>
-            <label> { centro_educativo }</label>
+            <label> { school }</label>
           </li>
           <li>
             <label className="title">Localizacion </label>
-            <label> { country }, { city }</label>
+            <label> { location }</label>
           </li>
           <li>
-            <label className="title">Rol </label>
-            <label> { rol }</label>
+            <label className="title">Rol</label>
+            <label> { role }</label>
           </li>
           <li>
-            <label className="title">Número Telefónico </label>
-            <label> { telefono }</label>
+            <label className="title">Teléfonico</label>
+            <label> { Phone }</label>
           </li>
           <li>
-            <label className="title">Acerca de mi </label>
+            <label className="title">Acerca de mi</label>
             <label> { about }</label>
           </li>
         </ul>
