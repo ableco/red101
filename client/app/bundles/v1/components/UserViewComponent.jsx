@@ -2,9 +2,9 @@
 // all your dump component names with Widget.
 
 import React, { PropTypes } from 'react';
-import Header from '../components/Header';
-import UserViewDetailsComponent from '../components/UserViewDetailsComponent';
-import UserViewTabsComponent from '../components/UserViewTabsComponent';
+import Header from './Header';
+import UserViewDetailsComponent from './UserViewDetailsComponent';
+import UserViewTabsComponent from './UserViewTabsComponent';
 
 // Simple example of a React "dumb" component
 export default class UserViewComponent extends React.Component {

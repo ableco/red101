@@ -22,7 +22,7 @@ function requireMember(nextState, replace, store) {
 
 function requireGuest(nextState, replace, store) {
   const token = Cookies.get('token');
-  if (token) replace({ pathname: '/perfil' });
+  if (token) replace({ pathname: '/profile' });
 }
 
 export default (props) => {

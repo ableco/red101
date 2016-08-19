@@ -3,7 +3,7 @@
 
 import React, { PropTypes } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-import UserViewAnswersComponent from '../components/UserViewAnswersComponent';
+import UserViewAnswersComponent from './UserViewAnswersComponent';
 
 // Simple example of a React "dumb" component
 export default class UserViewTabsComponent extends React.Component {
