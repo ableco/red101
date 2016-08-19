@@ -1,24 +1,20 @@
-// HelloWorldWidget is an arbitrary name for any "dumb" component. We do not recommend suffixing
-// all your dump component names with Widget.
+import React, { Component, PropTypes } from 'react';
+import {connect} from "react-redux";
+import { Link } from 'react-router';
+import actions from "../actions/index.js";
+import {DISPLAY_EDIT_PROFILE} from "../lib/formsConstants.js";
 
-import React, { PropTypes } from 'react';
-
-// Simple example of a React "dumb" component
-export default class UserViewDetailsComponent extends React.Component {
+class UserViewDetailsComponent extends Component {
   static propTypes = {
-    // If you have lots of data or action properties, you should consider grouping them by
-    // passing two properties: "data" and "actions".
     user: PropTypes.any,
   };
 
-  // React will automatically provide us with the event `e`
   handleChange(e) {
 
   }
 
   render() {
-    const { user } = this.props;
-    // This only for a static example
+    const { displayForm, user } = this.props;
     const name = (user[0].name !== '') ? user[0].name : 'No especifica';
     const status = (user[0].status !== '') ? user[0].status : 'No especifica';
     const centro_educativo = (user[0].centro_educativo !== '') ? user[0].centro_educativo : 'No especifica';
@@ -30,11 +26,20 @@ export default class UserViewDetailsComponent extends React.Component {
     const nivel = (user[0].nivel !== '') ? user[0].nivel : 'No especifica';
     const telefono = (user[0].telefono !== '') ? user[0].telefono : 'No especifica';
 
+    const editButton = (
+      <Link
+        to="/profile/edit"
+        onClick={() => displayForm(DISPLAY_EDIT_PROFILE)}
+        className="link link-blue"
+      >
+        Editar información
+      </Link>
+    )
+
     return (
-      <div className="perfil-details">
+      <div className="profile-details">
         <h3>{ status }</h3>
         <h1>{ name }</h1>
-
         <ul>
           <li>
             <label className="title">Correo Electrónico </label>
@@ -53,6 +58,10 @@ export default class UserViewDetailsComponent extends React.Component {
             <label> { rol }</label>
           </li>
           <li>
+            <label className="title">Nivel</label>
+            <label> { rol }</label>
+          </li>
+          <li>
             <label className="title">Número Telefónico </label>
             <label> { telefono }</label>
           </li>
@@ -61,7 +70,22 @@ export default class UserViewDetailsComponent extends React.Component {
             <label> { about }</label>
           </li>
         </ul>
+        {editButton}
       </div>
     );
   }
 }
+
+function mapStateToProps({props}) {
+  return {props};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    displayForm: (formName) => dispatch(
+      actions.displayForm(formName)
+    )
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserViewDetailsComponent);

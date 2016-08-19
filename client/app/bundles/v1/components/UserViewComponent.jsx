@@ -23,7 +23,7 @@ export default class UserViewComponent extends React.Component {
     const { user } = this.props;
     const userJson = [
       {
-        name: 'Juan Jose Rivadeneyra',
+        name: 'Juan Jose Ramírez Rivadeneyra',
         status: 'Licenciado',
         email: 'username@mail.com',
         about: '',
