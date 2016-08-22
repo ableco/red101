@@ -17,7 +17,7 @@ import ProfileContainer from '../containers/ProfileContainer';
 
 function requireMember(nextState, replace, store) {
   const token = Cookies.get('token');
-  if (!token) replace({ pathname: '/bienvenido' });
+  if (!token) replace({ pathname: '/welcome' });
 }
 
 function requireGuest(nextState, replace, store) {
