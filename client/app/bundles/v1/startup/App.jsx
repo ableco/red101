@@ -1,7 +1,8 @@
 import React from 'react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux'
+import Cookies from 'js-cookie';
 
 import Layout from '../layout/Layout';
 import Landing from '../containers/Landing';
@@ -14,18 +15,44 @@ import ProfileContainer from '../containers/ProfileContainer';
  *  React will see that the state is the same and not do anything.
  */
 
+function requireMember(nextState, replace, store) {
+  const token = Cookies.get('token');
+  if (!token) replace({ pathname: '/welcome' });
+}
+
+function requireGuest(nextState, replace, store) {
+  const token = Cookies.get('token');
+  if (token) replace({ pathname: '/profile' });
+}
+
 export default (props) => {
-  const store = ReactOnRails.getStore('Store');
+  const store   = ReactOnRails.getStore('Store');
   const history = syncHistoryWithStore(browserHistory, store);
 
   return (
     <Provider store={store}>
       <Router history={history} {...props}>
         <Route path="/" component={Layout}>
-          <IndexRoute component={Landing} />
-          <Route path="/profile" component={ProfileContainer} />
-          <Route path="/profile/edit" component={FormContainer} />
-          <Route path="/register" component={FormContainer} />
+          <IndexRedirect to="/welcome" />
+          <Route
+            path="/welcome"
+            component={Landing}
+            onEnter={(nextState, replace) => requireGuest(nextState, replace, store)}
+          />
+          <Route
+            path="/profile"
+            component={ProfileContainer}
+            onEnter={(nextState, replace) => requireMember(nextState, replace, store)}
+          />
+          <Route
+            path="/profile/edit"
+            component={FormContainer}
+            onEnter={(nextState, replace) => requireMember(nextState, replace, store)}
+          />
+          <Route
+            path="/register"
+            component={FormContainer}
+            />
         </Route>
       </Router>
     </Provider>
