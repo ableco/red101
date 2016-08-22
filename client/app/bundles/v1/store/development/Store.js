@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore, compose } from 'redux';
-import middleware from 'redux-thunk';
+import thunk from 'redux-thunk';
 import reducers from '../../reducers';
 
 /*
@@ -9,7 +9,7 @@ import reducers from '../../reducers';
 export default (props, railsContext) => {
   props.railsContext = railsContext;
   return compose(
-          applyMiddleware(middleware),
+          applyMiddleware(thunk),
           window.devToolsExtension ? window.devToolsExtension() : f => f
         )(createStore)(reducers, props);
 };
