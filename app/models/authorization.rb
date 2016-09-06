@@ -1,12 +1,13 @@
 class Authorization
   def initialize(user, version = 1)
-    if @current_user = user
-      setup_rules(version)
-    end
+    @current_user = user
+    setup_rules(version) if user
   end
 
   def authorized?(controller, action, resource = nil)
-    if rule = rules.dig(controller.to_sym, action.to_sym)
+    rule = rules.dig(controller.to_sym, action.to_sym)
+
+    if rule
       rule == true || resource && rule.call(resource)
     else
       false
@@ -20,7 +21,7 @@ class Authorization
       authorize :diagnostics, :create
 
       if @current_user.admin?
-        authorize :topics,    :create, :destroy
+        authorize :topics,    %i(create destroy)
         authorize :questions, :create
         authorize :templates, :create
       end
