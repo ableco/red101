@@ -1,7 +1,9 @@
 class Authorization
-  def initialize(user, version = 1)
+  def initialize(user, namespace = nil)
     @current_user = user
-    setup_rules(version) if user
+    @namespace    = namespace.to_s
+
+    setup_rules(namespace) if user
   end
 
   def authorized?(controller, action, resource = nil)
@@ -16,31 +18,43 @@ class Authorization
 
   private
 
-    def v1_rules
-      authorize :profiles,    :show
-      authorize :diagnostics, :create
+  def root_rules
+    authorize :profiles,    :show
+    authorize :diagnostics, :create
 
-      if @current_user.admin?
-        authorize :topics,    %i(create destroy)
-        authorize :questions, :create
-        authorize :templates, :create
-      end
+    if @current_user.admin?
+      authorize :topics,    %i(create destroy)
+      authorize :questions, :create
+      authorize :templates, :create
     end
+  end
 
-    def setup_rules(version)
-      case version
-      when 1 then v1_rules
-      end
-    end
+  def api_v1_rules
+    authorize :profiles,    :show
+    authorize :diagnostics, :create
 
-    def authorize(controller, *actions, &block)
-      actions.flatten.each do |action|
-        rules[controller] ||= {}
-        rules[controller][action] = (block || true)
-      end
+    if @current_user.admin?
+      authorize :topics,    %i(create destroy)
+      authorize :questions, :create
+      authorize :templates, :create
     end
+  end
 
-    def rules
-      @rules ||= {}
+  def setup_rules(namespace)
+    case namespace
+    when ''        then root_rules
+    when 'Api::V1' then api_v1_rules
     end
+  end
+
+  def authorize(controller, *actions, &block)
+    actions.flatten.each do |action|
+      rules[controller] ||= {}
+      rules[controller][action] = (block || true)
+    end
+  end
+
+  def rules
+    @rules ||= {}
+  end
 end
