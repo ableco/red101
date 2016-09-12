@@ -3,7 +3,7 @@ class Authorization
     @current_user = user
     @namespace    = namespace.to_s
 
-    setup_rules(namespace) if user
+    setup_rules if user
   end
 
   def authorized?(controller, action, resource = nil)
@@ -40,8 +40,8 @@ class Authorization
     end
   end
 
-  def setup_rules(namespace)
-    case namespace
+  def setup_rules
+    case @namespace
     when ''        then root_rules
     when 'Api::V1' then api_v1_rules
     end
