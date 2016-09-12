@@ -7,6 +7,11 @@ class DevicesController < ApplicationController
     @device = Device.new
   end
 
+  def logout
+    current_device.sign_out!
+    redirect_to login_path
+  end
+
   private
 
   def find_resource
