@@ -12,5 +12,5 @@ download_staging_db:
 clone_downloaded_db_to_development:
 	heroku local:run bin/rails db:environment:set RAILS_ENV=development
 	heroku local:run bin/rails db:drop db:create
-	! pg_restore --verbose --clean --no-acl --no-owner -h localhost -d red_docente_development tmp/latest.dump
+	! pg_restore --verbose --clean --no-acl --no-owner -h localhost -d red_101_development tmp/latest.dump
 	heroku local:run bin/rails db:migrate
