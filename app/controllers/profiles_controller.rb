@@ -1,7 +1,17 @@
 class ProfilesController < ApplicationController
+  skip_before_action :authorize, only: %i(new create)
+
   include Rest
 
+  def new
+    @user = User.new
+  end
+
   private
+
+  def find_resource
+    current_user
+  end
 
   def resource_class
     User
