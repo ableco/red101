@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Red101</title>
+    <title>Red 101</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,32 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="top-header">
+      <h1 class="top-title">
+        <%= link_to 'Red 101', root_path %>
+      </h1>
+    </header>
+    <nav class="top-nav">
+      <ul class="nav-container">
+        <% if current_user %>
+          <li class="nav-link">
+            <%= link_to t('.profile'), profile_path %>
+          </li>
+          <li class="nav-link">
+            <%= link_to t('.logout'), logout_path %>
+          </li>
+        <% else %>
+          <li class="nav-link">
+            <%= link_to t('.login'), login_path %>
+          </li>
+          <li class="nav-link">
+            <%= link_to t('.register'), new_profile_path %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

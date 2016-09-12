@@ -1,5 +1,5 @@
 class DevicesController < ApplicationController
-  skip_before_action :authorize, only: %i(new create)
+  skip_before_action :authorize
 
   include Rest
 
