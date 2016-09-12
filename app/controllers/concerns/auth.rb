@@ -21,7 +21,14 @@ module Auth
   end
 
   def authorize
-    head :unauthorized unless authorized?(controller_name, action_name, resource)
+    return true if authorized?(controller_name, action_name, resource)
+
+    respond_to do |format|
+      format.any(:js, :json) { head :authorized }
+      format.html do
+        redirect_to(root_path, alert: t(:unauthorized))
+      end
+    end
   end
 
   def authorization
