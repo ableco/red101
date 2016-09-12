@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
 
   def token
-    cookies[:token]
+    cookies.signed[:token]
   end
 end
