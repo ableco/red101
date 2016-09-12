@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resource :profile
+  resource :device
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resource  :profile,     only: %i(create show)
@@ -10,6 +13,9 @@ Rails.application.routes.draw do
       resources :diagnostics, only: %i(create)
     end
   end
+
+  get :login,  to: 'devices#new'
+  get :logout, to: 'devices#destroy'
 
   root 'root#index'
 end
