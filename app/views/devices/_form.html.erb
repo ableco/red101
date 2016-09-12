@@ -1,0 +1,6 @@
+<%= form_for device, url: device_path do |form| %>
+  <%= form.email_field    :email %>
+  <%= form.password_field :password %>
+
+  <%= form.submit %>
+<% end %>
