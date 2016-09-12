@@ -4,10 +4,10 @@ bootstrap_development:
 	$(MAKE) clone_downloaded_db_to_development
 
 capture_staging_db:
-	heroku pg:backups capture -a red-docente-staging
+	heroku pg:backups capture -a red-101-staging
 
 download_staging_db:
-	curl -o tmp/latest.dump `heroku pg:backups public-url -a red-docente-staging`
+	curl -o tmp/latest.dump `heroku pg:backups public-url -a red-101-staging`
 
 clone_downloaded_db_to_development:
 	heroku local:run bin/rails db:environment:set RAILS_ENV=development
