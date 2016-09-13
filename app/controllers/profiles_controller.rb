@@ -18,7 +18,19 @@ class ProfilesController < ApplicationController
   end
 
   def permitted_attributes
-    %i(first_name last_name email password)
+    %i(
+      first_name
+      last_name
+      email
+      password
+      phone
+      level
+      location
+      school
+      role
+      since
+      about
+    )
   end
 
   def after_path

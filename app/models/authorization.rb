@@ -19,13 +19,8 @@ class Authorization
   private
 
   def root_rules
-    authorize :profiles,    :show
-    authorize :diagnostics, :create
-
-    if @current_user.admin?
-      authorize :topics,    %i(create destroy)
-      authorize :questions, :create
-      authorize :templates, :create
+    authorize :profiles, %i(show edit update destroy) do |user|
+      @current_user == user
     end
   end
 
@@ -48,13 +43,10 @@ class Authorization
   end
 
   def authorize(controller, *actions, &block)
-    actions.flatten.each do |action|
-      rules[controller] ||= {}
-      rules[controller][action] = (block || true)
-    end
+    actions.flatten.each { |action| rules[controller][action] = (block || true) }
   end
 
   def rules
-    @rules ||= {}
+    @rules ||= Hash.new { |hash, key| hash[key] = {} }
   end
 end
