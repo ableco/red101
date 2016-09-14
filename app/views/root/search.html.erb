@@ -7,19 +7,7 @@
     <% else %>
       <ul>
         <% @results.each do |result| %>
-          <li>
-            <%= link_to go_path(result.slug), class: 'search-result' do %>
-              <div class="result-title">
-                <%= result.title %>
-              </div>
-              <div class="result-details">
-                <%= result.details %>
-              </div>
-              <div class="result-title">
-                <%= result.url %>
-              </div>
-            <% end %>
-          </li>
+          <%= render 'result', result: result %>
         <% end %>
       </ul>
     <% end %>
