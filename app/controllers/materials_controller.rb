@@ -4,7 +4,7 @@ class MaterialsController < ApplicationController
   skip_before_action :authorize, only: :visit
 
   def index
-    @materials = materials_scope.page(params[:page])
+    @materials = Material.search(query).page(params[:page])
   end
 
   def visit
@@ -13,14 +13,6 @@ class MaterialsController < ApplicationController
   end
 
   private
-
-  def materials_scope
-    if query.present?
-      Material.search(query)
-    else
-      Material.order(name: :asc)
-    end
-  end
 
   def permitted_attributes
     %i(title url details)
