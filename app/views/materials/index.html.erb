@@ -1,0 +1,6 @@
+<%= link_to t('.new'), new_material_path %>
+<ul>
+  <% @materials.each do |material| %>
+    <%= render material %>
+  <% end %>
+</ul>
