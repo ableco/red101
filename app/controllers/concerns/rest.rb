@@ -1,10 +1,6 @@
 module Rest
   extend ActiveSupport::Concern
 
-  def index
-    collection
-  end
-
   def create
     resource.attributes = resource_params
 
@@ -65,20 +61,8 @@ module Rest
   end
 
   def resource
-    instance_variable_get("@#{singular_name}") ||
-      instance_variable_set("@#{singular_name}", (find_resource || build_resource))
-  end
-
-  def singular_name
-    resource_class.model_name.singular
-  end
-
-  def collection
-    instance_variable_set("@#{plural_name}", resource_class.all)
-  end
-
-  def plural_name
-    resource_class.model_name.pluralize
+    instance_variable_get("@#{param_key}") ||
+      instance_variable_set("@#{param_key}", (find_resource || build_resource))
   end
 
   def param_key
