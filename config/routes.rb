@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
-  resource :profile
-  resource :device
+  root 'root#index'
+
+  get :search, to: 'root#search'
+  get :login,  to: 'devices#new'
+  get :logout, to: 'devices#destroy'
+
+  resource  :profile
+  resource  :device
+  resources :topics
+  resources :templates
+  resources :questions
+  resources :users
+  resources :materials do
+    get :visit, on: :member
+  end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
@@ -13,9 +26,4 @@ Rails.application.routes.draw do
       resources :diagnostics, only: %i(create)
     end
   end
-
-  get :login,  to: 'devices#new'
-  get :logout, to: 'devices#destroy'
-
-  root 'root#index'
 end

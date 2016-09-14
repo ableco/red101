@@ -1,0 +1,15 @@
+<% if @query.present? %>
+  <% if @results.empty? %>
+    <div class="results">
+
+    </div>
+  <% else %>
+    <div class="no-results">
+
+    </div>
+  <% end %>
+<% else %>
+  <div class="welcome">
+
+  </div>
+<% end %>
