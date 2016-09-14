@@ -1,13 +1,29 @@
 <% if @query.present? %>
-  <% if @results.empty? %>
-    <div class="results">
-
-    </div>
-  <% else %>
-    <div class="no-results">
-
-    </div>
-  <% end %>
+  <div class="results">
+    <% if @results.empty? %>
+      <div class="no-results">
+        <%= t('.no_results') %>
+      </div>
+    <% else %>
+      <ul>
+        <% @results.each do |result| %>
+          <li>
+            <%= link_to go_path(result.slug), class: 'search-result' do %>
+              <div class="result-title">
+                <%= result.title %>
+              </div>
+              <div class="result-details">
+                <%= result.details %>
+              </div>
+              <div class="result-title">
+                <%= result.url %>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 <% else %>
   <div class="welcome">
 

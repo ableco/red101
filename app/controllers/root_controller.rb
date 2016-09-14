@@ -10,6 +10,12 @@ class RootController < ApplicationController
     @results = Material.search(query).page(params[:page])
   end
 
+  def go
+    material = Material.find_by!(slug: params[:slug])
+    material.visits.create(user: current_user, referrer: request.referrer)
+    redirect_to material.url
+  end
+
   private
 
   def next_path

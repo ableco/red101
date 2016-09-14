@@ -1,4 +1,6 @@
 class Material < ApplicationRecord
+  SLUG_LENGTH = 4
+
   include PgSearch
 
   belongs_to :topic
@@ -13,11 +15,22 @@ class Material < ApplicationRecord
                                       topic: %i(name)
                                     }
 
+  before_create :set_slug
+
   def self.search(query)
     if query
       search_by_query(query)
     else
       order(title: :asc)
+    end
+  end
+
+  private
+
+  def set_slug
+    loop do
+      self.slug = SecureRandom.urlsafe_base64(SLUG_LENGTH)
+      break unless self.class.exists?(slug: slug)
     end
   end
 end

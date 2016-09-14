@@ -5,15 +5,15 @@ Rails.application.routes.draw do
   get :login,  to: 'devices#new'
   get :logout, to: 'devices#destroy'
 
+  get '/go/:slug', to: 'root#go', as: :go
+
   resource  :profile
   resource  :device
   resources :topics
   resources :templates
   resources :questions
   resources :users
-  resources :materials do
-    get :visit, on: :member
-  end
+  resources :materials
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
