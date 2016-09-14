@@ -1,0 +1,7 @@
+member_visit:
+  material: creativity_one
+  user: member
+
+public_visit:
+  material: creativity_two
+  referrer: 'http://www.google.com'

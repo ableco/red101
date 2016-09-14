@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815225212) do
+ActiveRecord::Schema.define(version: 20160914124607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,17 @@ ActiveRecord::Schema.define(version: 20160815225212) do
     t.index ["role"], name: "index_users_on_role", using: :btree
     t.index ["school"], name: "index_users_on_school", using: :btree
     t.index ["since"], name: "index_users_on_since", using: :btree
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.integer  "material_id", null: false
+    t.integer  "user_id"
+    t.string   "referrer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["material_id"], name: "index_visits_on_material_id", using: :btree
+    t.index ["referrer"], name: "index_visits_on_referrer", using: :btree
+    t.index ["user_id"], name: "index_visits_on_user_id", using: :btree
   end
 
 end
