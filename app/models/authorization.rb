@@ -1,4 +1,14 @@
 class Authorization
+  REST_ACTIONS = %i(
+    new
+    create
+    index
+    show
+    edit
+    update
+    destroy
+  ).freeze
+
   def initialize(user, namespace = nil)
     @current_user = user
     @namespace    = namespace.to_s
@@ -21,6 +31,14 @@ class Authorization
   def root_rules
     authorize :profiles, %i(show edit update destroy) do |user|
       @current_user == user
+    end
+
+    if @current_user.admin?
+      authorize :topics,    REST_ACTIONS
+      authorize :templates, REST_ACTIONS
+      authorize :questions, REST_ACTIONS
+      authorize :users,     REST_ACTIONS
+      authorize :materials, REST_ACTIONS
     end
   end
 
