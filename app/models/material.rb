@@ -17,7 +17,7 @@ class Material < ApplicationRecord
     if query
       search_by_query(query)
     else
-      order(name: :asc)
+      order(title: :asc)
     end
   end
 end
