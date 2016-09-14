@@ -7,11 +7,11 @@ class Api::V1::MaterialsController < Api::V1Controller
 
   private
 
-    def materials_scope
-      if params[:query].present?
-        Material.search_by_query(params[:query])
-      else
-        Material.order(:created_at)
-      end
+  def materials_scope
+    if params[:query].present?
+      Material.search(params[:query])
+    else
+      Material.order(:created_at)
     end
+  end
 end
