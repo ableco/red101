@@ -9,6 +9,7 @@ class Red101FormBuilder < ActionView::Helpers::FormBuilder
     text_area
     email_field
     phone_field
+    url_field
     password_field
     file_field
     collection_select
