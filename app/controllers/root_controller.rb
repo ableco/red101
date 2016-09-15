@@ -15,10 +15,6 @@ class RootController < ApplicationController
     redirect_to materials_path
   end
 
-  def register
-    redirect_to new_profile_path
-  end
-
   def go
     material = Material.find_by!(params.permit(:slug))
     TrackVisitJob.perform_later(material.id, current_user.id, request.referrer)

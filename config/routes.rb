@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get :search,    to: 'root#search'
   get :admin,     to: 'root#admin'
-  get :register,  to: 'root#register'
+  get :register,  to: 'profiles#new'
   get :login,     to: 'devices#new'
   get :logout,    to: 'devices#destroy'
   get 'go/:slug', to: 'root#go', as: :go
