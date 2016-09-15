@@ -1,7 +1,7 @@
 <% case section_key %>
 <% when :admin %>
   <nav class="tabs">
-    <% ApplicationHelper::ADMIN_SECTIONS.each do |key| %>
+    <% ApplicationHelper::ADMIN_CONTROLLERS.each do |key| %>
       <%= admin_tab(key) %>
     <% end %>
   </nav>

@@ -1,8 +1,8 @@
 module ApplicationHelper
-  SEPARATOR      = ' / '.freeze
-  ADMIN_SECTIONS = %i(materials questions topics templates users).freeze
-  ACTIVE_CLASS   = 'active'.freeze
-  INACTIVE_CLASS = 'inactive'.freeze
+  SEPARATOR         = ' / '.freeze
+  ADMIN_CONTROLLERS = %i(materials questions topics templates users).freeze
+  ACTIVE_CLASS      = 'active'.freeze
+  INACTIVE_CLASS    = 'inactive'.freeze
 
   def app_name
     'Red 101'
@@ -16,12 +16,12 @@ module ApplicationHelper
     end
   end
 
-  def title_separator
-    SEPARATOR
+  def html_title
+    safe_join([app_name, title], SEPARATOR)
   end
 
   def admin_section?
-    ADMIN_SECTIONS.include?(controller_name.to_sym)
+    ADMIN_CONTROLLERS.include?(controller_name.to_sym)
   end
 
   def active_tab?(condition)
