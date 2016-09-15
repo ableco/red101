@@ -1,5 +1,10 @@
 es:
+  profile: "Mi Perfil"
+  register: "Registro"
   search: "Buscar"
+  admin: "Admin"
+  login: "Iniciar Sesión"
+  logout: "Terminar Sesión"
 
   user_mailer:
     welcome:
