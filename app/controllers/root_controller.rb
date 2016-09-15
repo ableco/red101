@@ -7,22 +7,35 @@ class RootController < ApplicationController
   end
 
   def search
-    @results = Material.search(query).page(params[:page])
+    @query   = params[:query]
+    @results = Material.search(@query).page(params[:page])
+  end
+
+  def admin
+    redirect_to materials_path
+  end
+
+  def register
+    redirect_to new_profile_path
   end
 
   def go
-    material = Material.find_by!(slug: params[:slug])
-    material.visits.create(user: current_user, referrer: request.referrer)
+    material = Material.find_by!(params.permit(:slug))
+    TrackVisitJob.perform_later(material.id, current_user.id, request.referrer)
     redirect_to material.url
   end
 
   private
 
   def next_path
-    current_user ? profile_path : search_path
-  end
-
-  def query
-    @query ||= params[:query]
+    if current_user
+      if current_user.admin?
+        admin_path
+      else
+        profile_path
+      end
+    else
+      search_path
+    end
   end
 end
