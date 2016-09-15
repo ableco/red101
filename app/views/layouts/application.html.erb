@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>
-      <%= safe_join([app_name, title].compact, title_separator) %>
+      <%= safe_join([app_name, title], title_separator) %>
     </title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,15 +13,14 @@
       <%= render 'brand' %>
       <%= render 'search' %>
       <%= render 'navigation' %>
-      <%= render 'title' %>
     </header>
     <main>
       <aside class="sidebar">
         <%= render 'sidebar' %>
       </aside>
-      <div class="content">
+      <article class="content">
         <%= yield %>
-      </div>
+      </article>
     </main>
   </body>
 </html>

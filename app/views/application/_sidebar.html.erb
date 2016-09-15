@@ -7,6 +7,5 @@
   </nav>
 <% when :profile %>
   <%= render 'profile', user: current_user %>
-  <hr class="profile-separator">
   <%= link_to t('.edit_profile'), edit_profile_path %>
 <% end %>
