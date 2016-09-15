@@ -1,79 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Red 101</title>
+    <title>
+      <%= safe_join([app_name, title].compact, title_separator) %>
+    </title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <header class="app-header">
-      <h1 class="app-title">
-        <%= link_to 'Red 101', root_path %>
-      </h1>
-      <%= render 'search_form' %>
-      <nav class="app-navigation">
-        <ul class="nav-container">
-          <% if current_user %>
-            <li class="nav-link">
-              <%= link_to t('.profile'), profile_path %>
-            </li>
-            <li class="nav-link">
-              <%= link_to t('.logout'), logout_path %>
-            </li>
-          <% else %>
-            <li class="nav-link">
-              <%= link_to t('.login'), login_path %>
-            </li>
-            <li class="nav-link">
-              <%= link_to t('.register'), new_profile_path %>
-            </li>
-          <% end %>
-        </ul>
-      </nav>
+    <header class="header">
+      <%= render 'brand' %>
+      <%= render 'search' %>
+      <%= render 'navigation' %>
+      <%= render 'title' %>
     </header>
-    <aside class="app-sidebar">
-      <% if current_user %>
-        <header class="user-profile-header">
-          <h1>
-            <span class="user-role">
-              <%= current_user.role %>
-            </span>
-            <%= current_user.name %>
-          </h1>
-        </header>
-      <% end %>
-    </aside>
-    <main class="app-content">
-      <% if current_user %>
-        <nav class="section-navigation">
-          <ul class="nav-container">
-            <% if current_user.admin? %>
-              <li class="nav-link">
-                <%= link_to t('.materials'), materials_path %>
-              </li>
-              <li class="nav-link">
-                <%= link_to t('.templates'), templates_path %>
-              </li>
-              <li class="nav-link">
-                <%= link_to t('.topics'), topics_path %>
-              </li>
-              <li class="nav-link">
-                <%= link_to t('.questions'), questions_path %>
-              </li>
-              <li class="nav-link">
-                <%= link_to t('.users'), users_path %>
-              </li>
-            <% else %>
-              <li class="nav-link">
-                <%= link_to t('.diagnostics'), diagnostics_path %>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
-      <% end %>
-
-      <%= yield %>
+    <main>
+      <aside class="sidebar">
+        <%= render 'sidebar' %>
+      </aside>
+      <div class="content">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

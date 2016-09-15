@@ -1,19 +1,11 @@
-<li>
-  <%=
-    link_to go_path(result.slug),
-            class: 'search-result',
-            data: {
-              turbolinks: false
-            } do
-  %>
-    <div class="result-title">
-      <%= result.title %>
-    </div>
-    <div class="result-details">
-      <%= result.details %>
-    </div>
-    <div class="result-title">
-      <%= result.url %>
-    </div>
-  <% end %>
+<li class="search-result">
+  <div class="result-title">
+    <%= link_to_result(result) %>
+  </div>
+  <div class="result-details">
+    <%= result.details %>
+  </div>
+  <div class="result-title">
+    <%= result.url %>
+  </div>
 </li>

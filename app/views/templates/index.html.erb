@@ -1,0 +1,6 @@
+<%= link_to t('.new'), new_template_path %>
+<ul>
+  <% @templates.each do |template| %>
+    <%= render template %>
+  <% end %>
+</ul>

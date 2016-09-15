@@ -1,0 +1,12 @@
+<% case section_key %>
+<% when :admin %>
+  <nav class="tabs">
+    <% ApplicationHelper::ADMIN_SECTIONS.each do |key| %>
+      <%= admin_tab(key) %>
+    <% end %>
+  </nav>
+<% when :profile %>
+  <%= render 'profile', user: current_user %>
+  <hr class="profile-separator">
+  <%= link_to t('.edit_profile'), edit_profile_path %>
+<% end %>

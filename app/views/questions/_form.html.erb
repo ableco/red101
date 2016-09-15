@@ -1,0 +1,5 @@
+<%= form_for question do |form| %>
+  <%= form.collection_select :topic_id, Topic.all, :id, :name %>
+  <%= form.text_area         :content, rows: 2 %>
+  <%= form.submit %>
+<% end %>

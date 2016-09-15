@@ -1,6 +1,10 @@
 class QuestionsController < ApplicationController
   include Rest
 
+  def index
+    @questions = Question.page(params[:page])
+  end
+
   private
 
   def permitted_attributes
