@@ -9,9 +9,8 @@ module ApplicationHelper
   end
 
   def title
-    case section_key
-    when :search  then nil
-    when :profile then current_user.name
+    if section_key == :profile
+      current_user.name
     else
       t(section_key)
     end
@@ -38,17 +37,17 @@ module ApplicationHelper
   end
 
   def profile_info(user, key)
-    name = User.human_attribute_name(key)
-    info = user.public_send(key)
+    attr_name = User.human_attribute_name(key)
+    attr_info = user.public_send(key)
 
-    if info.present?
-      info_class = 'present'
+    if attr_info.present?
+      attr_css  = 'present'
     else
-      info_class = 'blank'
-      info       = t(:not_specified)
+      attr_css  = 'blank'
+      attr_info = t(:not_specified)
     end
 
-    content_tag(:dt, name) + content_tag(:dd, info, class: info_class)
+    content_tag(:dt, attr_name, class: attr_css) + content_tag(:dd, attr_info, class: attr_css)
   end
 
   def destroy_options
