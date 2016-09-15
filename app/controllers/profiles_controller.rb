@@ -36,4 +36,9 @@ class ProfilesController < ApplicationController
   def after_path
     profile_path
   end
+
+  def created
+    UserMailer.welcome(@user).deliver_later
+    login(@user.create_device)
+  end
 end

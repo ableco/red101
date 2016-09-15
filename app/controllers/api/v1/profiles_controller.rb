@@ -16,7 +16,7 @@ class Api::V1::ProfilesController < Api::V1Controller
   end
 
   def created
-    UserMailer.welcome(@user).deliver_now
+    UserMailer.welcome(@user).deliver_later
     @device = @user.create_device
   end
 end
