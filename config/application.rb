@@ -8,10 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Red101
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    config.i18n.default_locale = :es
+    config.i18n.default_locale      = :es
+    config.active_job.queue_adapter = :sidekiq
   end
 end
