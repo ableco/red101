@@ -11,10 +11,6 @@ class RootController < ApplicationController
     @results = Material.search(@query).page(params[:page])
   end
 
-  def admin
-    redirect_to materials_path
-  end
-
   def go
     material = Material.find_by!(params.permit(:slug))
     TrackVisitJob.perform_later(material.id, current_user.id, request.referrer)

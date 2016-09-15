@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   root 'root#index'
 
   get :search,    to: 'root#search'
-  get :admin,     to: 'root#admin'
   get :register,  to: 'profiles#new'
   get :login,     to: 'devices#new'
   get :logout,    to: 'devices#destroy'
+  get :admin,     to: redirect('/materials')
   get 'go/:slug', to: 'root#go', as: :go
 
   resource  :profile
