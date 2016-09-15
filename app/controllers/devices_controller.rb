@@ -4,7 +4,11 @@ class DevicesController < ApplicationController
   include Rest
 
   def new
-    @device = Device.new
+    if current_user
+      redirect_to root_path
+    else
+      @device = Device.new
+    end
   end
 
   def logout
@@ -27,6 +31,6 @@ class DevicesController < ApplicationController
   end
 
   def created
-    cookies.signed[:token] = @device.token
+    login(@device)
   end
 end

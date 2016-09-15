@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def token
     cookies.signed[:token]
   end
+
+  def login(device)
+    cookies.signed[:token] = device.token
+  end
 end
