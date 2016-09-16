@@ -5,6 +5,13 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   validates :content, presence: true
+  validate  :options_presence
 
-  accepts_nested_attributes_for :options
+  accepts_nested_attributes_for :options, allow_destroy: true
+
+  private
+
+  def options_presence
+    errors.add(:base, :options_presence) if topics.empty?
+  end
 end
