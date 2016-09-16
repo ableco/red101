@@ -37,6 +37,10 @@ class Red101FormBuilder < ActionView::Helpers::FormBuilder
     content_tag(:div, super, class: ACTION_CLASS)
   end
 
+  def base_errors
+    content_tag(:div, object.errors[:base].first, class: :errors)
+  end
+
   private
 
   def required?(name)
