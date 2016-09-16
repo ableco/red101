@@ -5,7 +5,14 @@ class Answer < ApplicationRecord
 
   before_save :cache_option_values, if: :option
 
-  scope :correct, -> { where(option_correct: true) }
+  scope :correct,   -> { where(option_correct: true)  }
+  scope :incorrect, -> { where(option_correct: false) }
+
+  delegate :topic_id, to: :question
+
+  def correct?
+    option_correct || option.correct
+  end
 
   private
 

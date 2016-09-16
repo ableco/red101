@@ -1,2 +1,11 @@
 <%= Diagnostic.human_attribute_name(:score) %>
 <%= @diagnostic.score %> / <%= @diagnostic.answers_count %>
+
+<section class="recommendations">
+  <h1><%= t('.recommendations') %></h1>
+  <ul>
+    <% @results.each do |result| %>
+      <%= render 'result', result: result %>
+    <% end %>
+  </ul>
+</section>

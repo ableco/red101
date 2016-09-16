@@ -4,7 +4,11 @@ class DiagnosticsController < ApplicationController
   before_action :redirect_to_pending, only: %i(new create)
 
   def show
-    redirect_to edit_diagnostic_path(@diagnostic) unless @diagnostic.finished?
+    if @diagnostic.finished?
+      @results = @diagnostic.recommendations.page(params[:page])
+    else
+      redirect_to edit_diagnostic_path(@diagnostic)
+    end
   end
 
   private
@@ -27,5 +31,9 @@ class DiagnosticsController < ApplicationController
 
   def after_path
     diagnostic_path(@diagnostic)
+  end
+
+  def recommendations
+    Material.where(topic_id: @diagnostic.recommended_topic_ids).page(params[:page])
   end
 end

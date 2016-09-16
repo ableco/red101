@@ -1,4 +1,6 @@
 class Diagnostic < ApplicationRecord
+  FAILURE_THRESHOLD = 2
+
   belongs_to :user
   belongs_to :template
 
@@ -8,7 +10,7 @@ class Diagnostic < ApplicationRecord
   validates :user,     presence: true
   validates :template, presence: true
 
-  before_save  :finish_and_score, if: :answered?
+  before_save  :finish, if: :answered?
   after_create :create_answers
 
   scope :pending, -> { where(finished_at: nil) }
@@ -27,7 +29,21 @@ class Diagnostic < ApplicationRecord
     persisted? && answers.all?(&:option_id)
   end
 
+  def score
+    answers.correct.count
+  end
+
+  def recommendations
+    Material.where(topic_id: recommended_topic_ids)
+  end
+
   private
+
+  def recommended_topic_ids
+    answers.incorrect.group_by(&:topic_id).map do |topic_id, topic_answers|
+      topic_id if topic_answers.length > FAILURE_THRESHOLD
+    end
+  end
 
   def create_answers
     template.choose_random_question_ids.each do |question_id|
@@ -35,8 +51,7 @@ class Diagnostic < ApplicationRecord
     end
   end
 
-  def finish_and_score
+  def finish
     self.finished_at = Time.current
-    self.score       = answers.correct.count
   end
 end
