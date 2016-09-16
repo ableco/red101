@@ -12,7 +12,7 @@ El proyecto parte de una colaboración entre [Jorge Copello](https://github.com/
 y la empresa [Able.co](http://able.co), que busca desarrollar un sistema para realizar
 autodiagnósticos y en base a estos recomendar recursos educativos en internet.
 
-Se realizó una Hackathon de dos días, y luego se realizaron trabajos posteriores.
+Se realizó una Hackathon de dos días para sentar la base, y el desarrollo continúa.
 
 ## Diseño
 
