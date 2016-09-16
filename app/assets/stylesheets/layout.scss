@@ -2,6 +2,9 @@
 
 .header {
   position: relative;
+  height: 60px;
+  padding: 10px;
+  border-bottom: 1px solid $color-border-medium;
 }
 .navigation {
   position: absolute;
@@ -17,14 +20,49 @@ main {
 .content {
   flex: 20;
 }
-.brand, .global-search {
-  display: inline;
+.brand {
+  position: absolute;
+  height: 40px;
+  width: 160px;
+  top: 10px;
+  left: 10px;
+}
+.global-search {
+  position: absolute;
+  height: 40px;
+  width: 320px;
+  top: 12px;
+  left: 180px;
+
+  [name="query"] {
+    height: 36px;
+    width: 320px;
+  }
 }
 .brand {
   font-size: 24px;
-  line-height: $vertical-unit;
+  line-height: $length-vertical-unit;
+}
+.section-tab {
+  float: left;
+  display: block;
+  padding: 6px 10px 10px;
+  margin: 0 10px;
+  border-top: 4px solid transparent;
+  line-height: 40px;
+
+  &.active {
+    border-top-color: blue;
+  }
 }
 .admin-tab {
   display: block;
-  min-height: $vertical-unit;
+  min-height: $length-vertical-unit;
+  padding: 10px;
+  width: 160px;
+  border-left: 4px solid transparent;
+
+  &.active {
+    border-left-color: blue;
+  }
 }

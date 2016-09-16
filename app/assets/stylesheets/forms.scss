@@ -1,5 +1,22 @@
+@import "variables";
+
 .field {
   label {
     display: block;
   }
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+textarea {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 5px;
+  border: 1px solid $color-border-medium;
+  border-radius: 4px;
 }
