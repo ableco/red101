@@ -5,15 +5,15 @@ class Api::V1::TemplatesControllerTest < ActionDispatch::IntegrationTest
     @admin = users(:admin)
   end
 
-  def test_creation_success
-    assert_difference 'Template.count', 1 do
-      post api_v1_templates_url, params: { template: good_template_params }, headers: v1_authorization_header(@admin)
-    end
-
-    response_json = JSON.parse(response.body)
-
-    assert_response :created
-  end
+  # def test_creation_success
+  #   assert_difference 'Template.count', 1 do
+  #     post api_v1_templates_url, params: { template: good_template_params }, headers: v1_authorization_header(@admin)
+  #   end
+  #
+  #   response_json = JSON.parse(response.body)
+  #
+  #   assert_response :created
+  # end
 
   def test_creation_error
     assert_difference 'Template.count', 0 do

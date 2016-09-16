@@ -3,33 +3,39 @@ creativity_one:
   title: Leadership One
   url: http://creativity.com/one
   details: One Leadership Link
+  slug: creativity_one
 
 creativity_two:
   topic: creativity
   title: Creativity Two
   url: http://creativity.com/two
   details: Two Creativity Link
+  slug: creativity_two
 
 leadership_one:
   topic: leadership
   title: Leadership One
   url: http://leadership.com/one
   details: One Leadership Link
+  slug: leadership_one
 
 leadership_two:
   topic: leadership
   title: Leadership Two
   url: http://leadership.com/two
   details: Two Leadership Link
+  slug: leadership_two
 
 culture_one:
   topic: culture
   title: Culture One
   url: http://culture.com/one
   details: One Culture Link
+  slug: culture_one
 
 culture_two:
   topic: culture
   title: Culture Two
   url: http://culture.com/two
   details: Two Culture Link
+  slug: culture_two

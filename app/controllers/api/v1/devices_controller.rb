@@ -2,6 +2,8 @@ class Api::V1::DevicesController < Api::V1Controller
   skip_before_action :authorize, only: :create
 
   def create
+    @device = Device.new(resource_params)
+
     if @device.save
       render :show, status: 201
     else

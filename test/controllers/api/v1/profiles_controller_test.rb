@@ -6,10 +6,8 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_create_with_good_data
-    assert_difference 'ActionMailer::Base.deliveries.length', 1 do
-      assert_difference 'User.count', 1 do
-        post api_v1_profile_url, params: { profile: good_user_params }
-      end
+    assert_difference 'User.count', 1 do
+      post api_v1_profile_url, params: { user: good_user_params }
     end
 
     assert_response :created
@@ -20,30 +18,24 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_create_with_bad_data
-    assert_difference 'ActionMailer::Base.deliveries.length', 0 do
-      assert_difference 'User.count', 0 do
-        post api_v1_profile_url, params: { profile: bad_user_params }
-      end
+    assert_difference 'User.count', 0 do
+      post api_v1_profile_url, params: { user: bad_user_params }
     end
 
     assert_response :unprocessable_entity
   end
 
   def test_create_with_malformed_email
-    assert_difference 'ActionMailer::Base.deliveries.length', 0 do
-      assert_difference 'User.count', 0 do
-        post api_v1_profile_url, params: { profile: bad_email_user_params }
-      end
+    assert_difference 'User.count', 0 do
+      post api_v1_profile_url, params: { user: bad_email_user_params }
     end
 
     assert_response :unprocessable_entity
   end
 
   def test_create_with_missing_password
-    assert_difference 'ActionMailer::Base.deliveries.length', 0 do
-      assert_difference 'User.count', 0 do
-        post api_v1_profile_url, params: { profile: missing_password_user_params }
-      end
+    assert_difference 'User.count', 0 do
+      post api_v1_profile_url, params: { user: missing_password_user_params }
     end
 
     assert_response :unprocessable_entity
@@ -63,26 +55,26 @@ class Api::V1::ProfilesControllerTest < ActionDispatch::IntegrationTest
 
   private
 
-    def good_user_params
-      number = SecureRandom.hex(8)
+  def good_user_params
+    number = SecureRandom.hex(8)
 
-      {
-        first_name: "First Name #{ number }",
-        last_name:  "Last Name #{ number }",
-        email:      "#{ number }@example.com",
-        password:   number
-      }
-    end
+    {
+      first_name: "First Name #{number}",
+      last_name:  "Last Name #{number}",
+      email:      "#{number}@example.com",
+      password:   number
+    }
+  end
 
-    def bad_user_params
-      good_user_params.except(:first_name, :last_name)
-    end
+  def bad_user_params
+    good_user_params.except(:first_name, :last_name)
+  end
 
-    def bad_email_user_params
-      good_user_params.tap { |h| h[:email] = 'no' }
-    end
+  def bad_email_user_params
+    good_user_params.tap { |h| h[:email] = 'no' }
+  end
 
-    def missing_password_user_params
-      good_user_params.except(:password)
-    end
+  def missing_password_user_params
+    good_user_params.except(:password)
+  end
 end
