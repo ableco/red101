@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      <%= html_title %>
-    </title>
+    <title><%= html_title %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -18,9 +16,9 @@
       <aside class="sidebar">
         <%= render 'sidebar' %>
       </aside>
-      <article class="content">
+      <section class="content">
         <%= yield %>
-      </article>
+      </section>
     </main>
   </body>
 </html>

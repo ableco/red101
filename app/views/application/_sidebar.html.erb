@@ -1,10 +1,6 @@
 <% case section_key %>
 <% when :admin %>
-  <nav class="tabs">
-    <% ApplicationHelper::ADMIN_CONTROLLERS.each do |key| %>
-      <%= admin_tab(key) %>
-    <% end %>
-  </nav>
+  <%= admin_tabs %>
 <% when :profile %>
   <%= render 'profile', user: current_user %>
   <%= link_to t('.edit_profile'), edit_profile_path %>

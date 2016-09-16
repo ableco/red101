@@ -18,4 +18,8 @@ class User < ApplicationRecord
   def create_device
     devices.create(skip_authentication: true)
   end
+
+  def pending_diagnostic_for(template_id)
+    diagnostics.pending.find_by(template_id: template_id)
+  end
 end
