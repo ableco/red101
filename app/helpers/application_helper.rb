@@ -1,41 +1,4 @@
 module ApplicationHelper
-  SEPARATOR         = ' / '.freeze
-  ADMIN_CONTROLLERS = %i(materials questions topics templates users).freeze
-  ACTIVE_CLASS      = 'active'.freeze
-  INACTIVE_CLASS    = 'inactive'.freeze
-
-  def app_name
-    'Red 101'
-  end
-
-  def title
-    if section_key == :profile
-      current_user.name
-    else
-      t(section_key)
-    end
-  end
-
-  def html_title
-    safe_join([app_name, title], SEPARATOR)
-  end
-
-  def admin_section?
-    ADMIN_CONTROLLERS.include?(controller_name.to_sym)
-  end
-
-  def active_tab?(condition)
-    condition ? ACTIVE_CLASS : INACTIVE_CLASS
-  end
-
-  def section_tab(key)
-    link_to t(key), key, class: ['section-tab', active_tab?(key == section_key)]
-  end
-
-  def admin_tab(key)
-    link_to t(key), key, class: ['admin-tab', active_tab?(key == controller_name.to_sym)]
-  end
-
   def profile_info(user, key)
     attr_name = User.human_attribute_name(key)
     attr_info = user.public_send(key)
@@ -59,20 +22,6 @@ module ApplicationHelper
     }
   end
 
-  def section_key
-    if admin_section?
-      :admin
-    elsif current_user && controller_name != 'root'
-      :profile
-    elsif controller_name == 'profiles'
-      :register
-    elsif controller_name == 'devices'
-      :login
-    elsif current_page?(controller: 'root', action: 'search')
-      :search
-    end
-  end
-
   def link_to_result(result)
     link_to result.title,
             go_path(result.slug),
@@ -80,5 +29,22 @@ module ApplicationHelper
             data: {
               turbolinks: false
             }
+  end
+
+  def link_to_add_fields(label, form, association, target_container)
+    new_object  = form.object.send(association).klass.new
+    child_index = new_object.object_id
+    fields      = form.fields_for(association, new_object, child_index: child_index) do |f|
+                    render("#{association.to_s.singularize}_fields", form: f)
+                  end
+
+    data = {
+      id: child_index,
+      fields: fields.delete("\n"),
+      target_container: target_container,
+      resource: new_object.class.name
+    }
+
+    link_to(label, '#', class: 'add-fields', data: data)
   end
 end
