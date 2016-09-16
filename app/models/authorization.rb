@@ -33,6 +33,10 @@ class Authorization
       @current_user == user
     end
 
+    authorize :diagnostics, %i(new create show edit update) do |diagnostic|
+      @current_user.id == diagnostic.user_id
+    end
+
     if @current_user.admin?
       authorize :topics,    REST_ACTIONS
       authorize :templates, REST_ACTIONS
