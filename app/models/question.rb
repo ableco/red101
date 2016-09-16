@@ -12,6 +12,6 @@ class Question < ApplicationRecord
   private
 
   def options_presence
-    errors.add(:base, :options_presence) if topics.empty?
+    errors.add(:base, :options_presence) if options.empty?
   end
 end

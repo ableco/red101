@@ -30,11 +30,11 @@ module NavigationHelper
   end
 
   def section_tab(key)
-    link_to t(key), key, class: ['section-tab', active_tab?(key == section_key)]
+    link_to t("sections.#{key}"), key, class: ['section-tab', active_tab?(key == section_key)]
   end
 
   def admin_tab(key)
-    link_to t(key), key, class: ['admin-tab', active_tab?(key == controller_name.to_sym)]
+    link_to t("admin.#{key}"), key, class: ['admin-tab', active_tab?(key == controller_name.to_sym)]
   end
 
   def section_key

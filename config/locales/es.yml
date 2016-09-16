@@ -1,11 +1,28 @@
 es:
-  profile: "Mi Perfil"
-  register: "Registro"
   search: "Buscar"
-  admin: "Admin"
-  login: "Iniciar Sesión"
-  logout: "Terminar Sesión"
+
+  errors:
+    admin:
+      topic_required: "Primero debes crear un tema"
+
+  sections:
+    profile: "Mi Perfil"
+    register: "Registro"
+    search: "Buscar"
+    admin: "Admin"
+    login: "Iniciar Sesión"
+    logout: "Terminar Sesión"
+
+  admin:
+    questions: "Preguntas"
+    topics: "Temas"
+    templates: "Plantillas"
+    users: "Usuarios"
 
   user_mailer:
     welcome:
-      subject: 'Bienvenido a Red101'
+      subject: "Bienvenido a Red101"
+
+  questions:
+    form:
+      add_option: "Agregar Opción"

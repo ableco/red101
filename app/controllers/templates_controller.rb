@@ -1,5 +1,6 @@
 class TemplatesController < ApplicationController
   include Rest
+  include Admin
 
   def index
     @templates = Template.page(params[:page])

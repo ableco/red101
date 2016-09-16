@@ -1,8 +1,13 @@
 class QuestionsController < ApplicationController
   include Rest
+  include Admin
 
   def index
     @questions = Question.page(params[:page])
+  end
+
+  def new
+    @question.options.new
   end
 
   private

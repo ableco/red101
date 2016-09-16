@@ -1,5 +1,6 @@
 class MaterialsController < ApplicationController
   include Rest
+  include Admin
 
   def index
     @materials = Material.search(query).page(params[:page])
@@ -8,7 +9,7 @@ class MaterialsController < ApplicationController
   private
 
   def permitted_attributes
-    %i(title url details)
+    %i(topic_id title url details)
   end
 
   def query

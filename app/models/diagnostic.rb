@@ -8,8 +8,8 @@ class Diagnostic < ApplicationRecord
   validates :user,     presence: true
   validates :template, presence: true
 
-  after_create :create_answers
   before_save  :finish_and_score, if: :answered?
+  after_create :create_answers
 
   scope :pending, -> { where(finished_at: nil) }
 
@@ -24,7 +24,7 @@ class Diagnostic < ApplicationRecord
   end
 
   def answered?
-    answers.all?(&:option_id)
+    persisted? && answers.all?(&:option_id)
   end
 
   private
