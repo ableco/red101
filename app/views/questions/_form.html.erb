@@ -1,5 +1,12 @@
 <%= form_for question do |form| %>
+  <%= form.base_errors %>
+
   <%= form.collection_select :topic_id, Topic.all, :id, :name %>
   <%= form.text_area         :content, rows: 2 %>
+
+  <fieldset class="question-options">
+    <legend><%= t('.question_options') %></legend>
+  </fieldset>
+  <%= link_to_add_fields(t('.add_option'), form, :options, '.question-options') %>
   <%= form.submit %>
 <% end %>

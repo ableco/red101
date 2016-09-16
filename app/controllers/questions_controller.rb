@@ -8,6 +8,6 @@ class QuestionsController < ApplicationController
   private
 
   def permitted_attributes
-    %i(content topic_id).push(options_attributes: %i(content correct))
+    %i(content topic_id).push(options_attributes: %i(id content correct _destroy))
   end
 end
