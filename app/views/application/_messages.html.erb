@@ -1,0 +1,5 @@
+<% flash.keys.each do |flash_key| %>
+  <div class="flash-message <%= flash_key %>">
+    <%= flash[flash_key] %>
+  </div>
+<% end %>

@@ -1,32 +1,22 @@
 class Api::V1::ProfilesController < Api::V1Controller
   skip_before_action :authorize, only: :create
 
-  def show
-  end
-
-  def create
-    @user = User.new(resource_params)
-
-    if @user.save
-      UserMailer.welcome(@user).deliver_now
-      @device = @user.create_device
-      render :show, status: :created
-    else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
-
   private
 
-    def find_resource
-      current_user
-    end
+  def find_resource
+    current_user
+  end
 
-    def resource_class
-      User
-    end
+  def resource_class
+    User
+  end
 
-    def resource_params
-      params.require(:profile).permit(:first_name, :last_name, :email, :password)
-    end
+  def permitted_attributes
+    %i(first_name last_name email password)
+  end
+
+  def created
+    UserMailer.welcome(@user).deliver_later
+    @device = @user.create_device
+  end
 end

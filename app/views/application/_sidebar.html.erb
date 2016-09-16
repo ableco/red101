@@ -1,0 +1,7 @@
+<% case section_key %>
+<% when :admin %>
+  <%= admin_tabs %>
+<% when :profile %>
+  <%= render 'profile', user: current_user %>
+  <%= link_to t('.edit_profile'), edit_profile_path %>
+<% end %>

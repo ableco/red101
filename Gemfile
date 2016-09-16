@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'mini_racer'
+# gem 'mini_racer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -27,11 +27,10 @@ gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'react_on_rails'
 gem 'pg_search'
 gem 'kaminari'
-
-gem 'rollbar'
+gem 'sidekiq'
+gem 'sinatra', '>= 2.0.0.beta2', require: false # https://github.com/mperham/sidekiq/issues/2839
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

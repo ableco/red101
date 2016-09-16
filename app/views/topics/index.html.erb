@@ -1,0 +1,6 @@
+<%= link_to t('.new'), new_topic_path %>
+<ul>
+  <% @topics.each do |topic| %>
+    <%= render topic %>
+  <% end %>
+</ul>

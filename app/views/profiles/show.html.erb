@@ -1,0 +1,5 @@
+<div class="section">
+  <% ::Template.all.each do |template| %>
+    <%= link_to template.name, new_diagnostic_path(template_id: template.id) %>
+  <% end %>
+</div>

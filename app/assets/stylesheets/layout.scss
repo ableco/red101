@@ -1,0 +1,30 @@
+@import 'variables';
+
+.header {
+  position: relative;
+}
+.navigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+main {
+  display: flex;
+}
+.sidebar {
+  flex: 1 1 10%;
+}
+.content {
+  flex: 20;
+}
+.brand, .global-search {
+  display: inline;
+}
+.brand {
+  font-size: 24px;
+  line-height: $vertical-unit;
+}
+.admin-tab {
+  display: block;
+  min-height: $vertical-unit;
+}

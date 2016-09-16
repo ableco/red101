@@ -1,0 +1,7 @@
+<%= form_for material do |form| %>
+  <%= form.collection_select :topic_id, Topic.all, :id, :name %>
+  <%= form.text_field        :title %>
+  <%= form.url_field         :url %>
+  <%= form.text_area         :details %>
+  <%= form.submit %>
+<% end %>

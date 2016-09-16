@@ -1,0 +1,14 @@
+<%= form_for @user, url: profile_path do |form| %>
+  <%= form.text_field  :first_name %>
+  <%= form.text_field  :last_name %>
+  <%= form.email_field :email %>
+  <%= form.phone_field :phone %>
+  <%= form.text_field  :level %>
+  <%= form.text_field  :location %>
+  <%= form.text_field  :school %>
+  <%= form.text_field  :role %>
+  <%= form.text_field  :since %>
+  <%= form.text_area   :about, rows: 3 %>
+
+  <%= form.submit %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815225212) do
+ActiveRecord::Schema.define(version: 20160916012134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,23 +46,27 @@ ActiveRecord::Schema.define(version: 20160815225212) do
   end
 
   create_table "diagnostics", force: :cascade do |t|
-    t.integer  "template_id", null: false
-    t.integer  "user_id",     null: false
+    t.integer  "template_id",               null: false
+    t.integer  "user_id",                   null: false
     t.datetime "finished_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "score",         default: 0, null: false
+    t.integer  "answers_count", default: 0, null: false
     t.index ["finished_at"], name: "index_diagnostics_on_finished_at", using: :btree
     t.index ["template_id"], name: "index_diagnostics_on_template_id", using: :btree
     t.index ["user_id"], name: "index_diagnostics_on_user_id", using: :btree
   end
 
   create_table "materials", force: :cascade do |t|
-    t.integer  "topic_id",   null: false
-    t.string   "title",      null: false
-    t.string   "url",        null: false
-    t.string   "details",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "topic_id",                 null: false
+    t.string   "title",                    null: false
+    t.string   "url",                      null: false
+    t.string   "details",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "slug",                     null: false
+    t.integer  "visits_count", default: 0
     t.index ["details"], name: "index_materials_on_details", using: :btree
     t.index ["title"], name: "index_materials_on_title", using: :btree
     t.index ["topic_id"], name: "index_materials_on_topic_id", using: :btree
@@ -142,6 +146,17 @@ ActiveRecord::Schema.define(version: 20160815225212) do
     t.index ["role"], name: "index_users_on_role", using: :btree
     t.index ["school"], name: "index_users_on_school", using: :btree
     t.index ["since"], name: "index_users_on_since", using: :btree
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.integer  "material_id", null: false
+    t.integer  "user_id"
+    t.string   "referrer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["material_id"], name: "index_visits_on_material_id", using: :btree
+    t.index ["referrer"], name: "index_visits_on_referrer", using: :btree
+    t.index ["user_id"], name: "index_visits_on_user_id", using: :btree
   end
 
 end

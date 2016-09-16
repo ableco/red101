@@ -1,0 +1,5 @@
+<li>
+  <%= topic.name %>
+  <%= link_to t('.edit'), edit_topic_path(topic) %>
+  <%= link_to t('.delete'), topic_path(topic), destroy_options %>
+</li>

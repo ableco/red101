@@ -1,0 +1,10 @@
+<%= form_for @diagnostic do |form| %>
+  <%= form.fields_for :answers do |answers_form| %>
+    <% question = answers_form.object.question %>
+    <h2 class="question">
+      <%= question.content %>
+    </h2>
+    <%= answers_form.collection_radio_buttons :option_id, question.options, :id, :content %>
+  <% end %>
+  <%= form.submit %>
+<% end %>

@@ -12,23 +12,30 @@ module Auth
 
   private
 
-    def current_device
-      @current_device ||= Device.current(token)
-    end
+  def current_device
+    @current_device ||= Device.current(token)
+  end
 
-    def token
-      raise NotImplementedError
-    end
+  def token
+    raise NotImplementedError
+  end
 
-    def authorize
-      head :unauthorized unless authorized?(controller_name, action_name, resource)
-    end
+  def authorize
+    return true if authorized?(controller_name, action_name, resource)
 
-    def authorization
-      @authorization ||= Authorization.new(current_user)
+    respond_to do |format|
+      format.any(:js, :json) { head :authorized }
+      format.html do
+        redirect_to(root_path, alert: t(:unauthorized))
+      end
     end
+  end
 
-    def resource
-      nil
-    end
+  def authorization
+    @authorization ||= Authorization.new(current_user, self.class.parent_name)
+  end
+
+  def resource
+    nil
+  end
 end

@@ -1,0 +1,40 @@
+<% if @query.present? %>
+  <div class="summary">
+    <% if @results.empty? %>
+      <%= t('.no_results') %>
+    <% else %>
+      <%= pluralize(@results.total_count, Material.model_name.singular) %>
+    <% end %>
+  </div>
+  <div class="results">
+    <ul>
+      <% @results.each do |result| %>
+        <li class="search-result">
+          <div class="result-title">
+            <%= link_to result.title, go_path(result.slug), data: { turbolinks: false } %>
+          </div>
+          <div class="result-details">
+            <%= result.details %>
+          </div>
+          <div class="result-title">
+            <%= result.url %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div class="welcome">
+    <div class="intro">
+      <%= t('.welcome_intro') %>
+      <%= t('.welcome_cta') %>
+    </div>
+    <%= form_tag search_path, method: :get do %>
+      <%= text_field_tag :query, @query %>
+      <%= submit_tag t(:search) %>
+    <% end %>
+    <div class="outtro">
+      <%= t('.welcome_support') %>
+    </div>
+  </div>
+<% end %>

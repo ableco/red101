@@ -6,12 +6,12 @@ default: &default
 development:
   <<: *default
   host: localhost
-  database: red_101_development
+  database: red101_development
 
 test:
   <<: *default
   host: localhost
-  database: red_101_test
+  database: red101_test
 
 production:
   <<: *default

@@ -1,12 +1,25 @@
 class Authorization
-  def initialize(user, version = 1)
-    if @current_user = user
-      setup_rules(version)
-    end
+  REST_ACTIONS = %i(
+    new
+    create
+    index
+    show
+    edit
+    update
+    destroy
+  ).freeze
+
+  def initialize(user, namespace = nil)
+    @current_user = user
+    @namespace    = namespace.to_s
+
+    setup_rules if user
   end
 
   def authorized?(controller, action, resource = nil)
-    if rule = rules.dig(controller.to_sym, action.to_sym)
+    rule = rules.dig(controller.to_sym, action.to_sym)
+
+    if rule
       rule == true || resource && rule.call(resource)
     else
       false
@@ -15,31 +28,47 @@ class Authorization
 
   private
 
-    def v1_rules
-      authorize :profiles,    :show
-      authorize :diagnostics, :create
-
-      if @current_user.admin?
-        authorize :topics,    :create, :destroy
-        authorize :questions, :create
-        authorize :templates, :create
-      end
+  def root_rules
+    authorize :profiles, %i(show edit update destroy) do |user|
+      @current_user == user
     end
 
-    def setup_rules(version)
-      case version
-      when 1 then v1_rules
-      end
+    authorize :diagnostics, %i(new create show edit update) do |diagnostic|
+      @current_user.id == diagnostic.user_id
     end
 
-    def authorize(controller, *actions, &block)
-      actions.flatten.each do |action|
-        rules[controller] ||= {}
-        rules[controller][action] = (block || true)
-      end
+    if @current_user.admin?
+      authorize :topics,    REST_ACTIONS
+      authorize :templates, REST_ACTIONS
+      authorize :questions, REST_ACTIONS
+      authorize :users,     REST_ACTIONS
+      authorize :materials, REST_ACTIONS
     end
+  end
 
-    def rules
-      @rules ||= {}
+  def api_v1_rules
+    authorize :profiles,    :show
+    authorize :diagnostics, :create
+
+    if @current_user.admin?
+      authorize :topics,    %i(create destroy)
+      authorize :questions, :create
+      authorize :templates, :create
     end
+  end
+
+  def setup_rules
+    case @namespace
+    when ''        then root_rules
+    when 'Api::V1' then api_v1_rules
+    end
+  end
+
+  def authorize(controller, *actions, &block)
+    actions.flatten.each { |action| rules[controller][action] = (block || true) }
+  end
+
+  def rules
+    @rules ||= Hash.new { |hash, key| hash[key] = {} }
+  end
 end

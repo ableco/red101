@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Red101</title>
+    <title><%= html_title %></title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Montserrat:400,600|Open+Sans:300,400,700' %>
-    <%= stylesheet_link_tag    'application', 'http://fontawesome.io/assets/font-awesome/css/font-awesome.css' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= redux_store_hydration_data %>
-    <%= yield %>
+    <header class="header">
+      <%= render 'brand' %>
+      <%= render 'search' %>
+      <%= render 'navigation' %>
+      <%= render 'messages' %>
+    </header>
+    <main>
+      <aside class="sidebar">
+        <%= render 'sidebar' %>
+      </aside>
+      <section class="content">
+        <%= yield %>
+      </section>
+    </main>
   </body>
 </html>
