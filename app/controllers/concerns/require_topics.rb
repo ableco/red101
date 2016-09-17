@@ -18,6 +18,6 @@ module RequireTopics
   end
 
   def error_message
-    t('error.require_topics.message')
+    t('errors.require_topics.message')
   end
 end
