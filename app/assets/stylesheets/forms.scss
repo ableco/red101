@@ -18,6 +18,12 @@
 .action {
   padding: 5px 0;
 }
+.errors {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: bold;
+  color: $color-background-alert;
+}
 
 [type="text"],
 [type="number"],

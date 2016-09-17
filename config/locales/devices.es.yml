@@ -6,6 +6,14 @@ es:
       device:
         email: "Correo Electrónico"
         password: "Contraseña"
+    errors:
+      models:
+        device:
+          attributes:
+            base:
+              invalid_credentials: "Credenciales inválidas"
+
+
   helpers:
     submit:
       device:
