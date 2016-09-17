@@ -30,6 +30,12 @@ body {
     font-weight: bold;
   }
 }
+.right {
+  float: right;
+}
+.hidden {
+  display: none !important;
+}
 .content-section {
   max-width: 600px;
   margin: 40px auto;
