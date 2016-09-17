@@ -1,5 +1,23 @@
 es:
+  activerecord:
+    models:
+      material: "Recurso"
+    attributes:
+      material:
+        topic_id: "Tema"
+        title: "Título"
+        description: "Descripción"
+        url: "Enlace"
   materials:
     index:
       title: "Recursos"
       intro: "Gestiona las recursos educativos"
+      no_items: "No hay recursos aún"
+    new:
+      title: "Recurso Nuevo"
+    create:
+      title: "Recurso Nuevo"
+    edit:
+      title: "Editar Recurso"
+    update:
+      title: "Editar Recurso"

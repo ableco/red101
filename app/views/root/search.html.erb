@@ -3,12 +3,10 @@
     <%= t('.intro') %>
   </h1>
 
-  <div class="toolbar">
-    <%= form_tag search_path, method: :get, class: :search do %>
-      <%= text_field_tag :query, @query %>
-      <%= submit_tag t(:search) %>
-    <% end %>
-  </div>
+  <%= form_tag search_path, method: :get, class: :search do %>
+    <%= text_field_tag :query, @query %>
+    <%= submit_tag t(:search) %>
+  <% end %>
 
   <% if @query.present? %>
     <div class="items">

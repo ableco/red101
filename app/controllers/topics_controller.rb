@@ -8,6 +8,6 @@ class TopicsController < ApplicationController
   private
 
   def permitted_attributes
-    %i(name)
+    %i(name info)
   end
 end

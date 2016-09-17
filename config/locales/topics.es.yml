@@ -1,5 +1,23 @@
 es:
+  activerecord:
+    models:
+      topic: "Tema"
+    attributes:
+      topic:
+        name: "Nombre"
+        info: "Información"
   topics:
     index:
       title: "Temas"
       intro: "Gestiona los temas para recursos, preguntas y plantillas"
+      no_items: "No hay temas aún"
+    new:
+      title: "Tema Nuevo"
+    create:
+      title: "Tema Nuevo"
+    edit:
+      title: "Editar Tema"
+    update:
+      title: "Editar Tema"
+    topic:
+      no_info: "-"

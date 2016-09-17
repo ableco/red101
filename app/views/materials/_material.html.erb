@@ -1,3 +1,8 @@
-<li>
-  <%= link_to material.title, edit_material_path(material) %>
+<li class="item">
+  <div class="item-label">
+    <%= link_to material.title, edit_material_path(material) %>
+  </div>
+  <div class="item-info">
+    <%= material.description %>
+  </div>
 </li>

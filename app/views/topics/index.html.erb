@@ -1,6 +1,21 @@
-<%= link_to t('.new'), new_topic_path %>
-<ul>
-  <% @topics.each do |topic| %>
-    <%= render topic %>
-  <% end %>
-</ul>
+<section class="content-section">
+  <div class="toolbar">
+    <%= link_to t('topics.new.title'), new_topic_path %>
+  </div>
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div class="items">
+    <% if @topics.empty? %>
+      <p>
+        <%= t('.no_items') %>
+      </p>
+    <% else %>
+      <ul>
+        <% @topics.each do |topic| %>
+          <%= render topic %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</section>

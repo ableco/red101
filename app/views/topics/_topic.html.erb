@@ -1,5 +1,8 @@
-<li>
-  <%= topic.name %>
-  <%= link_to t('.edit'), edit_topic_path(topic) %>
-  <%= link_to t('.delete'), topic_path(topic), destroy_options %>
+<li class="item">
+  <div class="item-title">
+    <%= link_to topic.name, edit_topic_path(topic) %>
+  </div>
+  <div class="item-info">
+    <%= topic.info.presence || t('.no_info') %>
+  </div>
 </li>

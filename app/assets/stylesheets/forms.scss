@@ -29,30 +29,22 @@
 [type="number"],
 [type="email"],
 [type="url"],
-[type="password"],
-textarea {
-  background-color: $color-background-input;
-  display: inline-block;
-  font-family: monospace;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 5px;
-  border: 1px solid $color-border-input;
-  border-radius: 4px;
+[type="password"] {
+  @include field;
+
   min-width: 300px;
 }
+select {
+  @include field;
+
+  height: 30px;
+}
 textarea {
+  @include field;
+
   min-width: 400px;
 }
 [type="submit"],
 [type="button"] {
-  background-color: $color-background-button;
-  color: white;
-  display: inline-block;
-  font-family: -apple-system, 'Helvetica';
-  font-size: 14px;
-  line-height: 20px;
-  padding: 5px 10px;
-  border: 1px solid black;
-  border-radius: 4px;
+  @include button;
 }

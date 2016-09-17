@@ -1,11 +1,11 @@
 <% if current_user %>
   <section class="content-section">
-    <h1>
-      <%= current_user.name %>
-    </h1>
     <div class="toolbar">
       <%= button_to t(:logout), device_path, method: :delete %>
     </div>
+    <h1>
+      <%= current_user.name %>
+    </h1>
     <ul>
       <li class="item">
         <div class="item-title">
@@ -62,6 +62,14 @@
           </div>
           <div class="item-intro">
             <%= t('templates.index.intro') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            <%= link_to t('users.index.title'), users_path %>
+          </div>
+          <div class="item-intro">
+            <%= t('users.index.intro') %>
           </div>
         </li>
       </ul>

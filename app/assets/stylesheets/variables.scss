@@ -5,5 +5,37 @@ $color-background-input: #eee;
 $color-background-button: #222;
 $color-border-input: #ccc;
 $color-font-light: #999;
+$color-font-medium: #666;
+$color-font-dark: #333;
 $color-background-alert: rgb(180, 11, 7);
 $color-background-notice: rgb(60, 118, 61);
+
+@mixin input {
+  display: inline-block;
+  font-family: -apple-system, 'Helvetica';
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+@mixin button {
+  @include input;
+
+  background-color: $color-background-button;
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid black;
+
+  &[data-method="delete"] {
+    background-color: $color-background-alert;
+    border-color: $color-background-alert;
+  }
+}
+
+@mixin field {
+  @include input;
+
+  background-color: $color-background-input;
+  padding: 5px;
+  border: 1px solid $color-border-input;
+}

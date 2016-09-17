@@ -21,7 +21,7 @@ es:
   devices:
     new:
       title: "Iniciar Sesión"
-      intro: "Ingresa tus credenciales para iniciar sesión"
+      intro: "Ingresa tus credenciales"
     create:
       title: "Iniciar Sesión"
-      intro: "Ingresa tus credenciales para iniciar sesión"
+      intro: "Ingresa tus credenciales"

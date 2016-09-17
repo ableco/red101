@@ -44,15 +44,10 @@ body {
   border-radius: 10px;
 
   h1 {
-    font-weight: normal;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     margin-bottom: 20px;
-    color: $color-font-light;
-  }
-
-  .toolbar {
-    margin-bottom: 20px;
+    text-transform: uppercase;
   }
 
   &.narrow {
@@ -61,6 +56,13 @@ body {
 
   &.wide {
     max-width: 800px;
+  }
+}
+.toolbar {
+  float: right;
+
+  a {
+    @include button;
   }
 }
 .footer {

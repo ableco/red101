@@ -1,6 +1,21 @@
-<%= link_to t('.new'), new_material_path %>
-<ul>
-  <% @materials.each do |material| %>
-    <%= render material %>
-  <% end %>
-</ul>
+<section class="content-section">
+  <div class="toolbar">
+    <%= link_to t('materials.new.title'), new_material_path %>
+  </div>
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div class="items">
+    <% if @materials.empty? %>
+      <p>
+        <%= t('.no_items') %>
+      </p>
+    <% else %>
+      <ul>
+        <% @materials.each do |material| %>
+          <%= render material %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</section>

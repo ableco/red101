@@ -1,1 +1,10 @@
-<%= render 'form', topic: @topic %>
+<section class="content-section">
+  <div class="toolbar">
+    <%= link_to t(:delete), topic_path(@topic), destroy_options %>
+    <%= link_to t(:cancel), topics_path %>
+  </div>
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <%= render 'form', topic: @topic %>
+</section>

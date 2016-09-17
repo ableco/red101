@@ -4,6 +4,9 @@ es:
   logout: "Terminar Sesión"
   register: "Registrarme"
   unauthorized: "No autorizado"
+  cancel: "Cancelar"
+  delete: "Eliminar"
+  back: "Volver"
 
   errors:
     require_topics:

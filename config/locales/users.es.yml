@@ -17,10 +17,10 @@ es:
       intro: "Revisa la lista de usuarios"
     new:
       title: "Registro"
-      intro: "Ingresa tu información para crear una cuenta"
+      intro: "Ingresa tu información"
     create:
       title: "Registro"
-      intro: "Crea una cuenta"
+      intro: "Ingresa tu información"
     edit:
       title: "Editar mi Perfil"
       intro: "Actualiza tu información"

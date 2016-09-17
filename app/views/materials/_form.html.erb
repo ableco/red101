@@ -2,6 +2,6 @@
   <%= form.collection_select :topic_id, Topic.all, :id, :name %>
   <%= form.text_field        :title %>
   <%= form.url_field         :url %>
-  <%= form.text_area         :description %>
+  <%= form.text_area         :description, rows: 5 %>
   <%= form.submit %>
 <% end %>
