@@ -1,3 +1,0 @@
-<%= form_tag search_path, method: :get, class: 'global-search' do %>
-  <%= text_field_tag :query, @query %>
-<% end unless @query.nil? && current_page?(search_path) %>

@@ -1,40 +1,40 @@
-<% if @query.present? %>
-  <div class="summary">
-    <% if @results.empty? %>
-      <%= t('.no_results') %>
-    <% else %>
-      <%= pluralize(@results.total_count, Material.model_name.singular) %>
-    <% end %>
-  </div>
-  <div class="results">
-    <ul>
-      <% @results.each do |result| %>
-        <li class="search-result">
-          <div class="result-title">
-            <%= link_to result.title, go_path(result.slug), data: { turbolinks: false } %>
-          </div>
-          <div class="result-details">
-            <%= result.details %>
-          </div>
-          <div class="result-title">
-            <%= result.url %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-<% else %>
-  <div class="welcome">
-    <div class="intro">
-      <%= t('.welcome_intro') %>
-      <%= t('.welcome_cta') %>
-    </div>
-    <%= form_tag search_path, method: :get do %>
+<section class="content-section">
+  <h1>
+    <%= t('.intro') %>
+  </h1>
+
+  <div class="toolbar">
+    <%= form_tag search_path, method: :get, class: :search do %>
       <%= text_field_tag :query, @query %>
       <%= submit_tag t(:search) %>
     <% end %>
-    <div class="outtro">
-      <%= t('.welcome_support') %>
-    </div>
   </div>
-<% end %>
+
+  <% if @query.present? %>
+    <div class="items">
+      <% if @items.empty? %>
+        <p>
+          <%= t('.no_items') %>
+        </p>
+      <% else %>
+        <ul>
+          <% @items.each do |item| %>
+            <li class="item">
+              <div class="item-title">
+                <%= link_to item.title, visit_path(item.slug), data: { turbolinks: false } %>
+              </div>
+              <div class="item-description">
+                <%= item.description.truncate(200) %>
+              </div>
+              <div class="item-extra">
+                <%= item.topic.name %>
+                &bull;
+                <%= item.url %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
+</section>

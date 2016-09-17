@@ -1,53 +1,45 @@
 module NavigationHelper
-  APP_NAME          = 'Red 101'.freeze
-  SEPARATOR         = ' / '.freeze
-  ADMIN_CONTROLLERS = %i(topics materials questions templates users).freeze
-
-  def title
-    if section_key == :profile
-      current_user.name
-    else
-      t(section_key)
-    end
-  end
+  APP_NAME  = 'Red 101'.freeze
+  SEPARATOR = ' / '.freeze
 
   def html_title
-    safe_join([APP_NAME, title], SEPARATOR)
+    safe_join([APP_NAME, tab_title(tab_key)], SEPARATOR)
   end
 
-  def active_tab?(condition)
-    condition ? :active : :inactive
+  def tab(key)
+    link_to tab_title(key), key, class: %W(tab #{tab_state?(key)})
   end
 
-  def admin_tabs
-    content_tag(:nav, class: :tabs) do
-      ADMIN_CONTROLLERS.map { |key| admin_tab(key) }.join.html_safe
-    end
+  def tab_title(key)
+    t("tabs.#{key}.title")
   end
 
-  def admin_section?
-    ADMIN_CONTROLLERS.include?(controller_name.to_sym)
+  def tab_state?(key)
+    tab_key == key ? :active : :inactive
   end
 
-  def section_tab(key)
-    link_to t("sections.#{key}"), key, class: ['section-tab', active_tab?(key == section_key)]
-  end
-
-  def admin_tab(key)
-    link_to t("admin.#{key}"), key, class: ['admin-tab', active_tab?(key == controller_name.to_sym)]
-  end
-
-  def section_key
-    if admin_section?
-      :admin
-    elsif current_user && controller_name != 'root'
-      :profile
-    elsif controller_name == 'profiles'
-      :register
-    elsif controller_name == 'devices'
-      :login
-    elsif current_page?(controller: 'root', action: 'search')
+  def tab_key
+    if search_tab?
       :search
+    elsif diagnose_tab?
+      :diagnose
+    elsif configure_tab?
+      :configure
     end
+  end
+
+  def search_tab?
+    current_page?(controller: 'root', action: 'search')
+  end
+
+  def diagnose_tab?
+    current_page?(controller: 'root', action: 'diagnose') ||
+      'diagnostics' == controller_name &&
+        %w(new create edit update).include?(action_name)
+  end
+
+  def configure_tab?
+    current_page?(controller: 'root', action: 'configure') ||
+      %w(devices profiles topics materials questions templates users).include?(controller_name)
   end
 end

@@ -1,22 +1,47 @@
 @import "variables";
 
 .field {
+  padding: 5px 0;
+
   label {
     display: block;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: bold;
   }
 }
+.action {
+  padding: 5px 0;
+}
 
-input[type="text"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
+[type="text"],
+[type="number"],
+[type="email"],
+[type="url"],
+[type="password"],
 textarea {
+  background-color: $color-background-input;
   display: inline-block;
   font-family: monospace;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   padding: 5px;
-  border: 1px solid $color-border-medium;
+  border: 1px solid $color-border-input;
+  border-radius: 4px;
+  min-width: 300px;
+}
+textarea {
+  min-width: 400px;
+}
+[type="submit"],
+[type="button"] {
+  background-color: $color-background-button;
+  color: white;
+  display: inline-block;
+  font-family: -apple-system, 'Helvetica';
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 10px;
+  border: 1px solid black;
   border-radius: 4px;
 }

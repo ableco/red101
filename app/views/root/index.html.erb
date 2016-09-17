@@ -1,0 +1,31 @@
+<section class="content-section">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <ul>
+    <li class="item">
+      <div class="item-title">
+        <%= link_to t('root.search.title'), search_path %>
+      </div>
+      <div class="item-intro">
+        <%= t('root.search.intro') %>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-title">
+        <%= link_to t('root.diagnose.title'), diagnose_path %>
+      </div>
+      <div class="item-intro">
+        <%= t('root.diagnose.intro') %>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-title">
+        <%= link_to t('root.configure.title'), configure_path %>
+      </div>
+      <div class="item-intro">
+        <%= t('root.configure.intro') %>
+      </div>
+    </li>
+  </ul>
+</section>

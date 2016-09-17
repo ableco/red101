@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def profile_tab
+    current_user ? :profile : :login
+  end
+
   def profile_info(user, key)
     attr_name = User.human_attribute_name(key)
     attr_info = user.public_send(key)
@@ -22,9 +26,9 @@ module ApplicationHelper
     }
   end
 
-  def link_to_result(result)
-    link_to result.title,
-            go_path(result.slug),
+  def link_to_material(material)
+    link_to material.title,
+            visit_path(material.slug),
             target: '_blank',
             data: {
               turbolinks: false
