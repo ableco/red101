@@ -22,23 +22,11 @@ class ProfilesController < ApplicationController
   end
 
   def permitted_attributes
-    %i(
-      first_name
-      last_name
-      email
-      password
-      phone
-      level
-      location
-      school
-      role
-      since
-      about
-    )
+    %i(name email password)
   end
 
   def after_path
-    profile_path
+    configure_path
   end
 
   def created

@@ -1,0 +1,16 @@
+es:
+  root:
+    index:
+      title: "Bienvenido"
+    search:
+      title: "Buscar"
+      intro: "Encuentra recursos educativos para el desarrollo docente"
+      no_items: "No se encontraron recursos"
+    diagnose:
+      title: "Diagnosticar"
+      intro: "Auto-evalúa tus conocimientos y sigue los recursos recomendados"
+      no_items: "Por el momento no hay diagnósticos disponibles"
+    configure:
+      title: "Configurar"
+      intro: "Configura tu cuenta y revisa tu historial"
+      admin: "Administrar"

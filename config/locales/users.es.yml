@@ -1,0 +1,19 @@
+es:
+  activerecord:
+    models:
+      user: "Usuario"
+    attributes:
+      user:
+        email: "Correo Electrónico"
+        password: "Contraseña"
+  helpers:
+    submit:
+      user:
+        create: "Registrarme"
+  users:
+    index:
+      title: "Usuarios"
+      intro: "Revisa la lista de usuarios"
+  user_mailer:
+    welcome:
+      subject: "Bienvenido a Red101"

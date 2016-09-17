@@ -1,6 +1,8 @@
 es:
   search: "Buscar"
+  login: "Iniciar Sesión"
   logout: "Terminar Sesión"
+  register: "Registrarme"
   unauthorized: "No autorizado"
 
   errors:
@@ -14,64 +16,3 @@ es:
       title: "Diagnosticar"
     configure:
       title: "Configurar"
-
-  admin:
-    questions: "Preguntas"
-    topics: "Temas"
-    templates: "Plantillas"
-    users: "Usuarios"
-
-  user_mailer:
-    welcome:
-      subject: "Bienvenido a Red101"
-
-  topics:
-    index:
-      title: "Temas"
-      intro: "Gestiona los temas para recursos, preguntas y plantillas"
-
-  templates:
-    index:
-      title: "Plantillas"
-      intro: "Gestiona las plantillas base para diagnósticos"
-
-  materials:
-    index:
-      title: "Recursos"
-      intro: "Gestiona las recursos educativos"
-
-  users:
-    index:
-      title: "Usuarios"
-      intro: "Revisa la lista de usuarios"
-
-  questions:
-    index:
-      title: "Preguntas"
-      intro: "Gestiona preguntas y opciones"
-    form:
-      add_option: "Agregar Opción"
-
-  root:
-    index:
-      title: "Bienvenido"
-    search:
-      title: "Buscar"
-      intro: "Encuentra recursos educativos para el desarrollo docente"
-    diagnose:
-      title: "Diagnosticar"
-      intro: "Auto-evalúa tus conocimientos y sigue los recursos recomendados"
-    configure:
-      title: "Configurar"
-      intro: "Configura tu cuenta y revisa tu historial"
-      admin: "Administrar"
-
-  profiles:
-    new:
-      title: "Registro"
-    edit:
-      title: "Editar mi Perfil"
-      intro: "Actualiza tu información"
-    show:
-      title: "Historial"
-      intro: "Revisa el progreso de tus diangnósticos"

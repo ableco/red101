@@ -1,0 +1,7 @@
+es:
+  questions:
+    index:
+      title: "Preguntas"
+      intro: "Gestiona preguntas y opciones"
+    form:
+      add_option: "Agregar Opción"

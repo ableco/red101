@@ -1,0 +1,10 @@
+es:
+  profiles:
+    new:
+      title: "Registro"
+    edit:
+      title: "Editar mi Perfil"
+      intro: "Actualiza tu información"
+    show:
+      title: "Historial"
+      intro: "Revisa el progreso de tus diangnósticos"

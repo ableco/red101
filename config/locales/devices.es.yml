@@ -1,0 +1,15 @@
+es:
+  activerecord:
+    models:
+      device: "Dispositivo"
+    attributes:
+      device:
+        email: "Correo Electrónico"
+        password: "Contraseña"
+  helpers:
+    submit:
+      device:
+        create: "Iniciar Sesión"
+  devices:
+    new:
+      title: "Iniciar Sesión"

@@ -9,7 +9,7 @@ class MaterialsController < ApplicationController
   private
 
   def permitted_attributes
-    %i(topic_id title url details)
+    %i(topic_id title url description)
   end
 
   def query
