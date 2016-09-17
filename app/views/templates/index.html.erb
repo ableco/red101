@@ -1,6 +1,21 @@
-<%= link_to t('.new'), new_template_path %>
-<ul>
-  <% @templates.each do |template| %>
-    <%= render template %>
-  <% end %>
-</ul>
+<section class="content-section">
+  <div class="toolbar">
+    <%= link_to t('templates.new.title'), new_template_path %>
+  </div>
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <div class="items">
+    <% if @templates.empty? %>
+      <p>
+        <%= t('.no_items') %>
+      </p>
+    <% else %>
+      <ul>
+        <% @templates.each do |template| %>
+          <%= render template %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</section>

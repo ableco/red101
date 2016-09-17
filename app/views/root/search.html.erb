@@ -18,7 +18,7 @@
         <ul>
           <% @items.each do |item| %>
             <li class="item">
-              <div class="item-title">
+              <div class="item-label">
                 <%= link_to item.title, visit_path(item.slug), data: { turbolinks: false } %>
               </div>
               <div class="item-description">

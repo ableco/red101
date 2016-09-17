@@ -11,14 +11,13 @@ class Material < ApplicationRecord
   validates :description, presence: true
 
   pg_search_scope :search_by_query, against: %i(title url description),
-                                    associated_against: {
-                                      topic: %i(name)
-                                    }
+                                    associated_against: { topic: %i(name) },
+                                    using: { tsearch: { prefix: true } }
 
   before_create :set_slug
 
   def self.search(query)
-    if query
+    if query.present?
       search_by_query(query)
     else
       order(title: :asc)

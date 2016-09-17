@@ -9,6 +9,17 @@
     line-height: 20px;
     font-weight: bold;
   }
+
+  .check-option {
+    padding: 5px;
+
+    label {
+      display: inline-block;
+      font-weight: normal;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  }
 }
 .field_with_errors {
   label {
@@ -16,6 +27,7 @@
   }
 }
 .action {
+  margin-top: 20px;
   padding: 5px 0;
 }
 .errors {
@@ -26,13 +38,17 @@
 }
 
 [type="text"],
-[type="number"],
 [type="email"],
 [type="url"],
 [type="password"] {
   @include field;
 
   min-width: 300px;
+}
+[type="number"] {
+  @include field;
+
+  min-width: 100px;
 }
 select {
   @include field;
@@ -43,6 +59,10 @@ textarea {
   @include field;
 
   min-width: 400px;
+
+  &.wide {
+    min-width: 90%;
+  }
 }
 [type="submit"],
 [type="button"] {

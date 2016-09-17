@@ -1,1 +1,9 @@
-<%= render 'form', question: @question %>
+<section class="content-section wide">
+  <div class="toolbar">
+    <%= link_to t(:cancel), questions_path %>
+  </div>
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <%= render 'form', question: @question %>
+</section>

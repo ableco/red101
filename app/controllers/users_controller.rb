@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   include Rest
 
   def index
-    @users = User.order(name: :asc).page(params[:page])
+    @query = params[:query]
+    @users = User.search(@query).page(params[:page])
   end
 
   def show

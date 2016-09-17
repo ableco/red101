@@ -1,5 +1,23 @@
 es:
+  activerecord:
+    models:
+      template: "Plantilla"
+    attributes:
+      template:
+        topic_ids: "Temas a Incluir"
+        name: "Nombre"
+        description: "Descripción"
+        question_limit: "Candidad de Preguntas por Tema"
   templates:
     index:
       title: "Plantillas"
       intro: "Gestiona las plantillas base para diagnósticos"
+      no_items: "No hay plantillas aún"
+    new:
+      title: "Plantilla Nueva"
+    create:
+      title: "Plantilla Nueva"
+    edit:
+      title: "Editar Plantilla"
+    update:
+      title: "Editar Plantilla"

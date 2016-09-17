@@ -22,7 +22,7 @@ class DiagnosticsController < ApplicationController
   end
 
   def permitted_attributes
-    %i(template_id).push(answers_attributes: %i(id option_id))
+    %i(template_id reference).push(answers_attributes: %i(id option_id))
   end
 
   def redirect_to_pending

@@ -1,1 +1,9 @@
-<%= render 'form', template: @template %>
+<section class="content-section">
+  <div class="toolbar">
+    <%= link_to t(:cancel), templates_path %>
+  </div>
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <%= render 'form', template: @template %>
+</section>

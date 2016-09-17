@@ -1,7 +1,23 @@
 es:
+  activerecord:
+    models:
+      question: "Pregunta"
+    attributes:
+      question:
+        topic_id: "Tema"
+        content: "Contenido"
   questions:
     index:
       title: "Preguntas"
       intro: "Gestiona preguntas y opciones"
+    new:
+      title: "Pregunt Nueva"
+    create:
+      title: "Pregunta Nueva"
+    edit:
+      title: "Editar Pregunta"
+    update:
+      title: "Editar Pregunta"
     form:
+      question_options: "Opciones"
       add_option: "Agregar Opción"

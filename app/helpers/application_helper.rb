@@ -16,7 +16,7 @@ module ApplicationHelper
   def link_to_add_fields(label, form, association, container)
     new_object  = form.object.send(association).klass.new
     child_index = new_object.object_id
-    fields      = build_fields_for(association, new_object, child_index)
+    fields      = build_fields_for(form, association, new_object, child_index)
     data        = { id: child_index, fields: fields, container: container }
 
     link_to(label, '#', class: 'add-fields', data: data)
@@ -28,7 +28,7 @@ module ApplicationHelper
 
   private
 
-  def build_fields_for(association, new_object, child_index)
+  def build_fields_for(form, association, new_object, child_index)
     form.fields_for(association, new_object, child_index: child_index) do |f|
       render("#{association.to_s.singularize}_fields", form: f)
     end.delete("\n")

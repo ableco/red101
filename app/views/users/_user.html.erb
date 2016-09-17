@@ -1,3 +1,8 @@
-<li>
-  <%= link_to user.name, user %>
+<li class="item">
+  <div class="item-label">
+    <%= link_to user.name, user %>
+  </div>
+  <div class="item-info">
+    <%= user.email %>
+  </div>
 </li>

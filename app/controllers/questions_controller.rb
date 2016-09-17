@@ -3,7 +3,8 @@ class QuestionsController < ApplicationController
   include RequireTopics
 
   def index
-    @questions = Question.order(content: :asc).page(params[:page])
+    @query     = params[:query]
+    @questions = Question.includes(:topic).search(@query).page(params[:page])
   end
 
   def new

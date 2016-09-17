@@ -1,3 +1,10 @@
-<%= form.text_field :content  %>
-<%= form.check_box  :correct  %>
-<%= form.check_box  :_destroy %>
+<tr class="item">
+  <td>
+    <%= form.text_area :content,     rows: 3, class: 'wide' %>
+    <%= form.text_area :explanation, rows: 2, class: 'wide' %>
+  </td>
+  <td>
+    <%= form.check_box  :correct  %>
+    <%= form.check_box  :_destroy unless form.object.new_record? %>
+  </td>
+</tr>

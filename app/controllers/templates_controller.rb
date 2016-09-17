@@ -9,6 +9,6 @@ class TemplatesController < ApplicationController
   private
 
   def permitted_attributes
-    %i(name question_limit).push(topic_ids: [])
+    %i(name question_limit description).push(topic_ids: [])
   end
 end

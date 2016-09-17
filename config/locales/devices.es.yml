@@ -12,8 +12,6 @@ es:
           attributes:
             base:
               invalid_credentials: "Credenciales inválidas"
-
-
   helpers:
     submit:
       device:

@@ -1,16 +1,18 @@
-<section class="content-section">
+<section class="content-section wide">
+  <div class="toolbar">
+    <%= link_to t('questions.new.title'), new_question_path %>
+  </div>
   <h1>
     <%= t('.title') %>
   </h1>
-  <div class="toolbar">
-    <div class="right">
-      <%= link_to t('.new'), new_question_path, class: 'button' %>
-    </div>
-  </div>
+  <%= form_tag questions_path, method: :get, class: :search do %>
+    <%= text_field_tag :query, @query %>
+    <%= submit_tag t(:search) %>
+  <% end %>
   <div class="items">
     <% if @questions.empty? %>
       <p>
-        <%= t('.no_questions') %>
+        <%= t('.no_items') %>
       </p>
     <% else %>
       <ul>

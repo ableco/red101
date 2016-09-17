@@ -1,0 +1,10 @@
+es:
+  activerecord:
+    models:
+      option: "Opción"
+    attributes:
+      option:
+        content: "Contenido"
+        explanation: "Explicación"
+        correct: "Correcta"
+        _destroy: "Eliminar"

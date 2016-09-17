@@ -1,4 +1,11 @@
-<%= form_for @diagnostic do |form| %>
-  <%= form.hidden_field :template_id %>
-  <%= form.submit %>
-<% end %>
+<section class="content-section">
+  <h1>
+    <%= t('.title') %>:
+    <%= @diagnostic.template.name %>
+  </h1>
+  <%= form_for @diagnostic do |form| %>
+    <%= form.hidden_field :template_id %>
+    <%= form.text_area    :reference, rows: 4 %>
+    <%= form.submit %>
+  <% end %>
+</section>

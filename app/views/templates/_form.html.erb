@@ -1,8 +1,14 @@
 <%= form_for template do |form| %>
   <%= form.base_errors %>
-  <%= form.text_field :name %>
-  <%= form.text_area  :description %>
-  <%= form.text_field :question_limit %>
-  <%= form.collection_check_boxes :topic_ids, Topic.all, :id, :name %>
+  <%= form.text_field   :name %>
+  <%= form.text_area    :description, rows: 5 %>
+  <%= form.number_field :question_limit %>
+
+  <%= form.collection_check_boxes :topic_ids, Topic.all, :id, :name do |b| %>
+    <div class="check-option">
+      <%= b.check_box + b.label %>
+    </div>
+  <% end %>
+
   <%= form.submit %>
 <% end %>

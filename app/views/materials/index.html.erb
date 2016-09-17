@@ -1,10 +1,14 @@
-<section class="content-section">
+<section class="content-section wide">
   <div class="toolbar">
     <%= link_to t('materials.new.title'), new_material_path %>
   </div>
   <h1>
     <%= t('.title') %>
   </h1>
+  <%= form_tag materials_path, method: :get, class: :search do %>
+    <%= text_field_tag :query, @query %>
+    <%= submit_tag t(:search) %>
+  <% end %>
   <div class="items">
     <% if @materials.empty? %>
       <p>

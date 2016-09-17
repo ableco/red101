@@ -1,3 +1,8 @@
-<li>
-  <%= link_to template.name, edit_template_path(template) %>
+<li class="item">
+  <div class="item-label">
+    <%= link_to template.name, edit_template_path(template) %>
+  </div>
+  <div class="item-info">
+    <%= template.description %>
+  </div>
 </li>

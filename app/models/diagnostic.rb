@@ -7,8 +7,9 @@ class Diagnostic < ApplicationRecord
   has_many :answers,   dependent: :destroy
   has_many :questions, through: :answers
 
-  validates :user,     presence: true
-  validates :template, presence: true
+  validates :user,      presence: true
+  validates :template,  presence: true
+  validates :reference, presence: true
 
   before_save  :finish, if: :answered?
   after_create :create_answers

@@ -1,5 +1,14 @@
-<ul>
-  <% @users.each do |user| %>
-    <%= render user %>
+<section class="content-section">
+  <h1>
+    <%= t('.title') %>
+  </h1>
+  <%= form_tag users_path, method: :get, class: :search do %>
+    <%= text_field_tag :query, @query %>
+    <%= submit_tag t(:search) %>
   <% end %>
-</ul>
+  <ul>
+    <% @users.each do |user| %>
+      <%= render user %>
+    <% end %>
+  </ul>
+</section>

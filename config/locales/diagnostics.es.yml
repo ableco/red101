@@ -1,0 +1,17 @@
+es:
+  activerecord:
+    models:
+      diagnostic: "Diagnóstico"
+    attributes:
+      diagnostic:
+        reference: "Referencia"
+  helpers:
+    submit:
+      diagnostic:
+        create: "Comenzar Diagnóstico"
+        update: "Guardar Información"
+  diagnostics:
+    new:
+      title: "Diagnóstico Nuevo"
+    create:
+      title: "Diagnóstico Nuevo"
