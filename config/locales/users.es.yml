@@ -14,6 +14,21 @@ es:
     index:
       title: "Usuarios"
       intro: "Revisa la lista de usuarios"
+    new:
+      title: "Registro"
+      intro: "Ingresa tu información para crear una cuenta"
+    create:
+      title: "Registro"
+      intro: "Crea una cuenta"
+    edit:
+      title: "Editar mi Perfil"
+      intro: "Actualiza tu información"
+    update:
+      title: "Editar mi Perfil"
+      intro: "Actualiza tu información"
+    show:
+      title: "Historial"
+      intro: "Revisa el progreso de tus diagnósticos"
   user_mailer:
     welcome:
       subject: "Bienvenido a Red101"

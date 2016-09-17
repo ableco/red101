@@ -1,8 +1,11 @@
 class DiagnosticsController < ApplicationController
   include Rest
 
-  skip_before_action :authorize,           only: %i(new create)
-  before_action      :redirect_to_pending, only: %i(new)
+  before_action :redirect_to_pending, only: %i(new)
+
+  def index
+    @diagnostics = Diagnostic.order(created_at: :asc).page(params[:page])
+  end
 
   def show
     if @diagnostic.finished?

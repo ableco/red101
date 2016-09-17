@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class Api::V1::MaterialsControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    @member = users(:member)
+  end
+
   def test_index_without_query
-    get api_v1_materials_url
+    get api_v1_materials_url, headers: v1_authorization_header(@member)
 
     response_json = JSON.parse(response.body)
 
@@ -11,7 +15,7 @@ class Api::V1::MaterialsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def test_index_with_query
-    get api_v1_materials_url(query: 'culture')
+    get api_v1_materials_url(query: 'culture'), headers: v1_authorization_header(@member)
 
     response_json = JSON.parse(response.body)
 

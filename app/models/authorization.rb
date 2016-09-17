@@ -1,19 +1,14 @@
 class Authorization
-  REST_ACTIONS = %i(
-    new
-    create
-    index
-    show
-    edit
-    update
-    destroy
-  ).freeze
+  Permissions = Class.new(SimpleDelegator)
+
+  attr_reader :current_user
 
   def initialize(user, namespace = nil)
     @current_user = user
-    @namespace    = namespace.to_s
+    namespace     = (namespace.presence || 'Application').delete(':')
+    permissions   = "#{namespace}Permissions".constantize.new(self)
 
-    setup_rules if user
+    permissions.apply
   end
 
   def authorized?(controller, action, resource = nil)
@@ -26,51 +21,11 @@ class Authorization
     end
   end
 
-  private
-
-  def root_rules
-    authorize :profiles, %i(show edit update destroy) do |user|
-      @current_user == user
-    end
-
-    authorize :diagnostics, %i(show edit update) do |diagnostic|
-      if diagnostic.user_id
-        diagnostic.user_id.nil? && diagnostic.created_at > 1.day.ago
-      else
-        @current_user.id == diagnostic.user_id
-      end
-    end
-
-    if @current_user.admin?
-      authorize :topics,    REST_ACTIONS
-      authorize :templates, REST_ACTIONS
-      authorize :questions, REST_ACTIONS
-      authorize :users,     REST_ACTIONS
-      authorize :materials, REST_ACTIONS
-    end
-  end
-
-  def api_v1_rules
-    authorize :profiles,    :show
-    authorize :diagnostics, :create
-
-    if @current_user.admin?
-      authorize :topics,    %i(create destroy)
-      authorize :questions, :create
-      authorize :templates, :create
-    end
-  end
-
-  def setup_rules
-    case @namespace
-    when ''        then root_rules
-    when 'Api::V1' then api_v1_rules
-    end
-  end
-
   def authorize(controller, *actions, &block)
     actions.flatten.each { |action| rules[controller][action] = (block || true) }
   end
+
+  private
 
   def rules
     @rules ||= Hash.new { |hash, key| hash[key] = {} }

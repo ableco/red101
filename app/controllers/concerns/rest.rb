@@ -8,7 +8,7 @@ module Rest
       created
       success
     else
-      failure(:new)
+      failure
     end
   end
 
@@ -23,7 +23,7 @@ module Rest
 
   def destroy
     if resource.destroy
-      destroyed
+      deleted
       success
     else
       failure
@@ -32,31 +32,31 @@ module Rest
 
   private
 
-  def success(view = :show)
+  def success
     respond_to do |format|
       format.js
-      format.json do
-        case action_name.to_sym
-        when :create  then render(view, status: :created)
-        when :update  then render(view, status: :ok)
-        when :destroy then head(:ok)
-        end
-      end
-      format.html do
-        redirect_to(after_path, notice: success_notice)
-      end
+      format.json { json_success }
+      format.html { redirect_to(after_path, notice: success_notice) }
     end
   end
 
-  def failure(view = :edit)
+  def failure
     respond_to do |format|
       format.js
       format.json do
         render json: { errors: resource.errors.messages }, status: :unprocessable_entity
       end
       format.html do
-        render view
+        render(resource.new_record? ? :new : :edit)
       end
+    end
+  end
+
+  def json_success
+    case action_name.to_sym
+    when :create  then render(:show, status: :created)
+    when :update  then render(:show, status: :ok)
+    when :destroy then head(:ok)
     end
   end
 
@@ -101,12 +101,9 @@ module Rest
     url_for(controller: controller_name, action: :index)
   end
 
-  def created
-  end
+  def created; end
 
-  def updated
-  end
+  def updated; end
 
-  def destroyed
-  end
+  def deleted; end
 end

@@ -9,18 +9,18 @@
     <ul>
       <li class="item">
         <div class="item-title">
-          <%= link_to t('profiles.edit.title'), edit_profile_path %>
+          <%= link_to t('users.edit.title'), edit_user_path(current_user) %>
         </div>
         <div class="item-intro">
-          <%= t('profiles.edit.intro') %>
+          <%= t('users.edit.intro') %>
         </div>
       </li>
       <li class="item">
         <div class="item-title">
-          <%= link_to t('profiles.show.title'), profile_path %>
+          <%= link_to t('users.show.title'), user_path(current_user) %>
         </div>
         <div class="item-intro">
-          <%= t('profiles.show.intro') %>
+          <%= t('users.show.intro') %>
         </div>
       </li>
     </ul>
@@ -68,16 +68,16 @@
     </section>
   <% end %>
 <% else %>
-  <section class="content-section">
+  <section class="content-section narrow">
     <h1>
-      <%= t(:login) %>
+      <%= t('devices.new.intro') %>
     </h1>
     <%= render 'devices/form', device: @device %>
   </section>
-  <section class="content-section">
+  <section class="content-section narrow">
     <h1>
-      <%= t(:register) %>
+      <%= t('users.new.intro') %>
     </h1>
-    <%= render 'profiles/form', user: @user %>
+    <%= render 'users/form', user: @user %>
   </section>
 <% end %>

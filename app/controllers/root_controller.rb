@@ -1,8 +1,7 @@
 class RootController < ApplicationController
   skip_before_action :authorize
 
-  def index
-  end
+  def index; end
 
   def search
     @query = params[:query]
@@ -20,7 +19,7 @@ class RootController < ApplicationController
 
   def visit
     material = Material.find_by!(params.permit(:slug))
-    TrackVisitJob.perform_later(material.id, current_user.id, request.referrer)
+    TrackVisitJob.perform_later(material.id, current_user.id, request.referer)
     redirect_to material.url
   end
 end

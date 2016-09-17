@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   include Rest
 
   def index
-    @topics = Topic.order(name: :asc)
+    @topics = Topic.order(name: :asc).page(params[:page])
   end
 
   private

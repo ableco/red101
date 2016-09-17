@@ -6,8 +6,8 @@ es:
   unauthorized: "No autorizado"
 
   errors:
-    admin:
-      topic_required: "Primero debes crear un tema"
+    require_topics:
+      message: "Primero debes crear un tema"
 
   tabs:
     search:

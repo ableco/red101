@@ -5,8 +5,7 @@ module Auth
     before_action :authorize
     delegate      :current_user, to: :current_device
     delegate      :authorized?,  to: :authorization
-    helper_method :token,
-                  :current_user,
+    helper_method :current_user,
                   :authorized?
   end
 
@@ -17,7 +16,15 @@ module Auth
   end
 
   def token
-    raise NotImplementedError
+    authenticate_with_http_token { |t, _| t } || cookies.signed[:token]
+  end
+
+  def login(device)
+    cookies.signed[:token] = device.token
+  end
+
+  def logout
+    cookies.delete(:token)
   end
 
   def authorize

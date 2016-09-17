@@ -3,14 +3,4 @@ class ApplicationController < ActionController::Base
   default_form_builder Red101FormBuilder
 
   include Auth
-
-  private
-
-  def token
-    cookies.signed[:token]
-  end
-
-  def login(device)
-    cookies.signed[:token] = device.token
-  end
 end

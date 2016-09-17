@@ -18,9 +18,7 @@
       </nav>
     </header>
     <% flash.keys.each do |flash_key| %>
-      <div class="flash-message <%= flash_key %>">
-        <%= flash[flash_key] %>
-      </div>
+      <%= flash_message(flash_key) %>
     <% end %>
     <main class="content">
       <%= yield %>

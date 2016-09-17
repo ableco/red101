@@ -38,7 +38,7 @@ class Red101FormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def base_errors
-    content_tag(:div, object.errors[:base].first, class: :errors)
+    content_tag(:div, object.errors[:base].to_sentence, class: :errors)
   end
 
   private

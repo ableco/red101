@@ -1,9 +1,9 @@
 class TemplatesController < ApplicationController
   include Rest
-  include Admin
+  include RequireTopics
 
   def index
-    @templates = Template.page(params[:page])
+    @templates = Template.order(name: :asc).page(params[:page])
   end
 
   private

@@ -1,31 +1,29 @@
 Rails.application.routes.draw do
   root 'root#index'
 
-  get :search,    to: 'root#search'
-  get :diagnose,  to: 'root#diagnose'
-  get :configure, to: 'root#configure'
-  get :login,     to: 'devices#new'
-  get :logout,    to: 'devices#destroy'
-  get 'v/:slug',  to: 'root#visit', as: :visit
+  controller :root do
+    get 'buscar',       action: :search,    as: :search
+    get 'diagnosticar', action: :diagnose,  as: :diagnose
+    get 'configurar',   action: :configure, as: :configure
+    get 'v/:slug',      action: :visit,     as: :visit
+  end
 
-  resource  :profile
-  resource  :device
+  resource  :device, only: %i(new create update destroy)
+  resources :users
   resources :diagnostics
   resources :topics
   resources :templates
   resources :questions
   resources :materials
-  resources :users, only: %i(index show)
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resource  :profile,     only: %i(create show)
-      resources :devices,     only: %i(create delete)
+      resource  :device,      only: %i(show create update destroy)
+      resources :users,       only: %i(show create update destroy)
+      resources :diagnostics, only: %i(show create update destroy)
+      resources :topics,      only: %i(index)
+      resources :templates,   only: %i(index)
       resources :materials,   only: %i(index)
-      resources :topics,      only: %i(create destroy)
-      resources :questions,   only: %i(create)
-      resources :templates,   only: %i(create)
-      resources :diagnostics, only: %i(create)
     end
   end
 end
