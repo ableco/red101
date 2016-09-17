@@ -7,6 +7,8 @@ class Diagnostic < ApplicationRecord
   has_many :answers,   dependent: :destroy
   has_many :questions, through: :answers
 
+  has_many :topics, -> { distinct }, through: :template
+
   validates :user,      presence: true
   validates :template,  presence: true
   validates :reference, presence: true
@@ -55,8 +57,14 @@ class Diagnostic < ApplicationRecord
   end
 
   def create_answers
-    template.choose_random_question_ids.each do |question_id|
+    choose_random_question_ids.each do |question_id|
       answers.create(question_id: question_id)
+    end
+  end
+
+  def choose_random_question_ids
+    topics.flat_map do |topic|
+      topic.questions.random(template.question_limit).pluck(:id)
     end
   end
 

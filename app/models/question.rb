@@ -11,6 +11,8 @@ class Question < ApplicationRecord
 
   accepts_nested_attributes_for :options, allow_destroy: true
 
+  scope :random, ->(limit) { order('RANDOM()').limit(limit) }
+
   pg_search_scope :search_by_query, against: %i(content),
                                     associated_against: { options: %i(content) },
                                     using: { tsearch: { prefix: true } }

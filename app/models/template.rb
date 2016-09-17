@@ -7,12 +7,6 @@ class Template < ApplicationRecord
   validates :name, presence: true
   validate  :topics_presence
 
-  def choose_random_question_ids
-    topics.flat_map do |topic|
-      topic.questions.order('RANDOM()').limit(question_limit).pluck(:id)
-    end
-  end
-
   private
 
   def topics_presence
