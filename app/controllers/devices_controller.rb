@@ -11,11 +11,6 @@ class DevicesController < ApplicationController
     end
   end
 
-  def logout
-    current_device.sign_out!
-    redirect_to login_path
-  end
-
   private
 
   def find_resource
@@ -27,7 +22,7 @@ class DevicesController < ApplicationController
   end
 
   def after_path
-    current_user ? profile_path : login_path
+    configure_path
   end
 
   def created

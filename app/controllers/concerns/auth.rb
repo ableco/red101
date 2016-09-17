@@ -13,7 +13,7 @@ module Auth
   private
 
   def current_device
-    @current_device ||= Device.current(token)
+    @current_device ||= Device.current(token, request.user_agent)
   end
 
   def token
@@ -25,9 +25,7 @@ module Auth
 
     respond_to do |format|
       format.any(:js, :json) { head :authorized }
-      format.html do
-        redirect_to(root_path, alert: t(:unauthorized))
-      end
+      format.html { redirect_to(root_path, alert: t(:unauthorized)) }
     end
   end
 

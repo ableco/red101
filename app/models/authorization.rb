@@ -33,8 +33,12 @@ class Authorization
       @current_user == user
     end
 
-    authorize :diagnostics, %i(new create show edit update) do |diagnostic|
-      @current_user.id == diagnostic.user_id
+    authorize :diagnostics, %i(show edit update) do |diagnostic|
+      if diagnostic.user_id
+        diagnostic.user_id.nil? && diagnostic.created_at > 1.day.ago
+      else
+        @current_user.id == diagnostic.user_id
+      end
     end
 
     if @current_user.admin?
