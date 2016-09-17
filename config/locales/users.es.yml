@@ -10,6 +10,7 @@ es:
     submit:
       user:
         create: "Registrarme"
+        update: "Actualizar Información"
   users:
     index:
       title: "Usuarios"
@@ -29,6 +30,7 @@ es:
     show:
       title: "Historial"
       intro: "Revisa el progreso de tus diagnósticos"
+      no_diagnostics: "No has realizado diagnósticos aún"
   user_mailer:
     welcome:
       subject: "Bienvenido a Red101"

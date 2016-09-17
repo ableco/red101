@@ -1,6 +1,6 @@
 <section class="content-section">
   <h1>
-    <%= t('.description') %>
+    <%= @user.name %> - <%= t('.title') %>
   </h1>
   <%= render 'form', user: @user, hide_password: true %>
 </section>

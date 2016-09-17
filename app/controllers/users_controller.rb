@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = User.order(name: :asc).page(params[:page])
   end
 
+  def show
+    @diagnostics = @user.diagnostics.order(created_at: :desc).page(params[:page])
+  end
+
   private
 
   def permitted_attributes
