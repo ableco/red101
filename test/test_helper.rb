@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'mocha/mini_test'
+require 'sidekiq/testing'
 
 PASSWORD     = '1234abcd'
 MEMBER_TOKEN = '1234567890abcdefghijklmnopqrstuvwxyz'
