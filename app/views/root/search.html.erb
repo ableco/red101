@@ -17,19 +17,7 @@
       <% else %>
         <ul>
           <% @items.each do |item| %>
-            <li class="item">
-              <div class="item-label">
-                <%= link_to item.title, visit_path(item.slug), data: { turbolinks: false } %>
-              </div>
-              <div class="item-description">
-                <%= item.description.truncate(200) %>
-              </div>
-              <div class="item-extra">
-                <%= item.topic.name %>
-                &bull;
-                <%= item.url %>
-              </div>
-            </li>
+            <%= render 'materials/visit', material: item) %>
           <% end %>
         </ul>
       <% end %>

@@ -43,12 +43,8 @@ module Rest
   def failure
     respond_to do |format|
       format.js
-      format.json do
-        render json: { errors: resource.errors.messages }, status: :unprocessable_entity
-      end
-      format.html do
-        render(resource.new_record? ? :new : :edit)
-      end
+      format.json { json_failure }
+      format.html { render(resource.new_record? ? :new : :edit) }
     end
   end
 
@@ -58,6 +54,10 @@ module Rest
     when :update  then render(:show, status: :ok)
     when :destroy then head(:ok)
     end
+  end
+
+  def json_failure
+    render json: { errors: resource.errors.messages }, status: :unprocessable_entity
   end
 
   def resource

@@ -1,0 +1,13 @@
+<li class="item">
+  <div class="item-label">
+    <%= link_to material.title, visit_path(material.slug), data: { turbolinks: false } %>
+  </div>
+  <div class="item-description">
+    <%= material.description.truncate(200) %>
+  </div>
+  <div class="item-extra">
+    <%= material.topic.name %>
+    &bull;
+    <%= material.url %>
+  </div>
+</li>

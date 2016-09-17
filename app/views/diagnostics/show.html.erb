@@ -12,8 +12,8 @@
       </p>
     <% else %>
       <ul>
-        <% @diagnostic.recommendations.each do |material| %>
-          <%= render 'material', material: material %>
+        <% @diagnostic.recommendations.each do |recommendation| %>
+          <%= render 'materials/visit', material: recommendation) %>
         <% end %>
       </ul>
     <% end %>
