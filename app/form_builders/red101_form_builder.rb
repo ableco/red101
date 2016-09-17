@@ -14,6 +14,7 @@ class Red101FormBuilder < ActionView::Helpers::FormBuilder
     file_field
     collection_select
     collection_check_boxes
+    collection_radio_buttons
     check_box
   ).freeze
 

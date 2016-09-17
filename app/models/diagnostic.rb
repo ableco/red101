@@ -42,8 +42,8 @@ class Diagnostic < ApplicationRecord
     answers.correct.count
   end
 
-  def recommendations
-    Material.where(topic_id: recommended_topic_ids)
+  def recommendations(limit = 20)
+    Material.where(topic_id: recommended_topic_ids).limit(limit)
   end
 
   private

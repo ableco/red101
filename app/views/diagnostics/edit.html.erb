@@ -1,10 +1,23 @@
-<%= form_for @diagnostic do |form| %>
-  <%= form.fields_for :answers do |answers_form| %>
-    <% question = answers_form.object.question %>
-    <h2 class="question">
-      <%= question.content %>
-    </h2>
-    <%= answers_form.collection_radio_buttons :option_id, question.options, :id, :content %>
+<section class="content-section">
+  <h1>
+    <%= t('.title') %>:
+    <%= @diagnostic.template.name %>
+  </h1>
+  <%= form_for @diagnostic do |form| %>
+    <%= form.fields_for :answers do |answers_form| %>
+      <% question = answers_form.object.question %>
+      <%=
+        answers_form.collection_radio_buttons :option_id,
+                                              question.options,
+                                              :id,
+                                              :content,
+                                              label: question.content do |b|
+      %>
+        <div class="option">
+          <%= b.radio_button + b.label %>
+        </div>
+      <% end %>
+    <% end %>
+    <%= form.submit %>
   <% end %>
-  <%= form.submit %>
-<% end %>
+</section>

@@ -7,7 +7,9 @@ class DiagnosticTest < ActiveSupport::TestCase
 
   def test_questions_limit
     template   = templates(:creativity_and_leadership)
-    diagnostic = @member.diagnostics.create(user: @member, template: template)
+    reference  = template.name
+    diagnostic = @member.diagnostics
+                        .create(user: @member, template: template, reference: reference)
 
     assert_equal 4, diagnostic.questions.count
   end

@@ -1,11 +1,21 @@
-<%= Diagnostic.human_attribute_name(:score) %>
-<%= @diagnostic.score %> / <%= @diagnostic.answers_count %>
-
-<section class="recommendations">
-  <h1><%= t('.recommendations') %></h1>
-  <ul>
-    <% @materials.each do |material| %>
-      <%= render 'material', material: material %>
+<section class="content-section">
+  <h1><%= @diagnostic.reference %></h1>
+  <div class="items">
+    <p>
+      <%= Diagnostic.human_attribute_name(:score) %>
+      <strong><%= @diagnostic.score %></strong> / <%= @diagnostic.answers_count %>
+    </p>
+    <h2><%= t('.title') %></h2>
+    <% if @diagnostic.recommendations.empty? %>
+      <p>
+        <%= t('.no_items') %>
+      </p>
+    <% else %>
+      <ul>
+        <% @diagnostic.recommendations.each do |material| %>
+          <%= render 'material', material: material %>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
+  </div>
 </section>

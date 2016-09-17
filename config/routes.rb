@@ -8,13 +8,15 @@ Rails.application.routes.draw do
     get 'v/:slug',      action: :visit,     as: :visit
   end
 
+  resource  :device, only: %i(new create update destroy)
+
   resources :users
-  resource  :device,      only: %i(new create update destroy)
-  resources :diagnostics, only: %i(new create index edit update destroy)
-  resources :topics,      only: %i(new create index edit update destroy)
-  resources :templates,   only: %i(new create index edit update destroy)
-  resources :questions,   only: %i(new create index edit update destroy)
-  resources :materials,   only: %i(new create index edit update destroy)
+  resources :diagnostics
+
+  resources :topics,    only: %i(new create index edit update destroy)
+  resources :templates, only: %i(new create index edit update destroy)
+  resources :questions, only: %i(new create index edit update destroy)
+  resources :materials, only: %i(new create index edit update destroy)
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
