@@ -1,0 +1,83 @@
+<% if current_user %>
+  <section class="content-section">
+    <h1>
+      <%= current_user.name %>
+    </h1>
+    <div class="toolbar">
+      <%= button_to t(:logout), device_path, method: :delete %>
+    </div>
+    <ul>
+      <li class="item">
+        <div class="item-title">
+          <%= link_to t('users.edit.title'), edit_user_path(current_user) %>
+        </div>
+        <div class="item-intro">
+          <%= t('users.edit.intro') %>
+        </div>
+      </li>
+      <li class="item">
+        <div class="item-title">
+          <%= link_to t('users.show.title'), user_path(current_user) %>
+        </div>
+        <div class="item-intro">
+          <%= t('users.show.intro') %>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <% if current_user.admin? %>
+    <section class="content-section">
+      <h1>
+        <%= t('.admin') %>
+      </h1>
+      <ul>
+        <li class="item">
+          <div class="item-title">
+            <%= link_to t('topics.index.title'), topics_path %>
+          </div>
+          <div class="item-intro">
+            <%= t('topics.index.intro') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            <%= link_to t('materials.index.title'), materials_path %>
+          </div>
+          <div class="item-intro">
+            <%= t('materials.index.intro') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            <%= link_to t('questions.index.title'), questions_path %>
+          </div>
+          <div class="item-intro">
+            <%= t('questions.index.intro') %>
+          </div>
+        </li>
+        <li class="item">
+          <div class="item-title">
+            <%= link_to t('templates.index.title'), templates_path %>
+          </div>
+          <div class="item-intro">
+            <%= t('templates.index.intro') %>
+          </div>
+        </li>
+      </ul>
+    </section>
+  <% end %>
+<% else %>
+  <section class="content-section narrow">
+    <h1>
+      <%= t('devices.new.intro') %>
+    </h1>
+    <%= render 'devices/form', device: @device %>
+  </section>
+  <section class="content-section narrow">
+    <h1>
+      <%= t('users.new.intro') %>
+    </h1>
+    <%= render 'users/form', user: @user %>
+  </section>
+<% end %>

@@ -1,0 +1,7 @@
+<%= form_for user do |form| %>
+  <%= form.text_field     :name %>
+  <%= form.email_field    :email %>
+  <%= form.password_field :password unless local_assigns[:hide_password] %>
+
+  <%= form.submit %>
+<% end %>

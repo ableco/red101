@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
   include Rest
-  include Admin
+  include RequireTopics
 
   def index
-    @questions = Question.page(params[:page])
+    @questions = Question.order(content: :asc).page(params[:page])
   end
 
   def new
@@ -13,6 +13,6 @@ class QuestionsController < ApplicationController
   private
 
   def permitted_attributes
-    %i(content topic_id).push(options_attributes: %i(id content correct _destroy))
+    %i(content topic_id).push(options_attributes: %i(id content correct explanation _destroy))
   end
 end

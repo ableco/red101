@@ -29,6 +29,14 @@ class Diagnostic < ApplicationRecord
     persisted? && answers.all?(&:option_id)
   end
 
+  def annonymous?
+    user_id.nil?
+  end
+
+  def recent?
+    created_at > 1.day.ago
+  end
+
   def score
     answers.correct.count
   end

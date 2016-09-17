@@ -1,0 +1,25 @@
+<section class="content-section">
+  <h1>
+    <%= t('.intro') %>
+  </h1>
+  <div class="items">
+    <% if @items.empty? %>
+      <p>
+        <%= t('.no_items') %>
+      </p>
+    <% else %>
+      <ul>
+        <% @items.each do |item| %>
+          <li class="item">
+            <div class="item-title">
+              <%= link_to item.name, new_diagnostic_path(template_id: item.id) %>
+            </div>
+            <div class="item-description">
+              <%= item.description.presence || t('.no_description') %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</section>

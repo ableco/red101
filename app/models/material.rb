@@ -6,11 +6,11 @@ class Material < ApplicationRecord
   belongs_to :topic
   has_many   :visits
 
-  validates :title,   presence: true
-  validates :url,     presence: true
-  validates :details, presence: true
+  validates :title,       presence: true
+  validates :url,         presence: true
+  validates :description, presence: true
 
-  pg_search_scope :search_by_query, against: %i(title url details),
+  pg_search_scope :search_by_query, against: %i(title url description),
                                     associated_against: {
                                       topic: %i(name)
                                     }

@@ -1,1 +1,25 @@
-<%= render 'profile', user: @user %>
+<section class="content-section">
+  <h1>
+    <%= @user.name %> - <%= t('.title') %>
+  </h1>
+  <div class="items">
+    <% if @diagnostics.empty? %>
+      <p>
+        <%= t('.no_diagnostics') %>
+      </p>
+    <% else %>
+      <ul>
+        <% @diagnostics.each do |diagnostic| %>
+          <li class="item">
+            <div class="item-label">
+              <%= link_to diagnostic.reference, diagnostic_path(diagnostic) %>
+            </div>
+            <div class="item-info">
+              <%= diagnostic.score %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</section>

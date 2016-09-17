@@ -4,21 +4,19 @@ class Device < ApplicationRecord
   has_secure_token
 
   belongs_to :user
+  validates  :user, presence: true
 
   enum kind: {
     browser: 0
   }
 
-  validates :user, presence: true
-
-  before_validation :authenticate, on: :create, unless: :skip_authentication
-  before_validation :set_description
+  before_validation :authenticate, unless: :skip_authentication
 
   scope :active, -> { where('expires_at IS NULL OR expires_at > :now', now: Time.current) }
 
-  def self.current(token)
+  def self.current(token, user_agent)
     active.find_or_initialize_by(token: token).tap do |device|
-      device.sign_out! if device.expired?
+      device.user_agent = user_agent
     end
   end
 
@@ -34,21 +32,16 @@ class Device < ApplicationRecord
     update(expires_at: Time.current, skip_authentication: true)
   end
 
-  def sign_out!
-    update(expires_at: nil, user: nil, skip_authentication: true)
-  end
-
   private
 
   def authenticate
     candidate = User.find_by(email: email) if email.present? && password.present?
 
     if candidate&.authenticate(password)
-      self.user = candidate
+      self.user       = candidate
+      self.expires_at = nil
+    else
+      errors.add(:base, :invalid_credentials)
     end
-  end
-
-  def set_description
-    self.description = kind unless description.present?
   end
 end

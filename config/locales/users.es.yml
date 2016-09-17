@@ -1,0 +1,36 @@
+es:
+  activerecord:
+    models:
+      user: "Usuario"
+    attributes:
+      user:
+        email: "Correo Electrónico"
+        password: "Contraseña"
+  helpers:
+    submit:
+      user:
+        create: "Registrarme"
+        update: "Actualizar Información"
+  users:
+    index:
+      title: "Usuarios"
+      intro: "Revisa la lista de usuarios"
+    new:
+      title: "Registro"
+      intro: "Ingresa tu información para crear una cuenta"
+    create:
+      title: "Registro"
+      intro: "Crea una cuenta"
+    edit:
+      title: "Editar mi Perfil"
+      intro: "Actualiza tu información"
+    update:
+      title: "Editar mi Perfil"
+      intro: "Actualiza tu información"
+    show:
+      title: "Historial"
+      intro: "Revisa el progreso de tus diagnósticos"
+      no_diagnostics: "No has realizado diagnósticos aún"
+  user_mailer:
+    welcome:
+      subject: "Bienvenido a Red101"

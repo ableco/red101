@@ -1,0 +1,5 @@
+es:
+  templates:
+    index:
+      title: "Plantillas"
+      intro: "Gestiona las plantillas base para diagnósticos"

@@ -8,18 +8,23 @@
   </head>
   <body>
     <header class="header">
-      <%= render 'brand' %>
-      <%= render 'search' %>
-      <%= render 'navigation' %>
-      <%= render 'messages' %>
+      <h1 class="brand">
+        <%= link_to NavigationHelper::APP_NAME, root_path, class: 'brand-link' %>
+      </h1>
+      <nav class="tabs">
+        <%= tab :search %>
+        <%= tab :diagnose %>
+        <%= tab :configure %>
+      </nav>
     </header>
-    <main>
-      <aside class="sidebar">
-        <%= render 'sidebar' %>
-      </aside>
-      <section class="content">
-        <%= yield %>
-      </section>
+    <% flash.keys.each do |flash_key| %>
+      <%= flash_message(flash_key) %>
+    <% end %>
+    <main class="content">
+      <%= yield %>
     </main>
+    <footer class="footer">
+      <%= link_to 'GitHub', 'http://github.com/rubyperu/red101' %>
+    </footer>
   </body>
 </html>

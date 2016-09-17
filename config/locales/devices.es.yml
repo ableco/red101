@@ -1,0 +1,27 @@
+es:
+  activerecord:
+    models:
+      device: "Dispositivo"
+    attributes:
+      device:
+        email: "Correo Electrónico"
+        password: "Contraseña"
+    errors:
+      models:
+        device:
+          attributes:
+            base:
+              invalid_credentials: "Credenciales inválidas"
+
+
+  helpers:
+    submit:
+      device:
+        create: "Iniciar Sesión"
+  devices:
+    new:
+      title: "Iniciar Sesión"
+      intro: "Ingresa tus credenciales para iniciar sesión"
+    create:
+      title: "Iniciar Sesión"
+      intro: "Ingresa tus credenciales para iniciar sesión"

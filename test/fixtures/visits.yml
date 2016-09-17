@@ -4,4 +4,4 @@ member_visit:
 
 public_visit:
   material: creativity_two
-  referrer: 'http://www.google.com'
+  referer: 'http://www.google.com'

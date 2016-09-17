@@ -4,8 +4,8 @@
 <section class="recommendations">
   <h1><%= t('.recommendations') %></h1>
   <ul>
-    <% @results.each do |result| %>
-      <%= render 'result', result: result %>
+    <% @materials.each do |material| %>
+      <%= render 'material', material: material %>
     <% end %>
   </ul>
 </section>

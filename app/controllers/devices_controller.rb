@@ -1,19 +1,14 @@
 class DevicesController < ApplicationController
-  skip_before_action :authorize
-
   include Rest
+
+  skip_before_action :authorize
 
   def new
     if current_user
-      redirect_to root_path
+      redirect_to after_path
     else
       @device = Device.new
     end
-  end
-
-  def logout
-    current_device.sign_out!
-    redirect_to login_path
   end
 
   private
@@ -27,10 +22,14 @@ class DevicesController < ApplicationController
   end
 
   def after_path
-    current_user ? profile_path : login_path
+    configure_path
   end
 
   def created
     login(@device)
+  end
+
+  def deleted
+    logout
   end
 end

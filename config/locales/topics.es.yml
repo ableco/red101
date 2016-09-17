@@ -1,0 +1,5 @@
+es:
+  topics:
+    index:
+      title: "Temas"
+      intro: "Gestiona los temas para recursos, preguntas y plantillas"
