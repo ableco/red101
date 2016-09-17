@@ -1,11 +1,12 @@
 class DiagnosticsController < ApplicationController
   include Rest
 
-  before_action :redirect_to_pending, only: %i(new create)
+  skip_before_action :authorize,           only: %i(new create)
+  before_action      :redirect_to_pending, only: %i(new)
 
   def show
     if @diagnostic.finished?
-      @results = @diagnostic.recommendations.page(params[:page])
+      @items = @diagnostic.recommendations.page(params[:page])
     else
       redirect_to edit_diagnostic_path(@diagnostic)
     end
@@ -14,7 +15,7 @@ class DiagnosticsController < ApplicationController
   private
 
   def build_params
-    params.permit(:template_id).merge(user_id: current_user.id)
+    params.permit(:template_id).merge(user_id: current_user&.id)
   end
 
   def permitted_attributes
@@ -26,14 +27,10 @@ class DiagnosticsController < ApplicationController
   end
 
   def pending_diagnostic
-    current_user.pending_diagnostic_for(@diagnostic.template_id)
+    current_user.pending_diagnostic_for(params[:template_id])
   end
 
   def after_path
     diagnostic_path(@diagnostic)
-  end
-
-  def recommendations
-    Material.where(topic_id: @diagnostic.recommended_topic_ids).page(params[:page])
   end
 end
