@@ -5,14 +5,17 @@ body {
   background-color: $color-background-body;
 }
 .header {
-  background-color: white;
+  background-color: black;
+  color: white;
   position: relative;
+  -webkit-font-smoothing: antialiased;
 }
 .brand {
   margin: 10px;
   display: inline-block;
   font-size: 24px;
   line-height: $length-vertical-unit;
+  color: white;
 }
 .tabs {
   position: absolute;
@@ -25,6 +28,7 @@ body {
   padding: 10px;
   margin: 0 10px;
   line-height: 40px;
+  color: white;
 
   &.active {
     font-weight: bold;
