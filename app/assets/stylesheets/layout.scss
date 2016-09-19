@@ -5,7 +5,7 @@ body {
   background-color: $color-background-body;
 }
 .header {
-  background-color: black;
+  background-color: $color-main-dark;
   color: white;
   position: relative;
   -webkit-font-smoothing: antialiased;
