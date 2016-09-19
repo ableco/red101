@@ -13,7 +13,7 @@
     <% else %>
       <ul>
         <% @diagnostic.recommendations.each do |recommendation| %>
-          <%= render 'materials/visit', material: recommendation) %>
+          <%= render 'materials/visit', material: recommendation %>
         <% end %>
       </ul>
     <% end %>
