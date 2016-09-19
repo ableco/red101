@@ -24,7 +24,7 @@ class DiagnosticsController < ApplicationController
   end
 
   def pending_diagnostic
-    current_user.pending_diagnostic_for(@diagnostic.template_id)
+    current_user.pending_diagnostic_for(@diagnostic.template_id) if current_user
   end
 
   def after_path
