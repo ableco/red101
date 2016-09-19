@@ -21,7 +21,7 @@ class Question < ApplicationRecord
     if query.present?
       search_by_query(query)
     else
-      order(title: :asc)
+      order(content: :asc)
     end
   end
 
