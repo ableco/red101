@@ -12,11 +12,21 @@
 
   .option {
     padding: 5px;
+    clear: both;
+
+    [type="radio"],
+    [type="checkbox"] {
+      float: left;
+      display: block;
+      width: 20px;
+      margin: 5px 0;
+      min-height: 40px;
+    }
 
     label {
-      display: inline-block;
+      margin-left: 40px;
+      display: block;
       font-weight: normal;
-      margin-left: 10px;
       font-size: 14px;
     }
   }

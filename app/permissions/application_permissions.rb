@@ -12,6 +12,9 @@ class ApplicationPermissions < Authorization::Permissions
   def authorize_guest
     authorize :users,       %i(new create)
     authorize :diagnostics, %i(new create)
+    authorize :diagnostics, %i(show edit update) do |diagnostic|
+      diagnostic.annonymous?
+    end
   end
 
   def authorize_user
@@ -21,19 +24,7 @@ class ApplicationPermissions < Authorization::Permissions
       current_user == user
     end
 
-    authorize_user_diagnostics
-  end
-
-  def authorize_user_diagnostics
-    authorize :diagnostics, %i(show edit update) do |diagnostic|
-      if diagnostic.annonymous?
-        diagnostic.recent?
-      else
-        current_user.id == diagnostic.user_id
-      end
-    end
-
-    authorize :diagnostics, %i(destroy) do |diagnostic|
+    authorize :diagnostics, %i(show edit update destroy) do |diagnostic|
       current_user.id == diagnostic.user_id
     end
   end
