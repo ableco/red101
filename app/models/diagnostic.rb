@@ -9,7 +9,6 @@ class Diagnostic < ApplicationRecord
 
   has_many :topics, -> { distinct }, through: :template
 
-  validates :user,      presence: true
   validates :template,  presence: true
   validates :reference, presence: true
 
