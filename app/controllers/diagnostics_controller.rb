@@ -19,6 +19,10 @@ class DiagnosticsController < ApplicationController
     params.permit(:template_id).merge(user_id: current_user&.id)
   end
 
+  def find_resource
+    Diagnostic.includes(answers: { question: :options }).find(params[:id]) if params[:id]
+  end
+
   def permitted_attributes
     %i(template_id reference).push(answers_attributes: %i(id option_id))
   end
