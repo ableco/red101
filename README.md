@@ -14,7 +14,7 @@ autodiagnósticos y en base a estos recomendar recursos educativos en internet.
 
 Se realizó una Hackathon de dos días para sentar la base, y el desarrollo continúa.
 
-## Diseño
+## Diseño Original (rama `react`)
 
 * [Eder Reingifo](https://github.com/ederrengifo)
 

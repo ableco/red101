@@ -13,6 +13,8 @@ es:
       message: "Primero debes crear un tema"
 
   tabs:
+    index:
+      title: "Bienvenido"
     search:
       title: "Buscar"
     diagnose:

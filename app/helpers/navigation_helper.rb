@@ -11,7 +11,7 @@ module NavigationHelper
   end
 
   def tab_title(key)
-    t("tabs.#{key}.title")
+    t("tabs.#{key || 'index'}.title")
   end
 
   def tab_state?(key)
