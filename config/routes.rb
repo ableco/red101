@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resource  :device,      only: %i(show create update destroy)
+      resource  :device,      only: %i(create destroy)
       resources :users,       only: %i(show create update destroy)
       resources :diagnostics, only: %i(show create update destroy)
       resources :topics,      only: %i(index)

@@ -1,1 +1,1 @@
-json.extract!(@device, :token)
+json.extract!(@device, :user_id, :token)
