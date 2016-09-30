@@ -19,7 +19,7 @@ class RootController < ApplicationController
 
   def visit
     material = Material.find_by!(params.permit(:slug))
-    TrackVisitJob.perform_later(material.id, current_user.id, request.referer)
+    TrackVisitJob.perform_later(material.id, current_user.id, request.referer) if current_user
     redirect_to material.url
   end
 end
