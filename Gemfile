@@ -34,6 +34,7 @@ gem 'sinatra', '>= 2.0.0.beta2', require: false # https://github.com/mperham/sid
 gem 'rails-i18n'
 gem 'local_time'
 gem 'sentry-raven'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

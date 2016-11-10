@@ -10,5 +10,12 @@ module Red101
   class Application < Rails::Application
     config.i18n.default_locale      = :es
     config.active_job.queue_adapter = :sidekiq
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: %i(get post options)
+      end
+    end
   end
 end
