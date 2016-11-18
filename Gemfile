@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.3.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
@@ -30,7 +30,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pg_search'
 gem 'kaminari'
 gem 'sidekiq'
-gem 'sinatra', '>= 2.0.0.beta2', require: false # https://github.com/mperham/sidekiq/issues/2839
 gem 'rails-i18n'
 gem 'local_time'
 gem 'sentry-raven'
@@ -45,9 +44,6 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
