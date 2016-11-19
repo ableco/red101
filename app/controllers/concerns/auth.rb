@@ -31,7 +31,7 @@ module Auth
     return true if authorized?(controller_name, action_name, resource)
 
     respond_to do |format|
-      format.any(:js, :json) { head :authorized }
+      format.any(:js, :json) { head :unauthorized }
       format.html { redirect_to(root_path, alert: t(:unauthorized)) }
     end
   end
