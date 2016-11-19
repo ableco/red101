@@ -27,6 +27,9 @@ class ApplicationPermissions < Authorization::Permissions
     authorize :diagnostics, %i(show edit update destroy) do |diagnostic|
       current_user.id == diagnostic.user_id
     end
+
+    authorize :topics,    %i(index show)
+    authorize :questions, %i(index show)
   end
 
   def authorize_admin
